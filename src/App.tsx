@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
@@ -11,7 +11,7 @@ import { CustomPlanBuilder } from './components/CustomPlanBuilder';
 import { PlanOrderModal } from './components/PlanOrderModal';
 import { CustomerPortalModal } from './components/CustomerPortalModal';
 import { LegalModal } from './components/LegalModal';
-import { Sparkles, ArrowRight, Phone, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
+import { Sparkles, Phone, CheckCircle2 } from 'lucide-react';
 import type { SubscriptionPlan } from './types';
 
 export function App() {
@@ -38,12 +38,27 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#202734] text-white flex flex-col font-['Barlow'] selection:bg-[#2391FF] selection:text-white relative">
+    <div className="min-h-screen text-white flex flex-col font-['Lateef'] text-xl selection:bg-[#2391FF] selection:text-white relative isolation-isolate">
+      {/* Animated Mountain Picture & Video Background from index.html */}
+      <video
+        className="page-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/assets/mountain-bg.jpg"
+        aria-hidden="true"
+      >
+        <source src="/assets/purple-desert-optimized.mp4" type="video/mp4" />
+      </video>
+      <div className="page-video-shade" aria-hidden="true"></div>
+
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 p-4 rounded-xl glass-panel border border-emerald-500/40 text-white shadow-2xl flex items-center gap-3 animate-in slide-in-from-bottom-5">
+        <div className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl glass border border-emerald-500/40 text-white shadow-2xl flex items-center gap-3 animate-in slide-in-from-bottom-5 font-['Barlow']">
           <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-          <div className="text-xs font-semibold">{toastMessage}</div>
+          <div className="text-sm font-semibold">{toastMessage}</div>
         </div>
       )}
 
@@ -55,51 +70,52 @@ export function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         {activeTab === 'home' && (
           <>
-            {/* Hero Section */}
+            {/* Hero Section with FlipText, Three.js Scene & Mountain Backdrop */}
             <Hero
               onExploreServices={() => {
                 const el = document.getElementById('services-overview');
                 el?.scrollIntoView({ behavior: 'smooth' });
               }}
               onBuildCustomPlan={() => handleNavigate('custom-plan')}
-              onNavigate={handleNavigate}
             />
 
-            {/* 4 Interactive Service Modules Overview */}
+            {/* 4 Interactive Service Modules Overview with correct SVGs & Glass style */}
             <ServiceShowcaseGrid onSelectService={(id) => handleNavigate(id)} />
 
-            {/* Why Choose Us & Architectural Bento Grid */}
+            {/* Why Choose Us & Bento Grid */}
             <WhyChooseUs />
 
-            {/* Final Conversion Section */}
-            <section className="py-24 relative overflow-hidden text-center">
-              <div className="ambient-glow bg-[#2391FF] w-[500px] h-[350px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15"></div>
+            {/* Final Conversion Section from index.html */}
+            <section className="py-24 relative overflow-hidden text-center" id="contact">
+              <div className="glow a left-1/4 top-10"></div>
+              <div className="glow b right-1/4 bottom-10"></div>
 
-              <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="glass-panel p-10 sm:p-14 rounded-3xl border border-[#2391FF]/30 shadow-2xl relative overflow-hidden">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2391FF]/10 border border-[#2391FF]/30 text-xs font-semibold text-[#2391FF] uppercase tracking-wider mb-6">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>Ready To Scale Your Digital Architecture?</span>
-                  </div>
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="glass p-10 sm:p-14 rounded-[32px] border border-[rgba(99,203,255,0.3)] shadow-[0_0_50px_rgba(112,37,237,0.35)] relative overflow-hidden">
+                  <p className="text-[#65ffe3] text-sm uppercase tracking-[0.18em] font-semibold mb-4 font-['Barlow']">
+                    Our Vision
+                  </p>
 
-                  <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-2xl mx-auto font-['Barlow']">
-                    Your vision. Our engineering.{' '}
-                    <span className="text-[#2391FF]">One unified digital journey.</span>
+                  <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-2xl mx-auto font-['Barlow'] header-text-glow">
+                    Every idea deserves the opportunity to become{' '}
+                    <span className="font-script-italic text-transparent bg-clip-text bg-gradient-to-r from-white via-[#8effd2] to-[#d86bff]">
+                      something meaningful.
+                    </span>
                   </h2>
 
-                  <p className="mt-4 text-base sm:text-lg text-[#B7B09E] max-w-xl mx-auto">
-                    Whether you need an autonomous AI chatbot, an ultra-fast web application, or an aggressive SEO strategy, we turn requirements into reality.
+                  <p className="mt-5 text-xl sm:text-2xl text-[#d5d8e2] max-w-xl mx-auto font-['Lateef'] leading-relaxed">
+                    We combine creativity, technology, AI, and automation to help businesses build stronger digital experiences, work smarter, and grow with confidence.
                   </p>
 
                   <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                     <button
                       onClick={() => handleNavigate('custom-plan')}
-                      className="w-full sm:w-auto px-8 py-3.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#2391FF] to-[#0070e0] hover:from-[#3ea0ff] hover:to-[#2391FF] shadow-lg shadow-[#2391FF]/25 flex items-center justify-center gap-2 cursor-pointer"
+                      className="pill primary px-8 py-3.5 text-base flex items-center justify-center gap-2 cursor-pointer font-['Barlow'] font-semibold"
                     >
-                      <Sparkles className="w-4 h-4" />
+                      <Sparkles className="w-4 h-4 text-[#65ffe3]" />
                       <span>Build Your Custom Plan</span>
                     </button>
 
@@ -107,9 +123,9 @@ export function App() {
                       href="https://wa.me/917708795342?text=Hi%20BlazeByte%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20project%20for%20my%20business."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto px-7 py-3.5 rounded-xl text-xs font-semibold text-[#B7B09E] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#2391FF]/40 transition-all flex items-center justify-center gap-2"
+                      className="pill px-7 py-3.5 text-base text-[#e1e4eb] hover:text-white flex items-center justify-center gap-2 font-['Barlow'] font-semibold"
                     >
-                      <Phone className="w-4 h-4 text-[#2391FF]" />
+                      <Phone className="w-4 h-4 text-[#63cbff]" />
                       <span>Chat on WhatsApp Directly</span>
                     </a>
                   </div>

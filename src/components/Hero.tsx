@@ -1,44 +1,59 @@
 import React from 'react';
-import { ArrowRight, Sparkles, CheckCircle2, ShieldCheck, Zap, Bot, Globe, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, Phone } from 'lucide-react';
+import { FlipText } from '@/components/ui/flip-text';
+import { HeroScene } from '@/components/HeroScene';
 
 interface HeroProps {
   onExploreServices: () => void;
   onBuildCustomPlan: () => void;
-  onNavigate: (tab: string) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onExploreServices, onBuildCustomPlan, onNavigate }) => {
+export const Hero: React.FC<HeroProps> = ({ onExploreServices, onBuildCustomPlan }) => {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="ambient-glow bg-[#2391FF] w-[500px] h-[500px] -top-24 left-1/2 -translate-x-1/2 opacity-20"></div>
-      <div className="ambient-glow bg-[#1a4eff] w-[400px] h-[400px] top-40 right-10 opacity-15"></div>
+    <section className="relative min-h-[92vh] sm:min-h-screen flex items-center justify-center pt-24 pb-16 sm:pt-32 sm:pb-24 overflow-hidden isolation-auto">
+      {/* Three.js Interactive Particle Header Scene from index.html */}
+      <HeroScene />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        {/* Release / Status Tag */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-[#2391FF]/30 text-xs font-medium text-white mb-8 shadow-lg shadow-[#2391FF]/10 animate-pulse">
-          <span className="w-2 h-2 rounded-full bg-[#2391FF] shadow-[0_0_8px_#2391FF]"></span>
-          <span>BlazeByte Studio 2.0 • Enterprise SaaS & Digital Systems</span>
+      {/* Hero Ambient Radial Lighting */}
+      <div className="glow a -left-20 top-1/4"></div>
+      <div className="glow b right-10 top-1/3"></div>
+
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Eyebrow badge from index.html */}
+        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass mb-8 border border-[rgba(99,203,255,0.4)] shadow-[0_0_24px_rgba(112,37,237,0.3)]">
+          <img
+            src="/assets/brain-glow.png"
+            alt="BlazeByte AI"
+            className="w-4 h-4 object-contain filter drop-shadow-[0_0_6px_#65ffe3]"
+          />
+          <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#65ffe3] uppercase font-['Barlow']">
+            BlazeByte Studio • Enterprise SaaS & Digital Systems
+          </span>
         </div>
 
-        {/* Main Headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.08] font-['Barlow']">
-          Build Smarter. Grow Faster.{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2391FF] via-[#63cbff] to-white">
-            Automate Everything.
-          </span>
-        </h1>
+        {/* Main Headline with FlipText, Script Bold Italic, and index.html Color Gradient */}
+        <div className="header-text-glow font-['Barlow']">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.08] mb-2">
+            <FlipText className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white">
+              Build Smarter. Grow Faster.
+            </FlipText>
+          </h1>
 
-        {/* Supporting Description */}
-        <p className="mt-6 text-base sm:text-lg lg:text-xl text-[#B7B09E] max-w-3xl mx-auto leading-relaxed font-normal">
-          Empowering modern businesses with autonomous AI chatbots, high-conversion web applications, and precision SEO architectures — unified into one scalable commercial platform.
+          <div className="mt-2 text-4xl sm:text-6xl lg:text-7xl font-script-italic text-transparent bg-clip-text bg-gradient-to-r from-white via-[#8effd2] via-[#63cbff] to-[#d86bff] drop-shadow-[0_0_28px_rgba(112,37,237,0.7)] py-2">
+            Automate Everything.
+          </div>
+        </div>
+
+        {/* Supporting description with Lateef primary typography */}
+        <p className="mt-5 text-xl sm:text-2xl text-[#eef2f3] max-w-3xl mx-auto leading-relaxed font-['Lateef'] font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+          Empowering modern businesses with autonomous AI chatbots, high-conversion web applications, and precision SEO architectures — turning bold ideas into scalable digital systems.
         </p>
 
-        {/* CTAs */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+        {/* CTAs matching index.html pill buttons */}
+        <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 max-w-md mx-auto">
           <button
             onClick={onExploreServices}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#2391FF] to-[#0d7ae6] hover:from-[#3ea0ff] hover:to-[#2391FF] transition-all shadow-xl shadow-[#2391FF]/25 hover:shadow-[#2391FF]/40 flex items-center justify-center gap-2.5 group cursor-pointer"
+            className="pill primary w-full sm:w-auto px-8 py-3.5 text-base flex items-center justify-center gap-2.5 group cursor-pointer"
           >
             <span>Explore Services</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -46,44 +61,46 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onBuildCustomPlan
 
           <button
             onClick={onBuildCustomPlan}
-            className="w-full sm:w-auto px-7 py-3.5 rounded-xl text-sm font-semibold text-[#B7B09E] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#2391FF]/40 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+            className="pill w-full sm:w-auto px-7 py-3.5 text-base text-[#e1e4eb] hover:text-white flex items-center justify-center gap-2.5 cursor-pointer"
           >
-            <Sparkles className="w-4 h-4 text-[#2391FF]" />
+            <Sparkles className="w-4 h-4 text-[#65ffe3]" />
             <span>Build Your Custom Plan</span>
           </button>
         </div>
 
-        {/* Trust Badges */}
-        <div className="mt-12 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
-          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-3">
-            <Bot className="w-5 h-5 text-[#2391FF] shrink-0" />
+        {/* Floating Architectural Indicators */}
+        <div className="mt-14 pt-8 border-t border-[rgba(99,203,255,0.2)] grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left font-['Barlow']">
+          <div className="p-3.5 rounded-2xl glass flex items-center gap-3">
+            <img src="/assets/automation.svg" alt="Automation" className="w-6 h-6 object-contain" />
             <div>
-              <div className="text-xs font-semibold text-white">AI Automation</div>
-              <div className="text-[11px] text-[#B7B09E]">Multi-Tier Agents</div>
+              <div className="text-xs font-bold text-white">AI Automation</div>
+              <div className="text-[11px] text-[#9ea6bd]">Multi-Tier Agents</div>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-3">
-            <Globe className="w-5 h-5 text-[#2391FF] shrink-0" />
+          <div className="p-3.5 rounded-2xl glass flex items-center gap-3">
+            <img src="/assets/branding.svg" alt="Web Dev" className="w-6 h-6 object-contain" />
             <div>
-              <div className="text-xs font-semibold text-white">Web Apps</div>
-              <div className="text-[11px] text-[#B7B09E]">Sub-Second Speed</div>
+              <div className="text-xs font-bold text-white">Web Design</div>
+              <div className="text-[11px] text-[#9ea6bd]">Sub-Second Speed</div>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-3">
-            <TrendingUp className="w-5 h-5 text-[#2391FF] shrink-0" />
+          <div className="p-3.5 rounded-2xl glass flex items-center gap-3">
+            <img src="/assets/growth.svg" alt="SEO" className="w-6 h-6 object-contain" />
             <div>
-              <div className="text-xs font-semibold text-white">SEO Growth</div>
-              <div className="text-[11px] text-[#B7B09E]">Data-Driven Health</div>
+              <div className="text-xs font-bold text-white">SEO Growth</div>
+              <div className="text-[11px] text-[#9ea6bd]">Data-Driven Health</div>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-3">
-            <Zap className="w-5 h-5 text-[#2391FF] shrink-0" />
+          <div className="p-3.5 rounded-2xl glass flex items-center gap-3">
+            <div className="w-6 h-6 rounded-lg bg-[rgba(99,203,255,0.15)] flex items-center justify-center text-[#65ffe3]">
+              <Sparkles className="w-4 h-4" />
+            </div>
             <div>
-              <div className="text-xs font-semibold text-white">Custom Config</div>
-              <div className="text-[11px] text-[#B7B09E]">Bespoke Stacks</div>
+              <div className="text-xs font-bold text-white">Custom Config</div>
+              <div className="text-[11px] text-[#9ea6bd]">Bespoke Stacks</div>
             </div>
           </div>
         </div>
