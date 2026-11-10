@@ -13,7 +13,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -34,62 +34,62 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
   };
 
   return (
-    <nav
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#08021b]/90 backdrop-blur-xl border-b border-[rgba(99,203,255,0.2)] py-2.5 shadow-2xl'
-          : 'bg-gradient-to-b from-[#08021bee] to-transparent backdrop-blur-md py-3.5'
+          ? 'bg-[#070219]/90 backdrop-blur-xl border-b border-[rgba(99,203,255,0.2)] py-2.5 shadow-2xl'
+          : 'bg-gradient-to-b from-[#070219dd] via-[#070219aa] to-transparent py-4'
       }`}
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-6 h-16 sm:h-20">
-          {/* Brand Logo & Name as in index.html */}
+        <div className="flex items-center justify-between gap-4 h-16 sm:h-20">
+          {/* Brand Logo & Name */}
           <button
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-3.5 group text-left cursor-pointer transition-transform hover:scale-[1.02]"
           >
-            <div className="w-[74px] h-[50px] flex items-center justify-center">
+            <div className="w-14 h-11 flex items-center justify-center p-1 rounded-xl bg-white/[0.04] border border-[rgba(99,203,255,0.3)] shadow-[0_0_12px_rgba(99,203,255,0.3)]">
               <img
                 src="/assets/blazebyte-logo.png"
                 alt="BlazeByte Studio logo"
-                className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(99,203,255,0.6)]"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_8px_#63cbff]"
               />
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold tracking-tight text-white flex items-center gap-1.5 font-['Barlow']">
                 BlazeByte <span className="text-[#63cbff]">Studio</span>
               </span>
-              <span className="text-[11px] font-medium tracking-wider text-[#9ea6bd] uppercase font-['Barlow']">
-                SaaS & Systems
+              <span className="text-[10px] font-semibold tracking-widest text-[#9ea6bd] uppercase font-['Barlow']">
+                SAAS & SYSTEMS
               </span>
             </div>
           </button>
 
-          {/* Desktop Navigation Links with Hover Line & Cyan Glow */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-11 font-['Barlow'] text-[17px]">
+          {/* Centered Floating Capsule Nav (Inspired by Soda glass nav capsule) */}
+          <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-full border border-[rgba(99,203,255,0.22)] bg-[rgba(14,8,40,0.68)] backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25)] font-['Barlow']">
             {navLinks.map((link) => {
               const isActive = activeTab === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`transition-colors py-1 cursor-pointer nav-hover-line ${
+                  className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-[#65ffe3] active font-semibold'
-                      : 'text-[#e1e4eb] hover:text-[#65ffe3]'
+                      ? 'bg-[#2391FF] text-white shadow-[0_0_16px_rgba(35,145,255,0.6)]'
+                      : 'text-[#d6d9e4] hover:text-white hover:bg-white/[0.08]'
                   }`}
                 >
                   {link.label}
                 </button>
               );
             })}
-          </div>
+          </nav>
 
           {/* Right Action Buttons */}
           <div className="hidden lg:flex items-center gap-3 font-['Barlow']">
             <button
               onClick={() => onOpenPortal('user')}
-              className="px-3.5 py-1.5 rounded-full text-xs font-medium text-[#c8ccda] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#c8ccda] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <User className="w-3.5 h-3.5 text-[#63cbff]" />
               <span>Portal</span>
@@ -97,27 +97,27 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
 
             <button
               onClick={() => onOpenPortal('admin')}
-              className="p-2 rounded-full text-xs font-medium text-[#c8ccda] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center justify-center cursor-pointer"
+              className="p-2 rounded-full text-xs font-semibold text-[#c8ccda] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center justify-center cursor-pointer"
               title="Admin Dashboard"
             >
               <Shield className="w-3.5 h-3.5 text-[#63cbff]" />
             </button>
 
-            {/* Pill CTA button from index.html */}
+            {/* Glowing Pill CTA Button */}
             <button
               onClick={() => handleNavClick('custom-plan')}
-              className="pill primary text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2"
+              className="pill primary text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2 cursor-pointer"
             >
               <Sparkles className="w-4 h-4 text-[#65ffe3]" />
               <span>Build Custom Plan</span>
             </button>
           </div>
 
-          {/* Mobile Menu Trigger */}
+          {/* Mobile Menu Toggle */}
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:text-[#65ffe3] transition-colors"
+              className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:text-[#65ffe3] transition-colors cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -128,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#08021b]/95 backdrop-blur-2xl border-b border-[rgba(99,203,255,0.25)] px-6 pt-4 pb-7 animate-in slide-in-from-top-2 duration-200 font-['Barlow']">
+        <div className="md:hidden bg-[#070219]/95 backdrop-blur-2xl border-b border-[rgba(99,203,255,0.25)] px-6 pt-4 pb-7 animate-in slide-in-from-top-2 duration-200 font-['Barlow']">
           <div className="flex flex-col gap-2.5">
             {navLinks.map((link) => {
               const isActive = activeTab === link.id;
@@ -181,6 +181,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 };

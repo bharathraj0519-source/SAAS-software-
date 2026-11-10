@@ -49,10 +49,32 @@ export function App() {
         preload="metadata"
         poster="/assets/mountain-bg.jpg"
         aria-hidden="true"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          objectFit: 'cover',
+          pointerEvents: 'none',
+          zIndex: -10,
+        }}
       >
         <source src="/assets/purple-desert-optimized.mp4" type="video/mp4" />
       </video>
-      <div className="page-video-shade" aria-hidden="true"></div>
+      <div
+        className="page-video-shade"
+        aria-hidden="true"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+          zIndex: -9,
+        }}
+      ></div>
 
       {/* Toast Notification */}
       {toastMessage && (

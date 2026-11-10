@@ -133,12 +133,8 @@ export const HeroScene: React.FC = () => {
       animationFrameId = requestAnimationFrame(animate);
       const time = clock.getElapsedTime();
 
-      // Smooth mouse interpolate
-      mouseX += (targetX - mouseX) * 0.05;
-      mouseY += (targetY - mouseY) * 0.05;
-
-      camera.position.x = mouseX * 2.5;
-      camera.position.y = 5 + mouseY * 1.5;
+      // Keep camera stable and static so it does not drift or move on its own
+      camera.position.set(0, 5, 14);
       camera.lookAt(0, 0, 0);
 
       // Undulate particle mesh

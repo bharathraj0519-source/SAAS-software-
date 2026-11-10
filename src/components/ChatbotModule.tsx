@@ -37,7 +37,7 @@ export const ChatbotModule: React.FC<ChatbotModuleProps> = ({ onSelectPlan, onOp
   const [leadPhone, setLeadPhone] = useState('');
   const [showLeadModal, setShowLeadModal] = useState(false);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   // Initialize conversation when tier changes
   useEffect(() => {
@@ -59,7 +59,12 @@ export const ChatbotModule: React.FC<ChatbotModuleProps> = ({ onSelectPlan, onOp
   }, [activeTier]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   }, [messages, isTyping]);
 
   const handleSendMessage = (textToSend?: string) => {
@@ -386,7 +391,7 @@ export const ChatbotModule: React.FC<ChatbotModuleProps> = ({ onSelectPlan, onOp
               </div>
 
               {/* Messages Area */}
-              <div className="flex-1 p-5 overflow-y-auto space-y-4">
+              <div ref={chatContainerRef} className="flex-1 p-5 overflow-y-auto space-y-4">
                 {messages.map((msg) => (
                   <div
                     key={msg.id}
@@ -430,7 +435,6 @@ export const ChatbotModule: React.FC<ChatbotModuleProps> = ({ onSelectPlan, onOp
                     <span className="ml-1 text-[11px]">BlazeByte AI is typing...</span>
                   </div>
                 )}
-                <div ref={messagesEndRef} />
               </div>
 
               {/* Chat Input Bar */}
