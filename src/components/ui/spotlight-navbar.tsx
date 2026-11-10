@@ -39,7 +39,7 @@ export const SpotlightNavbar: React.FC<SpotlightNavbarProps> = ({ items, classNa
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative inline-flex items-center gap-1.5 p-1.5 rounded-full border border-[rgba(99,203,255,0.25)] bg-[rgba(14,8,40,0.75)] backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.37)] overflow-hidden transition-all duration-300 hover:border-[#65ffe3]/50 ${className}`}
+      className={`relative inline-flex items-center gap-1.5 p-1.5 rounded-full border border-sky-400/30 bg-white/90 dark:bg-[rgba(14,8,40,0.75)] backdrop-blur-2xl shadow-lg overflow-hidden transition-all duration-300 hover:border-sky-500/50 ${className}`}
     >
       {/* Interactive mouse-following spotlight glow */}
       <div
@@ -48,6 +48,7 @@ export const SpotlightNavbar: React.FC<SpotlightNavbarProps> = ({ items, classNa
           opacity: position.opacity,
           background: `radial-gradient(130px circle at ${position.x}px ${position.y}px, rgba(101, 255, 227, 0.22), rgba(35, 145, 255, 0.12), transparent 75%)`,
         }}
+        aria-hidden="true"
       />
 
       {items.map((item, idx) => (
@@ -62,8 +63,8 @@ export const SpotlightNavbar: React.FC<SpotlightNavbarProps> = ({ items, classNa
           }}
           className={`relative z-10 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide font-['Barlow'] transition-all duration-200 cursor-pointer ${
             item.active
-              ? 'bg-[#2391FF] text-white shadow-[0_0_16px_rgba(35,145,255,0.6)]'
-              : 'text-[#d6d9e4] hover:text-white hover:bg-white/[0.08]'
+              ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-[0_0_16px_rgba(35,145,255,0.4)]'
+              : 'text-[var(--muted)] hover:text-[var(--text-heading)] hover:bg-black/5 dark:hover:bg-white/[0.08]'
           }`}
         >
           {item.label}

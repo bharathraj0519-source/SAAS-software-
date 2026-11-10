@@ -12,9 +12,10 @@ import { PlanOrderModal } from './components/PlanOrderModal';
 import { CustomerPortalModal } from './components/CustomerPortalModal';
 import { LegalModal } from './components/LegalModal';
 import { Sparkles, Phone, CheckCircle2 } from 'lucide-react';
+import { ThemeProvider } from './context/ThemeContext';
 import type { SubscriptionPlan } from './types';
 
-export function App() {
+function AppContent() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [selectedPlanForOrder, setSelectedPlanForOrder] = useState<SubscriptionPlan | null>(null);
   const [portalMode, setPortalMode] = useState<'user' | 'admin' | null>(null);
@@ -38,7 +39,12 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen text-white flex flex-col font-['Lateef'] text-xl selection:bg-[#2391FF] selection:text-white relative isolation-isolate">
+    <div className="min-h-screen text-[var(--text)] flex flex-col font-['Lateef'] text-xl selection:bg-[#2391FF] selection:text-white relative isolation-isolate">
+      {/* WCAG 2.4.1 Skip to Content Link */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
       {/* Animated Mountain Picture & Video Background from index.html */}
       <video
         className="page-video"
@@ -76,13 +82,15 @@ export function App() {
         }}
       ></div>
 
-      {/* Toast Notification */}
-      {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl glass border border-emerald-500/40 text-white shadow-2xl flex items-center gap-3 animate-in slide-in-from-bottom-5 font-['Barlow']">
-          <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-          <div className="text-sm font-semibold">{toastMessage}</div>
-        </div>
-      )}
+      {/* Live Region Toast Notification */}
+      <div aria-live="polite" aria-atomic="true">
+        {toastMessage && (
+          <div className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl glass border border-emerald-500/40 text-[var(--text)] shadow-2xl flex items-center gap-3 animate-in slide-in-from-bottom-5 font-['Barlow']">
+            <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
+            <div className="text-sm font-semibold">{toastMessage}</div>
+          </div>
+        )}
+      </div>
 
       {/* Navigation */}
       <Navbar
@@ -91,8 +99,8 @@ export function App() {
         onOpenPortal={(mode) => setPortalMode(mode)}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-1 relative z-10">
+      {/* Main Content Area with Skip Target */}
+      <main id="main-content" tabIndex={-1} className="flex-1 relative z-10 focus:outline-none">
         {activeTab === 'home' && (
           <>
             {/* Hero Section with FlipText, Three.js Scene & Mountain Backdrop */}
@@ -112,23 +120,23 @@ export function App() {
 
             {/* Final Conversion Section from index.html */}
             <section className="py-24 relative overflow-hidden text-center" id="contact">
-              <div className="glow a left-1/4 top-10"></div>
-              <div className="glow b right-1/4 bottom-10"></div>
+              <div className="glow a left-1/4 top-10" aria-hidden="true"></div>
+              <div className="glow b right-1/4 bottom-10" aria-hidden="true"></div>
 
               <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="glass p-10 sm:p-14 rounded-[32px] border border-[rgba(99,203,255,0.3)] shadow-[0_0_50px_rgba(112,37,237,0.35)] relative overflow-hidden">
-                  <p className="text-[#65ffe3] text-sm uppercase tracking-[0.18em] font-semibold mb-4 font-['Barlow']">
+                <div className="glass p-10 sm:p-14 rounded-[32px] border border-[var(--card-border)] relative overflow-hidden">
+                  <p className="text-[var(--cyan)] text-sm uppercase tracking-[0.18em] font-semibold mb-4 font-['Barlow']">
                     Our Vision
                   </p>
 
-                  <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-2xl mx-auto font-['Barlow'] header-text-glow">
+                  <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-heading)] tracking-tight leading-tight max-w-2xl mx-auto font-['Barlow'] header-text-glow">
                     Every idea deserves the opportunity to become{' '}
-                    <span className="font-script-italic text-transparent bg-clip-text bg-gradient-to-r from-white via-[#8effd2] to-[#d86bff]">
+                    <span className="font-script-italic text-transparent bg-clip-text bg-gradient-to-r from-[var(--cyan)] via-[#8effd2] to-[var(--pink)]">
                       something meaningful.
                     </span>
                   </h2>
 
-                  <p className="mt-5 text-xl sm:text-2xl text-[#d5d8e2] max-w-xl mx-auto font-['Lateef'] leading-relaxed">
+                  <p className="mt-5 text-xl sm:text-2xl text-[var(--muted)] max-w-xl mx-auto font-['Lateef'] leading-relaxed">
                     We combine creativity, technology, AI, and automation to help businesses build stronger digital experiences, work smarter, and grow with confidence.
                   </p>
 
@@ -137,7 +145,7 @@ export function App() {
                       onClick={() => handleNavigate('custom-plan')}
                       className="pill primary px-8 py-3.5 text-base flex items-center justify-center gap-2 cursor-pointer font-['Barlow'] font-semibold"
                     >
-                      <Sparkles className="w-4 h-4 text-[#65ffe3]" />
+                      <Sparkles className="w-4 h-4 text-[#65ffe3]" aria-hidden="true" />
                       <span>Build Your Custom Plan</span>
                     </button>
 
@@ -145,9 +153,9 @@ export function App() {
                       href="https://wa.me/917708795342?text=Hi%20BlazeByte%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20project%20for%20my%20business."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="pill px-7 py-3.5 text-base text-[#e1e4eb] hover:text-white flex items-center justify-center gap-2 font-['Barlow'] font-semibold"
+                      className="pill px-7 py-3.5 text-base text-[var(--text)] hover:border-[var(--cyan)] flex items-center justify-center gap-2 font-['Barlow'] font-semibold"
                     >
-                      <Phone className="w-4 h-4 text-[#63cbff]" />
+                      <Phone className="w-4 h-4 text-[var(--cyan)]" aria-hidden="true" />
                       <span>Chat on WhatsApp Directly</span>
                     </a>
                   </div>
@@ -230,6 +238,14 @@ export function App() {
         onClose={() => setLegalModalType(null)}
       />
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

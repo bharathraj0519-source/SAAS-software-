@@ -92,58 +92,60 @@ Generated: ${new Date().toLocaleString()}
   };
 
   return (
-    <div className="py-12 relative" id="seo-section">
+    <section className="py-12 relative" id="seo-section" aria-labelledby="seo-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2391FF]/10 border border-[#2391FF]/30 text-xs font-semibold text-[#2391FF] uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-semibold text-sky-700 dark:text-[#2391FF] uppercase tracking-wider mb-3">
             Module 03 • Organic Growth Suite
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight font-['Barlow']">
+          <h2 id="seo-heading" className="text-3xl sm:text-5xl font-extrabold text-[var(--text-heading)] tracking-tight font-['Barlow']">
             SEO Services & Search Intelligence
           </h2>
-          <p className="mt-4 text-[#B7B09E] text-base sm:text-lg">
+          <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
             Dominating organic search through rigorous technical hygiene, IndexNow instant dispatch, semantic content gap fixes, and Google Maps local 3-pack optimization.
           </p>
         </div>
 
         {/* Transparent Demo Data Disclaimer Pill */}
         <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-3 max-w-4xl mx-auto mb-10">
-          <Info className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-          <div className="text-xs text-[#B7B09E] leading-relaxed">
-            <strong className="text-white">Historical Demonstration Telemetry:</strong> The analytics, route logs, and audit records below reflect historical project data from BlazeByte Studio (https://www.blazebyte.shop), including our 27 scanned pages, verified IndexNow key, and resolved /marketing content gaps. These serve as realistic proof-of-methodology rather than fabricated live customer metrics.
+          <Info className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
+          <div className="text-xs text-[var(--muted)] leading-relaxed">
+            <strong className="text-[var(--text-heading)]">Historical Demonstration Telemetry:</strong> The analytics, route logs, and audit records below reflect historical project data from BlazeByte Studio (https://www.blazebyte.shop), including our 27 scanned pages, verified IndexNow key, and resolved /marketing content gaps. These serve as realistic proof-of-methodology rather than fabricated live customer metrics.
           </div>
         </div>
 
         {/* SEO Analytics Dashboard Frame */}
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-[#2391FF]/30 shadow-2xl mb-16">
+        <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-sky-400/30 shadow-2xl mb-16">
           {/* Dashboard Header Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-white/10">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xl font-bold text-white font-['Barlow']">
+                <span className="text-xl font-bold text-[var(--text-heading)] font-['Barlow']">
                   Search Engine Telemetry Console
                 </span>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#2391FF]/20 text-[#2391FF] border border-[#2391FF]/30">
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-500/10 text-sky-700 dark:text-[#2391FF] border border-sky-500/20">
                   DEMO DATA
                 </span>
               </div>
-              <div className="text-xs text-[#B7B09E] mt-0.5">
-                Target Entity: <span className="text-white font-medium">https://www.blazebyte.shop</span> (BlazeByte Studio)
+              <div className="text-xs text-[var(--muted)] mt-0.5">
+                Target Entity: <span className="text-[var(--text-heading)] font-medium">https://www.blazebyte.shop</span> (BlazeByte Studio)
               </div>
             </div>
 
             {/* Date Range Selector & Export Action */}
             <div className="flex items-center gap-3">
-              <div className="inline-flex items-center p-1 bg-[#181e29] rounded-xl border border-white/10">
+              <div role="group" aria-label="Date range selector" className="inline-flex items-center p-1 bg-slate-200/80 dark:bg-[#181e29] rounded-xl border border-slate-300 dark:border-white/10">
                 {(['7d', '28d', '90d', 'historical'] as const).map((r) => (
                   <button
                     key={r}
+                    type="button"
+                    aria-pressed={dateRange === r}
                     onClick={() => setDateRange(r)}
-                    className={`px-3 py-1 rounded-lg text-xs font-medium uppercase transition-all ${
+                    className={`px-3 py-1 rounded-lg text-xs font-medium uppercase transition-all cursor-pointer ${
                       dateRange === r
-                        ? 'bg-[#2391FF] text-white shadow-md shadow-[#2391FF]/20'
-                        : 'text-[#B7B09E] hover:text-white'
+                        ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-md shadow-sky-600/20'
+                        : 'text-[var(--muted)] hover:text-[var(--text-heading)]'
                     }`}
                   >
                     {r === 'historical' ? 'All-Time' : r}
@@ -152,18 +154,20 @@ Generated: ${new Date().toLocaleString()}
               </div>
 
               <button
+                type="button"
                 onClick={handleDownloadReport}
-                className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#2391FF]/40 transition-all flex items-center gap-1.5 cursor-pointer"
+                className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-[var(--text-heading)] bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-slate-300 dark:border-white/10 transition-all flex items-center gap-1.5 cursor-pointer"
+                aria-label="Download SEO Audit Summary"
                 title="Download Audit Summary"
               >
                 {downloadSuccess ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">Downloaded</span>
+                    <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+                    <span className="text-emerald-600 dark:text-emerald-400">Downloaded</span>
                   </>
                 ) : (
                   <>
-                    <Download className="w-3.5 h-3.5 text-[#2391FF]" />
+                    <Download className="w-3.5 h-3.5 text-sky-600 dark:text-[#2391FF]" aria-hidden="true" />
                     <span>Export Audit</span>
                   </>
                 )}
@@ -174,20 +178,20 @@ Generated: ${new Date().toLocaleString()}
           {/* Metric Cards Row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
             {SEO_METRIC_CARDS.map((card, i) => (
-              <div key={i} className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
-                <div className="text-xs text-[#B7B09E]">{card.label}</div>
-                <div className="text-2xl font-bold text-white mt-1 font-['Barlow']">{card.value}</div>
-                <div className="text-[11px] text-emerald-400 font-medium mt-1 flex items-center gap-1">
-                  <CheckCircle2 className="w-3 h-3" />
+              <div key={i} className="p-4 rounded-xl bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5">
+                <div className="text-xs text-[var(--muted)]">{card.label}</div>
+                <div className="text-2xl font-bold text-[var(--text-heading)] mt-1 font-['Barlow']">{card.value}</div>
+                <div className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium mt-1 flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3" aria-hidden="true" />
                   <span>{card.change}</span>
                 </div>
-                <div className="text-[10px] text-[#B7B09E]/70 mt-1">{card.subtext}</div>
+                <div className="text-[10px] text-[var(--muted)] mt-1">{card.subtext}</div>
               </div>
             ))}
           </div>
 
-          {/* Interactive Navigation Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-white/10 mb-6">
+          {/* Interactive Navigation Tabs with ARIA */}
+          <div role="tablist" aria-label="SEO telemetry sections" className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200 dark:border-white/10 mb-6">
             {[
               { id: 'overview', label: 'Overview & Impressions', icon: BarChart3 },
               { id: 'indexing', label: 'Historical Records & GSC', icon: Globe },
@@ -200,14 +204,18 @@ Generated: ${new Date().toLocaleString()}
               return (
                 <button
                   key={tab.id}
+                  role="tab"
+                  id={`tab-seo-${tab.id}`}
+                  aria-selected={isActive}
+                  aria-controls={`panel-seo-${tab.id}`}
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer ${
                     isActive
-                      ? 'bg-[#2391FF] text-white shadow-md shadow-[#2391FF]/25'
-                      : 'text-[#B7B09E] hover:text-white hover:bg-white/5'
+                      ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-md shadow-sky-600/25'
+                      : 'text-[var(--muted)] hover:text-[var(--text-heading)] hover:bg-black/5 dark:hover:bg-white/5'
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5" />
+                  <Icon className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>{tab.label}</span>
                 </button>
               );
@@ -216,24 +224,24 @@ Generated: ${new Date().toLocaleString()}
 
           {/* Tab 1: Overview Chart */}
           {activeTab === 'overview' && (
-            <div className="space-y-6">
-              <div className="glass-card p-5 rounded-xl border border-white/5">
+            <div id="panel-seo-overview" role="tabpanel" aria-labelledby="tab-seo-overview" className="space-y-6">
+              <div className="glass-card p-5 rounded-xl border border-slate-200 dark:border-white/5">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h4 className="text-sm font-bold text-white font-['Barlow']">
+                    <h4 className="text-sm font-bold text-[var(--text-heading)] font-['Barlow']">
                       Search Impressions & Clicks (Telemetry Projection)
                     </h4>
-                    <p className="text-xs text-[#B7B09E]">
+                    <p className="text-xs text-[var(--muted)]">
                       Trend line following technical sitemap dispatch and /marketing gap clearance.
                     </p>
                   </div>
                   <div className="flex items-center gap-4 text-xs">
-                    <span className="flex items-center gap-1.5 text-[#2391FF]">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#2391FF]"></span>
+                    <span className="flex items-center gap-1.5 text-sky-600 dark:text-[#2391FF]">
+                      <span className="w-2.5 h-2.5 rounded-full bg-sky-600 dark:bg-[#2391FF]" aria-hidden="true"></span>
                       Impressions
                     </span>
-                    <span className="flex items-center gap-1.5 text-emerald-400">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                    <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 dark:bg-emerald-400" aria-hidden="true"></span>
                       Clicks
                     </span>
                   </div>
@@ -252,13 +260,14 @@ Generated: ${new Date().toLocaleString()}
                           <stop offset="95%" stopColor="#10b981" stopOpacity={0.0} />
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#2b3547" />
-                      <XAxis dataKey="date" stroke="#838a98" fontSize={11} />
-                      <YAxis stroke="#838a98" fontSize={11} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#94a3b833" />
+                      <XAxis dataKey="date" stroke="#64748b" fontSize={11} />
+                      <YAxis stroke="#64748b" fontSize={11} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: '#181e29',
-                          borderColor: 'rgba(35,145,255,0.3)',
+                          backgroundColor: 'var(--panel)',
+                          color: 'var(--text)',
+                          borderColor: 'var(--card-border)',
                           borderRadius: '12px',
                           fontSize: '12px',
                         }}
@@ -288,36 +297,36 @@ Generated: ${new Date().toLocaleString()}
 
           {/* Tab 2: Historical Records Table */}
           {activeTab === 'indexing' && (
-            <div className="space-y-4 overflow-x-auto">
-              <div className="text-xs text-[#B7B09E] mb-2">
+            <div id="panel-seo-indexing" role="tabpanel" aria-labelledby="tab-seo-indexing" className="space-y-4 overflow-x-auto">
+              <div className="text-xs text-[var(--muted)] mb-2">
                 Historical BlazeByte Studio project audit records confirmed during production deployment:
               </div>
-              <table className="w-full text-left text-xs">
+              <table className="w-full text-left text-xs" aria-label="Historical SEO Audit Records">
                 <thead>
-                  <tr className="border-b border-white/10 text-white">
-                    <th className="py-2.5 px-3 font-semibold">Audit Record</th>
-                    <th className="py-2.5 px-3 font-semibold">Category</th>
-                    <th className="py-2.5 px-3 font-semibold">Observed Metric</th>
-                    <th className="py-2.5 px-3 font-semibold">Status</th>
-                    <th className="py-2.5 px-3 font-semibold">Verification Details</th>
+                  <tr className="border-b border-slate-200 dark:border-white/10 text-[var(--text-heading)]">
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Audit Record</th>
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Category</th>
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Observed Metric</th>
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Status</th>
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Verification Details</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 text-[#B7B09E]">
+                <tbody className="divide-y divide-slate-200 dark:divide-white/5 text-[var(--muted)]">
                   {SEO_HISTORICAL_RECORDS.map((rec) => (
-                    <tr key={rec.id} className="hover:bg-white/[0.02]">
-                      <td className="py-3 px-3 text-white font-medium">{rec.title}</td>
+                    <tr key={rec.id} className="hover:bg-black/[0.02] dark:hover:bg-white/[0.02]">
+                      <th scope="row" className="py-3 px-3 text-[var(--text-heading)] font-medium text-left">{rec.title}</th>
                       <td className="py-3 px-3">
-                        <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] text-white">
+                        <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-[10px] text-[var(--text-heading)]">
                           {rec.category}
                         </span>
                       </td>
-                      <td className="py-3 px-3 text-[#2391FF] font-semibold">{rec.metric}</td>
+                      <td className="py-3 px-3 text-sky-700 dark:text-[#2391FF] font-semibold">{rec.metric}</td>
                       <td className="py-3 px-3">
                         <span
                           className={`px-2 py-0.5 rounded text-[10px] font-semibold ${
                             rec.status === 'Verified' || rec.status === 'Completed' || rec.status === 'Cleared'
-                              ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                              : 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
+                              ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30'
+                              : 'bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30'
                           }`}
                         >
                           {rec.status}
@@ -333,31 +342,31 @@ Generated: ${new Date().toLocaleString()}
 
           {/* Tab 3: Keyword Tracking Table */}
           {activeTab === 'keywords' && (
-            <div className="space-y-4 overflow-x-auto">
-              <table className="w-full text-left text-xs">
+            <div id="panel-seo-keywords" role="tabpanel" aria-labelledby="tab-seo-keywords" className="space-y-4 overflow-x-auto">
+              <table className="w-full text-left text-xs" aria-label="Target Keyword Tracking Telemetry">
                 <thead>
-                  <tr className="border-b border-white/10 text-white">
-                    <th className="py-2.5 px-3 font-semibold">Target Keyword</th>
-                    <th className="py-2.5 px-3 font-semibold">Estimated Volume</th>
-                    <th className="py-2.5 px-3 font-semibold">Difficulty Score</th>
-                    <th className="py-2.5 px-3 font-semibold">Search Intent</th>
-                    <th className="py-2.5 px-3 font-semibold">Target Status</th>
-                    <th className="py-2.5 px-3 font-semibold">Commercial CPC</th>
+                  <tr className="border-b border-slate-200 dark:border-white/10 text-[var(--text-heading)]">
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Target Keyword</th>
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Estimated Volume</th>
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Difficulty Score</th>
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Search Intent</th>
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Target Status</th>
+                    <th scope="col" className="py-2.5 px-3 font-semibold">Commercial CPC</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 text-[#B7B09E]">
+                <tbody className="divide-y divide-slate-200 dark:divide-white/5 text-[var(--muted)]">
                   {SAMPLE_KEYWORDS.map((kw, idx) => (
-                    <tr key={idx} className="hover:bg-white/[0.02]">
-                      <td className="py-3 px-3 text-white font-medium">{kw.keyword}</td>
+                    <tr key={idx} className="hover:bg-black/[0.02] dark:hover:bg-white/[0.02]">
+                      <th scope="row" className="py-3 px-3 text-[var(--text-heading)] font-medium text-left">{kw.keyword}</th>
                       <td className="py-3 px-3">{kw.volume}</td>
                       <td className="py-3 px-3">{kw.difficulty}</td>
                       <td className="py-3 px-3">
-                        <span className="px-2 py-0.5 rounded bg-[#2391FF]/10 text-[#2391FF] text-[10px]">
+                        <span className="px-2 py-0.5 rounded bg-sky-500/10 text-sky-700 dark:text-[#2391FF] text-[10px]">
                           {kw.intent}
                         </span>
                       </td>
-                      <td className="py-3 px-3 text-emerald-400 font-medium">{kw.status}</td>
-                      <td className="py-3 px-3 text-white">{kw.cpc}</td>
+                      <td className="py-3 px-3 text-emerald-700 dark:text-emerald-400 font-medium">{kw.status}</td>
+                      <td className="py-3 px-3 text-[var(--text-heading)]">{kw.cpc}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -367,29 +376,29 @@ Generated: ${new Date().toLocaleString()}
 
           {/* Tab 4: Technical Issues */}
           {activeTab === 'technical' && (
-            <div className="space-y-3">
+            <div id="panel-seo-technical" role="tabpanel" aria-labelledby="tab-seo-technical" className="space-y-3">
               {TECHNICAL_ISSUES.map((issue) => (
                 <div
                   key={issue.id}
-                  className="p-4 rounded-xl bg-white/[0.02] border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                  className="p-4 rounded-xl bg-slate-100/80 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                 >
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-white text-sm font-['Barlow']">
+                      <span className="font-bold text-[var(--text-heading)] text-sm font-['Barlow']">
                         {issue.title}
                       </span>
                       <span
                         className={`text-[10px] font-semibold px-2 py-0.5 rounded ${
                           issue.status === 'Resolved'
-                            ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                            : 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
+                            ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30'
+                            : 'bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30'
                         }`}
                       >
                         {issue.status}
                       </span>
                     </div>
-                    <div className="text-[11px] text-[#2391FF] font-mono">{issue.affectedUrl}</div>
-                    <div className="text-[#B7B09E]">{issue.recommendation}</div>
+                    <div className="text-[11px] text-sky-700 dark:text-[#2391FF] font-mono">{issue.affectedUrl}</div>
+                    <div className="text-[var(--muted)]">{issue.recommendation}</div>
                   </div>
                 </div>
               ))}
@@ -398,41 +407,41 @@ Generated: ${new Date().toLocaleString()}
 
           {/* Tab 5: Local SEO & Google Business Profile */}
           {activeTab === 'local' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#B7B09E]">
-              <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5 space-y-3">
-                <h4 className="text-sm font-bold text-white flex items-center gap-2 font-['Barlow']">
-                  <MapPin className="w-4 h-4 text-[#2391FF]" />
+            <div id="panel-seo-local" role="tabpanel" aria-labelledby="tab-seo-local" className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[var(--muted)]">
+              <div className="p-5 rounded-xl bg-slate-100/80 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 space-y-3">
+                <h4 className="text-sm font-bold text-[var(--text-heading)] flex items-center gap-2 font-['Barlow']">
+                  <MapPin className="w-4 h-4 text-sky-600 dark:text-[#2391FF]" aria-hidden="true" />
                   <span>Google Business Profile (GBP) Status</span>
                 </h4>
                 <div className="space-y-2">
-                  <div className="flex justify-between py-1 border-b border-white/5">
+                  <div className="flex justify-between py-1 border-b border-slate-200 dark:border-white/5">
                     <span>Listing Verification:</span>
-                    <span className="text-emerald-400 font-medium">Verified Active</span>
+                    <span className="text-emerald-700 dark:text-emerald-400 font-medium">Verified Active</span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-white/5">
+                  <div className="flex justify-between py-1 border-b border-slate-200 dark:border-white/5">
                     <span>Primary Category:</span>
-                    <span className="text-white font-medium">Software Company / Web Design</span>
+                    <span className="text-[var(--text-heading)] font-medium">Software Company / Web Design</span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-white/5">
+                  <div className="flex justify-between py-1 border-b border-slate-200 dark:border-white/5">
                     <span>Coimbatore Geo-Targeting:</span>
-                    <span className="text-emerald-400 font-medium">Rank Pack Cleared</span>
+                    <span className="text-emerald-700 dark:text-emerald-400 font-medium">Rank Pack Cleared</span>
                   </div>
                   <div className="flex justify-between py-1">
                     <span>Follow-up Action Area:</span>
-                    <span className="text-amber-400 font-medium">Weekly Visual Posts & Photos</span>
+                    <span className="text-amber-700 dark:text-amber-400 font-medium">Weekly Visual Posts & Photos</span>
                   </div>
                 </div>
               </div>
 
-              <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5 space-y-3">
-                <h4 className="text-sm font-bold text-white flex items-center gap-2 font-['Barlow']">
-                  <Globe className="w-4 h-4 text-[#2391FF]" />
+              <div className="p-5 rounded-xl bg-slate-100/80 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 space-y-3">
+                <h4 className="text-sm font-bold text-[var(--text-heading)] flex items-center gap-2 font-['Barlow']">
+                  <Globe className="w-4 h-4 text-sky-600 dark:text-[#2391FF]" aria-hidden="true" />
                   <span>IndexNow Protocol Handshake</span>
                 </h4>
                 <p className="leading-relaxed">
                   IndexNow automatically alerts Bing and Yandex the instant routes or URLs change, bypassing slow discovery crawls.
                 </p>
-                <div className="p-3 rounded-lg bg-[#181e29] border border-white/10 font-mono text-[11px] text-[#2391FF]">
+                <div className="p-3 rounded-lg bg-slate-200/80 dark:bg-[#181e29] border border-slate-300 dark:border-white/10 font-mono text-[11px] text-sky-700 dark:text-[#2391FF]">
                   Key Status: 200 OK Verified • auto-ping active
                 </div>
               </div>
@@ -443,38 +452,42 @@ Generated: ${new Date().toLocaleString()}
         {/* SEO Pricing & Packages — PLUS and PRO ONLY (NO FREE PLAN) */}
         <div className="pt-6">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-[11px] font-bold uppercase tracking-wider mb-2 border border-amber-500/20">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 text-[11px] font-bold uppercase tracking-wider mb-2 border border-amber-500/20">
               Commercial Retainers (Plus & Pro Only)
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white font-['Barlow']">
+            <h3 className="text-2xl sm:text-3xl font-bold text-[var(--text-heading)] font-['Barlow']">
               Select Your SEO Growth Plan
             </h3>
-            <p className="mt-2 text-sm text-[#B7B09E]">
-              SEO requires continuous technical crawl monitoring and strategic optimization. BlazeByte Studio offers dedicated Plus and Pro tiers.
+            <p className="mt-2 text-sm text-[var(--muted)]">
+              Search engine optimization requires dedicated computing time, ongoing sitemap distribution, and competitive intelligence. We offer solely high-ROI Plus and Pro retainers.
             </p>
 
             {/* Billing Toggle */}
-            <div className="mt-6 inline-flex items-center p-1 bg-[#181e29] rounded-xl border border-white/10">
+            <div role="group" aria-label="SEO billing frequency" className="mt-6 inline-flex items-center p-1 bg-slate-200/80 dark:bg-[#181e29] rounded-xl border border-slate-300 dark:border-white/10">
               <button
+                type="button"
+                aria-pressed={billingPeriod === 'monthly'}
                 onClick={() => setBillingPeriod('monthly')}
-                className={`px-4 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                className={`px-4 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                   billingPeriod === 'monthly'
-                    ? 'bg-[#2391FF] text-white shadow-md shadow-[#2391FF]/20'
-                    : 'text-[#B7B09E] hover:text-white'
+                    ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-md shadow-sky-600/20'
+                    : 'text-[var(--muted)] hover:text-[var(--text-heading)]'
                 }`}
               >
-                Monthly Billing
+                Monthly Retainer
               </button>
               <button
+                type="button"
+                aria-pressed={billingPeriod === 'yearly'}
                 onClick={() => setBillingPeriod('yearly')}
-                className={`px-4 py-1.5 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 ${
+                className={`px-4 py-1.5 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
                   billingPeriod === 'yearly'
-                    ? 'bg-[#2391FF] text-white shadow-md shadow-[#2391FF]/20'
-                    : 'text-[#B7B09E] hover:text-white'
+                    ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-md shadow-sky-600/20'
+                    : 'text-[var(--muted)] hover:text-[var(--text-heading)]'
                 }`}
               >
                 <span>Annual Contract</span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">
                   Save 20%
                 </span>
               </button>
@@ -495,68 +508,66 @@ Generated: ${new Date().toLocaleString()}
                   key={plan.id}
                   className={`rounded-2xl p-8 flex flex-col justify-between relative transition-all duration-300 ${
                     isPopular
-                      ? 'glass-panel border-2 border-[#2391FF] shadow-2xl shadow-[#2391FF]/20'
+                      ? 'glass-panel border-2 border-sky-500 shadow-2xl shadow-sky-500/20 -translate-y-2'
                       : 'glass-card'
                   }`}
                 >
                   {isPopular && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#2391FF] to-[#006ee6] text-white text-[11px] font-bold uppercase tracking-wider shadow-lg shadow-[#2391FF]/40">
-                      Recommended For Scale
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-sky-600 to-blue-700 text-white text-[11px] font-bold uppercase tracking-wider shadow-lg shadow-sky-600/40">
+                      Recommended for Growth
                     </div>
                   )}
 
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-2xl font-bold text-white font-['Barlow']">{plan.name}</h4>
-                      <span className="text-xs font-semibold uppercase text-[#2391FF] bg-[#2391FF]/10 px-2.5 py-0.5 rounded border border-[#2391FF]/30">
-                        {plan.tier} Tier
+                      <h4 className="text-xl font-bold text-[var(--text-heading)] font-['Barlow']">{plan.name}</h4>
+                      <span className="text-xs font-semibold uppercase text-sky-700 dark:text-[#2391FF] bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20">
+                        {plan.tier}
                       </span>
                     </div>
 
-                    <p className="text-xs text-[#B7B09E] mb-6 min-h-[32px]">{plan.tagline}</p>
+                    <p className="text-xs text-[var(--muted)] mb-6 min-h-[32px]">{plan.tagline}</p>
 
-                    <div className="mb-6 pb-6 border-b border-white/10">
+                    {/* Price */}
+                    <div className="mb-6 pb-6 border-b border-slate-200 dark:border-white/10">
                       <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-extrabold text-white">{displayPrice}</span>
-                        <span className="text-xs text-[#B7B09E]">
+                        <span className="text-4xl font-extrabold text-[var(--text-heading)]">{displayPrice}</span>
+                        <span className="text-xs text-[var(--muted)]">
                           / month {billingPeriod === 'yearly' && '(billed annually)'}
                         </span>
                       </div>
-                      <div className="text-[11px] text-[#B7B09E] mt-2 flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-[#2391FF]" />
-                        <span>{plan.limits.frequency} • {plan.limits.crawledPages}</span>
+                      <div className="text-[11px] text-[var(--muted)] mt-1.5 flex items-center gap-1.5">
+                        <TrendingUp className="w-3.5 h-3.5 text-sky-600 dark:text-[#2391FF]" aria-hidden="true" />
+                        <span>{plan.limits.crawledPages}</span>
                       </div>
                     </div>
 
+                    {/* Features List */}
                     <div className="space-y-3 mb-8">
-                      <div className="text-xs font-semibold uppercase tracking-wider text-white">
-                        Deliverables & Scope
+                      <div className="text-xs font-semibold uppercase tracking-wider text-[var(--text-heading)]">
+                        Strategic Deliverables
                       </div>
                       {plan.features.map((feat, i) => (
                         <div key={i} className="flex items-start gap-2.5 text-xs">
-                          {feat.included ? (
-                            <CheckCircle2 className="w-4 h-4 text-[#2391FF] shrink-0 mt-0.5" />
-                          ) : (
-                            <span className="w-4 h-4 text-white/20 shrink-0 mt-0.5 text-center">✕</span>
-                          )}
-                          <span className={feat.included ? 'text-white' : 'text-white/40 line-through'}>
-                            {feat.name}
-                          </span>
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
+                          <span className="text-[var(--text)]">{feat.name}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
+                  {/* CTA Button */}
                   <button
+                    type="button"
                     onClick={() => onSelectPlan(plan)}
                     className={`w-full py-3.5 px-4 rounded-xl text-xs font-semibold tracking-wide transition-all cursor-pointer flex items-center justify-center gap-2 ${
                       isPopular
-                        ? 'bg-gradient-to-r from-[#2391FF] to-[#006ee6] hover:from-[#3ea0ff] hover:to-[#2391FF] text-white shadow-lg shadow-[#2391FF]/30'
-                        : 'bg-white/5 hover:bg-[#2391FF] text-white border border-white/10 hover:border-[#2391FF]'
+                        ? 'bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-blue-600 text-white shadow-lg shadow-sky-600/30'
+                        : 'bg-black/5 hover:bg-sky-600 hover:text-white dark:bg-white/5 dark:hover:bg-[#2391FF] text-[var(--text)] dark:text-white border border-slate-300 dark:border-white/10'
                     }`}
                   >
                     <span>{plan.ctaText}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </button>
                 </div>
               );
@@ -564,6 +575,6 @@ Generated: ${new Date().toLocaleString()}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

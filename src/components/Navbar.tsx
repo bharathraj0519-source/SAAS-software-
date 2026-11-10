@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, User, Shield, Sparkles } from 'lucide-react';
+import { Menu, X, User, Shield, Sparkles, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 interface NavbarProps {
   activeTab: string;
@@ -10,6 +11,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPortal }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,98 +39,141 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#070219]/90 backdrop-blur-xl border-b border-[rgba(99,203,255,0.2)] py-2.5 shadow-2xl'
-          : 'bg-gradient-to-b from-[#070219dd] via-[#070219aa] to-transparent py-4'
+          ? 'bg-[var(--panel-bg)] backdrop-blur-xl border-b border-[var(--card-border)] py-2.5 shadow-lg'
+          : 'bg-[var(--nav-bg-top)] backdrop-blur-md py-3.5'
       }`}
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4 h-16 sm:h-20">
+        <nav
+          aria-label="Main Navigation"
+          className="flex items-center justify-between gap-4 h-16 sm:h-20"
+        >
           {/* Brand Logo & Name */}
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3.5 group text-left cursor-pointer transition-transform hover:scale-[1.02]"
+            className="flex items-center gap-3.5 group text-left cursor-pointer transition-transform hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] rounded-xl p-1"
+            aria-label="BlazeByte Studio - Back to Homepage"
           >
-            <div className="w-14 h-11 flex items-center justify-center p-1 rounded-xl bg-white/[0.04] border border-[rgba(99,203,255,0.3)] shadow-[0_0_12px_rgba(99,203,255,0.3)]">
+            <div className="w-[68px] h-[46px] flex items-center justify-center p-1 rounded-xl bg-white/[0.05] border border-[var(--card-border)] shadow-sm">
               <img
                 src="/assets/blazebyte-logo.png"
                 alt="BlazeByte Studio logo"
-                className="w-full h-full object-contain filter drop-shadow-[0_0_8px_#63cbff]"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(99,203,255,0.4)]"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tight text-white flex items-center gap-1.5 font-['Barlow']">
-                BlazeByte <span className="text-[#63cbff]">Studio</span>
+              <span className="text-xl font-bold tracking-tight text-[var(--text)] flex items-center gap-1.5 font-['Barlow']">
+                BlazeByte <span className="text-[var(--cyan)]">Studio</span>
               </span>
-              <span className="text-[10px] font-semibold tracking-widest text-[#9ea6bd] uppercase font-['Barlow']">
-                SAAS & SYSTEMS
+              <span className="text-[11px] font-semibold tracking-wider text-[var(--muted)] uppercase font-['Barlow']">
+                SaaS & Systems
               </span>
             </div>
           </button>
 
-          {/* Centered Floating Capsule Nav (Inspired by Soda glass nav capsule) */}
-          <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-full border border-[rgba(99,203,255,0.22)] bg-[rgba(14,8,40,0.68)] backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25)] font-['Barlow']">
+          {/* Desktop Navigation Links with Hover Line & Accessible Focus */}
+          <div className="hidden md:flex items-center gap-7 lg:gap-10 font-['Barlow'] text-[17px] font-medium">
             {navLinks.map((link) => {
               const isActive = activeTab === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`transition-colors py-1 cursor-pointer nav-hover-line rounded-md px-1 focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] ${
                     isActive
-                      ? 'bg-[#2391FF] text-white shadow-[0_0_16px_rgba(35,145,255,0.6)]'
-                      : 'text-[#d6d9e4] hover:text-white hover:bg-white/[0.08]'
+                      ? 'text-[var(--cyan)] active font-bold'
+                      : 'text-[var(--muted)] hover:text-[var(--text)]'
                   }`}
                 >
                   {link.label}
                 </button>
               );
             })}
-          </nav>
+          </div>
 
-          {/* Right Action Buttons */}
+          {/* Right Action Buttons: Theme Toggle, Portal, Admin, CTA */}
           <div className="hidden lg:flex items-center gap-3 font-['Barlow']">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2.5 rounded-full text-[var(--muted)] hover:text-[var(--text)] bg-white/5 hover:bg-white/10 border border-[var(--card-border)] transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-300" aria-hidden="true" />
+              ) : (
+                <Moon className="w-4 h-4 text-indigo-600" aria-hidden="true" />
+              )}
+            </button>
+
             <button
               onClick={() => onOpenPortal('user')}
-              className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#c8ccda] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-2 rounded-full text-xs font-semibold text-[var(--muted)] hover:text-[var(--text)] bg-white/5 hover:bg-white/10 border border-[var(--card-border)] transition-all flex items-center gap-1.5 cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
+              aria-label="Open customer portal"
             >
-              <User className="w-3.5 h-3.5 text-[#63cbff]" />
+              <User className="w-3.5 h-3.5 text-[var(--cyan)]" aria-hidden="true" />
               <span>Portal</span>
             </button>
 
             <button
               onClick={() => onOpenPortal('admin')}
-              className="p-2 rounded-full text-xs font-semibold text-[#c8ccda] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center justify-center cursor-pointer"
+              className="p-2.5 rounded-full text-xs font-medium text-[var(--muted)] hover:text-[var(--text)] bg-white/5 hover:bg-white/10 border border-[var(--card-border)] transition-all flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
+              aria-label="Open admin management console"
               title="Admin Dashboard"
             >
-              <Shield className="w-3.5 h-3.5 text-[#63cbff]" />
+              <Shield className="w-3.5 h-3.5 text-[var(--cyan)]" aria-hidden="true" />
             </button>
 
-            {/* Glowing Pill CTA Button */}
+            {/* Pill CTA button */}
             <button
               onClick={() => handleNavClick('custom-plan')}
-              className="pill primary text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2 cursor-pointer"
+              className="pill primary text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
+              aria-label="Build your custom plan"
             >
-              <Sparkles className="w-4 h-4 text-[#65ffe3]" />
+              <Sparkles className="w-4 h-4 text-[#65ffe3]" aria-hidden="true" />
               <span>Build Custom Plan</span>
             </button>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Right Controls: Theme Toggle & Menu Trigger */}
           <div className="flex md:hidden items-center gap-2">
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:text-[#65ffe3] transition-colors cursor-pointer"
-              aria-label="Toggle Navigation Menu"
+              onClick={toggleTheme}
+              className="p-2 rounded-xl bg-white/5 border border-[var(--card-border)] text-[var(--muted)] hover:text-[var(--text)]"
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {theme === 'dark' ? (
+                <Sun className="w-5 h-5 text-amber-300" aria-hidden="true" />
+              ) : (
+                <Moon className="w-5 h-5 text-indigo-600" aria-hidden="true" />
+              )}
+            </button>
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-xl bg-white/5 border border-[var(--card-border)] text-[var(--text)] hover:text-[var(--cyan)] transition-colors focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-drawer"
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" aria-hidden="true" />
+              ) : (
+                <Menu className="w-6 h-6" aria-hidden="true" />
+              )}
             </button>
           </div>
-        </div>
+        </nav>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#070219]/95 backdrop-blur-2xl border-b border-[rgba(99,203,255,0.25)] px-6 pt-4 pb-7 animate-in slide-in-from-top-2 duration-200 font-['Barlow']">
+        <div
+          id="mobile-nav-drawer"
+          className="md:hidden bg-[var(--panel-bg)] backdrop-blur-2xl border-b border-[var(--card-border)] px-6 pt-4 pb-7 animate-in slide-in-from-top-2 duration-200 font-['Barlow'] shadow-xl"
+        >
           <div className="flex flex-col gap-2.5">
             {navLinks.map((link) => {
               const isActive = activeTab === link.id;
@@ -136,27 +181,31 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-left text-base font-medium transition-colors ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-left text-base font-semibold transition-colors ${
                     isActive
-                      ? 'bg-[rgba(99,203,255,0.15)] text-[#65ffe3] border border-[rgba(99,203,255,0.3)] font-semibold'
-                      : 'text-[#d6d9e4] hover:bg-white/5 hover:text-white'
+                      ? 'bg-[var(--cyan)]/15 text-[var(--cyan)] border border-[var(--cyan)]/30'
+                      : 'text-[var(--text)] hover:bg-white/5'
                   }`}
                 >
                   <span>{link.label}</span>
-                  {isActive && <span className="w-2 h-2 rounded-full bg-[#65ffe3] shadow-[0_0_8px_#65ffe3]"></span>}
+                  {isActive && (
+                    <span className="w-2 h-2 rounded-full bg-[var(--cyan)] shadow-[0_0_8px_var(--cyan)]"></span>
+                  )}
                 </button>
               );
             })}
 
-            <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-white/10">
+            <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-[var(--card-border)]">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenPortal('user');
                 }}
-                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-medium bg-white/5 border border-white/10 text-[#d6d9e4]"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-white/5 border border-[var(--card-border)] text-[var(--text)]"
+                aria-label="Open customer portal"
               >
-                <User className="w-3.5 h-3.5 text-[#63cbff]" />
+                <User className="w-3.5 h-3.5 text-[var(--cyan)]" aria-hidden="true" />
                 Customer Portal
               </button>
               <button
@@ -164,18 +213,19 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
                   setMobileMenuOpen(false);
                   onOpenPortal('admin');
                 }}
-                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-medium bg-white/5 border border-white/10 text-[#d6d9e4]"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-white/5 border border-[var(--card-border)] text-[var(--text)]"
+                aria-label="Open admin management panel"
               >
-                <Shield className="w-3.5 h-3.5 text-[#65ffe3]" />
+                <Shield className="w-3.5 h-3.5 text-[var(--cyan)]" aria-hidden="true" />
                 Admin Panel
               </button>
             </div>
 
             <button
               onClick={() => handleNavClick('custom-plan')}
-              className="pill primary w-full mt-3 py-3 rounded-full text-sm font-semibold flex items-center justify-center gap-2"
+              className="pill primary w-full mt-3 py-3 rounded-full text-sm font-bold flex items-center justify-center gap-2"
             >
-              <Sparkles className="w-4 h-4 text-[#65ffe3]" />
+              <Sparkles className="w-4 h-4 text-[#65ffe3]" aria-hidden="true" />
               Build Your Custom Plan
             </button>
           </div>

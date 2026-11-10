@@ -171,45 +171,49 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
   };
 
   return (
-    <div className="py-12 relative" id="webdev-section">
+    <section className="py-12 relative" id="webdev-section" aria-labelledby="webdev-heading">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[rgba(99,203,255,0.15)] border border-[rgba(99,203,255,0.3)] text-xs font-semibold text-[#65ffe3] uppercase tracking-wider mb-3 font-['Barlow']">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-semibold text-sky-700 dark:text-[#65ffe3] uppercase tracking-wider mb-3 font-['Barlow']">
             Module 02 • High-Performance Web
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight font-['Barlow']">
+          <h2 id="webdev-heading" className="text-3xl sm:text-5xl font-extrabold text-[var(--text-heading)] tracking-tight font-['Barlow']">
             Web Design & Full-Stack Development
           </h2>
-          <p className="mt-4 text-[#cbd0dc] text-lg sm:text-xl font-['Lateef']">
-            Explore live production demonstrations based on official GitHub repositories created by <strong className="text-white">@bharathraj0519-source</strong>. Test interactive viewports, inspect repository source codes, and launch custom web projects.
+          <p className="mt-4 text-[var(--muted)] text-lg sm:text-xl font-['Lateef']">
+            Explore live production demonstrations based on official GitHub repositories created by <strong className="text-[var(--text-heading)]">@bharathraj0519-source</strong>. Test interactive viewports, inspect repository source codes, and launch custom web projects.
           </p>
         </div>
 
         {/* GitHub Repositories Selector Bar */}
         <div className="mb-6 glass rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-[#e1e4eb] font-['Barlow']">
-            <GitBranch className="w-4 h-4 text-[#65ffe3]" />
-            <span className="font-semibold text-white">Active GitHub Demo:</span>
-            <span className="text-[#65ffe3] font-mono font-medium">bharathraj0519-source/{currentRepo.name}</span>
+          <div className="flex items-center gap-2 text-sm text-[var(--text)] font-['Barlow']">
+            <GitBranch className="w-4 h-4 text-sky-600 dark:text-[#65ffe3]" aria-hidden="true" />
+            <span className="font-semibold text-[var(--text-heading)]">Active GitHub Demo:</span>
+            <span className="text-sky-700 dark:text-[#65ffe3] font-mono font-medium">bharathraj0519-source/{currentRepo.name}</span>
           </div>
 
-          {/* Repo Selection Pills */}
-          <div className="flex flex-wrap items-center gap-2">
+          {/* Repo Selection Pills with Tablist ARIA */}
+          <div role="tablist" aria-label="GitHub reference repositories" className="flex flex-wrap items-center gap-2">
             {GITHUB_DEMO_REPOS.map((repo) => (
               <button
                 key={repo.id}
+                role="tab"
+                id={`repo-tab-${repo.id}`}
+                aria-selected={selectedRepoId === repo.id}
+                aria-controls="repo-preview-panel"
                 onClick={() => setSelectedRepoId(repo.id)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold font-['Barlow'] transition-all flex items-center gap-1.5 cursor-pointer ${
                   selectedRepoId === repo.id
-                    ? 'bg-[#2391FF] text-white shadow-md shadow-[#2391FF]/30'
-                    : 'bg-white/5 text-[#B7B09E] hover:text-white hover:bg-white/10 border border-white/10'
+                    ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-md shadow-sky-600/30'
+                    : 'bg-black/5 dark:bg-white/5 text-[var(--muted)] hover:text-[var(--text-heading)] hover:bg-black/10 dark:hover:bg-white/10 border border-slate-300 dark:border-white/10'
                 }`}
               >
                 <span>{repo.name}</span>
                 {repo.stars > 0 && (
-                  <span className="flex items-center text-[10px] text-amber-300">
-                    <Star className="w-2.5 h-2.5 fill-amber-300 mr-0.5" />
+                  <span className="flex items-center text-[10px] text-amber-500 dark:text-amber-300">
+                    <Star className="w-2.5 h-2.5 fill-amber-500 dark:fill-amber-300 mr-0.5" aria-hidden="true" />
                     {repo.stars}
                   </span>
                 )}
@@ -222,18 +226,20 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
               href={currentRepo.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1.5 rounded-lg text-xs font-medium text-[#c8ccda] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 flex items-center gap-1.5 font-['Barlow']"
+              className="px-3 py-1.5 rounded-lg text-xs font-medium text-[var(--muted)] hover:text-[var(--text-heading)] bg-black/5 dark:bg-white/5 border border-slate-300 dark:border-white/10 flex items-center gap-1.5 font-['Barlow']"
+              aria-label={`View ${currentRepo.name} source code on GitHub (opens in new tab)`}
             >
-              <Code2 className="w-3.5 h-3.5 text-[#65ffe3]" />
+              <Code2 className="w-3.5 h-3.5 text-sky-600 dark:text-[#65ffe3]" aria-hidden="true" />
               <span>GitHub Repo</span>
             </a>
             <a
               href={currentRepo.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-emerald-600/80 hover:bg-emerald-500 flex items-center gap-1.5 font-['Barlow']"
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 flex items-center gap-1.5 font-['Barlow']"
+              aria-label={`Open live site for ${currentRepo.name} (opens in new tab)`}
             >
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Open Live Site</span>
             </a>
           </div>
@@ -241,45 +247,51 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
 
         {/* Interactive Multi-Device Emulator */}
         <div className="mb-20">
-          <div className="glass rounded-[28px] p-6 border border-[rgba(99,203,255,0.3)] shadow-[0_0_45px_rgba(112,37,237,0.25)]">
+          <div className="glass rounded-[28px] p-6 border border-sky-400/30 shadow-[0_0_45px_rgba(112,37,237,0.15)]">
             {/* Viewport Control Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-white/10 font-['Barlow']">
+            <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-white/10 font-['Barlow']">
               <div className="flex items-center gap-3">
-                <span className="text-xs font-semibold text-white uppercase tracking-wider">
+                <span className="text-xs font-semibold text-[var(--text-heading)] uppercase tracking-wider">
                   Device Viewport:
                 </span>
-                <div className="inline-flex items-center p-1 bg-[#0d0824] rounded-xl border border-white/10">
+                <div role="group" aria-label="Device viewport preview selector" className="inline-flex items-center p-1 bg-slate-200/80 dark:bg-[#0d0824] rounded-xl border border-slate-300 dark:border-white/10">
                   <button
+                    type="button"
+                    aria-pressed={viewportMode === 'desktop'}
                     onClick={() => setViewportMode('desktop')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
                       viewportMode === 'desktop'
-                        ? 'bg-[#2391FF] text-white shadow-md shadow-[#2391FF]/20'
-                        : 'text-[#B7B09E] hover:text-white'
+                        ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-md shadow-sky-600/20'
+                        : 'text-[var(--muted)] hover:text-[var(--text-heading)]'
                     }`}
                   >
-                    <Monitor className="w-3.5 h-3.5" />
+                    <Monitor className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>Desktop (1920px)</span>
                   </button>
                   <button
+                    type="button"
+                    aria-pressed={viewportMode === 'tablet'}
                     onClick={() => setViewportMode('tablet')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
                       viewportMode === 'tablet'
-                        ? 'bg-[#2391FF] text-white shadow-md shadow-[#2391FF]/20'
-                        : 'text-[#B7B09E] hover:text-white'
+                        ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-md shadow-sky-600/20'
+                        : 'text-[var(--muted)] hover:text-[var(--text-heading)]'
                     }`}
                   >
-                    <Tablet className="w-3.5 h-3.5" />
+                    <Tablet className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>Tablet (768px)</span>
                   </button>
                   <button
+                    type="button"
+                    aria-pressed={viewportMode === 'mobile'}
                     onClick={() => setViewportMode('mobile')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
                       viewportMode === 'mobile'
-                        ? 'bg-[#2391FF] text-white shadow-md shadow-[#2391FF]/20'
-                        : 'text-[#B7B09E] hover:text-white'
+                        ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-md shadow-sky-600/20'
+                        : 'text-[var(--muted)] hover:text-[var(--text-heading)]'
                     }`}
                   >
-                    <Smartphone className="w-3.5 h-3.5" />
+                    <Smartphone className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>Mobile (375px)</span>
                   </button>
                 </div>
@@ -287,23 +299,27 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
 
               {/* Preview Rendering Mode & Fullscreen */}
               <div className="flex items-center gap-3">
-                <div className="inline-flex items-center p-1 bg-[#0d0824] rounded-xl border border-white/10">
+                <div role="group" aria-label="Preview render mode" className="inline-flex items-center p-1 bg-slate-200/80 dark:bg-[#0d0824] rounded-xl border border-slate-300 dark:border-white/10">
                   <button
+                    type="button"
+                    aria-pressed={previewMode === 'simulated'}
                     onClick={() => setPreviewMode('simulated')}
                     className={`px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                       previewMode === 'simulated'
-                        ? 'bg-[#65ffe3]/20 text-[#65ffe3] font-semibold'
-                        : 'text-[#B7B09E] hover:text-white'
+                        ? 'bg-sky-600 dark:bg-[#65ffe3]/20 text-white dark:text-[#65ffe3] font-semibold'
+                        : 'text-[var(--muted)] hover:text-[var(--text-heading)]'
                     }`}
                   >
                     Interactive Prototype
                   </button>
                   <button
+                    type="button"
+                    aria-pressed={previewMode === 'live'}
                     onClick={() => setPreviewMode('live')}
                     className={`px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                       previewMode === 'live'
-                        ? 'bg-emerald-500/20 text-emerald-400 font-semibold'
-                        : 'text-[#B7B09E] hover:text-white'
+                        ? 'bg-emerald-600 dark:bg-emerald-500/20 text-white dark:text-emerald-400 font-semibold'
+                        : 'text-[var(--muted)] hover:text-[var(--text-heading)]'
                     }`}
                   >
                     Live Vercel Frame
@@ -311,44 +327,49 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                 </div>
 
                 <button
+                  type="button"
                   onClick={() => setIsFullScreen(!isFullScreen)}
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-[#B7B09E] hover:text-white transition-colors cursor-pointer"
+                  className="p-2 rounded-lg bg-slate-200/80 hover:bg-slate-300 dark:bg-white/5 dark:hover:bg-white/10 text-[var(--muted)] hover:text-[var(--text-heading)] transition-colors cursor-pointer"
+                  aria-label={isFullScreen ? 'Exit Full Screen Preview' : 'Full Screen Preview'}
                   title={isFullScreen ? 'Exit Full Screen' : 'Full Screen Preview'}
                 >
-                  {isFullScreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+                  {isFullScreen ? <Minimize2 className="w-4 h-4" aria-hidden="true" /> : <Maximize2 className="w-4 h-4" aria-hidden="true" />}
                 </button>
               </div>
             </div>
 
             {/* Virtual Device Frame */}
             <div
-              className={`mt-6 mx-auto transition-all duration-300 bg-[#070219] border border-[rgba(99,203,255,0.3)] rounded-2xl overflow-hidden shadow-2xl relative ${
+              id="repo-preview-panel"
+              role="region"
+              aria-label={`Interactive preview of ${currentRepo.name}`}
+              className={`mt-6 mx-auto transition-all duration-300 bg-slate-900 border border-sky-400/30 rounded-2xl overflow-hidden shadow-2xl relative ${
                 viewportMode === 'desktop'
                   ? 'w-full h-[620px]'
                   : viewportMode === 'tablet'
-                  ? 'w-[768px] max-w-full h-[620px] border-4 border-[#2b3547]'
-                  : 'w-[375px] max-w-full h-[620px] border-8 border-[#2b3547] rounded-[38px]'
+                  ? 'w-[768px] max-w-full h-[620px] border-4 border-slate-700'
+                  : 'w-[375px] max-w-full h-[620px] border-8 border-slate-700 rounded-[38px]'
               }`}
             >
               {/* Device Header Bar */}
-              <div className="bg-[#0d0824] px-4 py-2.5 border-b border-white/10 flex items-center justify-between text-xs text-[#B7B09E] font-['Barlow']">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+              <div className="bg-slate-800 px-4 py-2.5 border-b border-white/10 flex items-center justify-between text-xs text-slate-300 font-['Barlow']">
+                <div className="flex items-center gap-1.5" aria-hidden="true">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
                 </div>
-                <div className="px-3.5 py-0.5 rounded-md bg-[#070219] border border-white/10 text-[11px] text-white/90 font-mono flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <div className="px-3.5 py-0.5 rounded-md bg-slate-900 border border-white/10 text-[11px] text-white/90 font-mono flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" aria-hidden="true"></span>
                   <span className="truncate max-w-[280px]">{currentRepo.liveUrl}</span>
                 </div>
-                <div className="text-[10px] uppercase font-mono text-[#65ffe3]">
+                <div className="text-[10px] uppercase font-mono text-sky-400">
                   {viewportMode}
                 </div>
               </div>
 
               {/* Viewport Content */}
               {previewMode === 'live' ? (
-                <div className="h-[calc(100%-42px)] w-full bg-[#070219] relative">
+                <div className="h-[calc(100%-42px)] w-full bg-slate-950 relative">
                   <iframe
                     src={currentRepo.liveUrl}
                     title={currentRepo.title}
@@ -359,11 +380,11 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                 </div>
               ) : (
                 /* Interactive Prototype Canvas for the selected repo */
-                <div className="h-[calc(100%-42px)] overflow-y-auto p-6 bg-[#070219] text-white space-y-6">
+                <div className="h-[calc(100%-42px)] overflow-y-auto p-6 bg-slate-950 text-white space-y-6">
                   {/* REPO 1: BLAZE-APP WORK TRACKER PROTOTYPE */}
                   {selectedRepoId === 'blaze-app' && (
                     <div className="space-y-5 font-['Barlow']">
-                      <div className="p-6 rounded-2xl glass border border-[rgba(99,203,255,0.3)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div className="p-6 rounded-2xl glass border border-sky-400/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div>
                           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase mb-2">
                             Live Enterprise Workspace
@@ -371,7 +392,7 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                           <h3 className="text-2xl font-bold text-white">
                             Blazebyte Technologies — Work Tracker & Assessment
                           </h3>
-                          <p className="text-xs text-[#B7B09E] mt-1">
+                          <p className="text-xs text-slate-300 mt-1">
                             Team workspace for tracking daily tasks, work hours, self-assessments, and WhatsApp pending alerts.
                           </p>
                         </div>
@@ -382,12 +403,12 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                           className="pill primary px-4 py-2 text-xs flex items-center gap-1.5 shrink-0"
                         >
                           <span>Open Live Vercel App</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
+                          <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                         </a>
                       </div>
 
                       {/* Interactive Workspace Tabs inside Preview */}
-                      <div className="flex gap-2 border-b border-white/10 pb-2">
+                      <div className="flex gap-2 border-b border-white/10 pb-2" role="tablist" aria-label="Task Tracker Tabs">
                         {[
                           { id: 'tasks', label: 'Daily Work Board', icon: CheckSquare },
                           { id: 'assessments', label: 'Daily Self-Assessment', icon: Sparkles },
@@ -397,14 +418,16 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                           return (
                             <button
                               key={t.id}
+                              role="tab"
+                              aria-selected={activeTabTask === t.id}
                               onClick={() => setActiveTabTask(t.id as any)}
-                              className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                              className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                                 activeTabTask === t.id
                                   ? 'bg-[#2391FF] text-white'
-                                  : 'text-[#B7B09E] hover:text-white bg-white/5'
+                                  : 'text-slate-300 hover:text-white bg-white/5'
                               }`}
                             >
-                              <Icon className="w-3.5 h-3.5" />
+                              <Icon className="w-3.5 h-3.5" aria-hidden="true" />
                               <span>{t.label}</span>
                             </button>
                           );
@@ -439,22 +462,22 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                           ].map((task, i) => (
                             <div
                               key={i}
-                              className="p-4 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between text-xs"
+                              className="p-4 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between text-xs"
                             >
                               <div>
                                 <div className="font-semibold text-white text-sm">{task.title}</div>
-                                <div className="text-[11px] text-[#B7B09E] mt-0.5">
+                                <div className="text-[11px] text-slate-300 mt-0.5">
                                   Assigned to: <strong className="text-white">{task.member}</strong> • {task.hours} spent
                                 </div>
                               </div>
                               <div className="flex items-center gap-2">
-                                <span className="text-[#9ea6bd] text-[11px]">Due: {task.deadline}</span>
+                                <span className="text-slate-400 text-[11px]">Due: {task.deadline}</span>
                                 <span
                                   className={`px-2 py-0.5 rounded text-[10px] font-semibold ${
                                     task.status === 'Completed'
                                       ? 'bg-emerald-500/20 text-emerald-400'
                                       : task.status === 'In Progress'
-                                      ? 'bg-[#2391FF]/20 text-[#2391FF]'
+                                      ? 'bg-sky-500/20 text-sky-400'
                                       : 'bg-amber-500/20 text-amber-400'
                                   }`}
                                 >
@@ -468,15 +491,15 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
 
                       {/* Assessments tab */}
                       {activeTabTask === 'assessments' && (
-                        <div className="p-5 rounded-xl bg-white/[0.03] border border-white/5 space-y-3 text-xs">
+                        <div className="p-5 rounded-xl bg-white/[0.04] border border-white/10 space-y-3 text-xs">
                           <div className="font-bold text-white text-sm">
                             Daily Performance Reflection (Score: 5 / 5)
                           </div>
-                          <p className="text-[#d2d5df] italic">
+                          <p className="text-slate-300 italic">
                             "Completed full design-to-code alignment with mountain backdrop, Three.js wave particle canvas, and GitHub repository demo integration."
                           </p>
                           <div className="flex items-center gap-2 text-emerald-400 text-xs">
-                            <CheckCircle2 className="w-4 h-4" />
+                            <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
                             <span>Reviewed & Approved by Team Lead</span>
                           </div>
                         </div>
@@ -484,58 +507,64 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
 
                       {/* Team status */}
                       {activeTabTask === 'team' && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5">
-                            <div className="font-semibold text-white">Bharath Raj (Lead)</div>
-                            <div className="text-emerald-400 text-[11px] mt-1">All Daily Work Logged ✓</div>
-                          </div>
-                          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5">
-                            <div className="font-semibold text-white">Badri (Development)</div>
-                            <div className="text-[#63cbff] text-[11px] mt-1">1 Task In Progress</div>
-                          </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                          {[
+                            { name: 'Bharath Raj', role: 'Architect & Lead', status: 'Online', alerts: '0 Pending' },
+                            { name: 'Badri Narayanan', role: 'Full Stack Dev', status: 'Active Sprint', alerts: '1 WhatsApp review' },
+                            { name: 'Arun Kumar', role: 'UI/UX & 3D Shaders', status: 'Reviewing', alerts: '0 Pending' },
+                          ].map((m, i) => (
+                            <div key={i} className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
+                              <div className="font-bold text-white">{m.name}</div>
+                              <div className="text-[11px] text-slate-300">{m.role}</div>
+                              <div className="mt-2 flex items-center justify-between text-[10px]">
+                                <span className="text-emerald-400">● {m.status}</span>
+                                <span className="text-slate-400">{m.alerts}</span>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       )}
                     </div>
                   )}
 
-                  {/* REPO 2: BLAZE-BYTE FLAGSHIP STOREFRONT */}
+                  {/* REPO 2: BLAZE-BYTE MAIN REPOSITORY REFERENCE */}
                   {selectedRepoId === 'Blaze-Byte' && (
-                    <div className="space-y-6 font-['Barlow']">
-                      <div className="relative rounded-2xl p-8 glass border border-[rgba(99,203,255,0.4)] overflow-hidden text-center">
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#65ffe3]/15 text-[#65ffe3] text-xs font-semibold uppercase mb-3">
-                          Flagship Web Platform
+                    <div className="space-y-5 font-['Barlow']">
+                      <div className="p-6 rounded-2xl glass border border-sky-400/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div>
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-400 text-xs font-semibold uppercase mb-2">
+                            Flagship Design Inspiration
+                          </div>
+                          <h3 className="text-2xl font-bold text-white">
+                            BlazeByte Studio — Official Web Experience
+                          </h3>
+                          <p className="text-xs text-slate-300 mt-1">
+                            Original repository powering blazebyte.shop & blazebyte.store with dark glassmorphism, responsive navigation, and animated hero sections.
+                          </p>
                         </div>
-                        <h3 className="text-3xl sm:text-4xl font-extrabold text-white">
-                          A Digital Product Studio <span className="text-[#65ffe3]">that will work</span>
-                        </h3>
-                        <p className="text-sm text-[#cbd0dc] max-w-lg mx-auto mt-3 font-['Lateef'] text-xl">
-                          Web design, SEO services, media publishing, and gaming hubs — turning bold ideas into commercial systems.
-                        </p>
-                        <div className="mt-6 flex items-center justify-center gap-3">
-                          <a
-                            href="https://blazebyte.store"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="pill primary px-5 py-2 text-xs flex items-center gap-1.5"
-                          >
-                            <span>Visit blazebyte.store</span>
-                            <ExternalLink className="w-3.5 h-3.5" />
-                          </a>
-                        </div>
+                        <a
+                          href="https://blaze-byte.vercel.app"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="pill primary px-4 py-2 text-xs flex items-center gap-1.5 shrink-0"
+                        >
+                          <span>Explore Live Site</span>
+                          <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                        </a>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-xs">
-                          <div className="text-[#65ffe3] font-bold text-sm">Three.js Particle Canvas</div>
-                          <div className="text-[#B7B09E] mt-1">Real-time procedural GPU noise wave</div>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10">
+                          <div className="text-xs text-slate-300">Design Framework</div>
+                          <div className="text-sm font-bold text-white mt-1">Tailwind CSS + Glassmorphism</div>
                         </div>
-                        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-xs">
-                          <div className="text-[#63cbff] font-bold text-sm">5-Stage Workflow</div>
-                          <div className="text-[#B7B09E] mt-1">Drag-and-snap process gallery</div>
+                        <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10">
+                          <div className="text-xs text-slate-300">Typography Suite</div>
+                          <div className="text-sm font-bold text-white mt-1">Lateef & Barlow & Playfair</div>
                         </div>
-                        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-xs">
-                          <div className="text-[#d86bff] font-bold text-sm">Bento Grid Matrix</div>
-                          <div className="text-[#B7B09E] mt-1">Expanding service detail cards</div>
+                        <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10">
+                          <div className="text-xs text-slate-300">Brand Colorway</div>
+                          <div className="text-sm font-bold text-sky-400 mt-1">#202734 • #2391FF • #65ffe3</div>
                         </div>
                       </div>
                     </div>
@@ -544,40 +573,40 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                   {/* REPO 3: BLAZE-CAFE HOSPITALITY EXPERIENCE */}
                   {selectedRepoId === 'blaze-cafe-' && (
                     <div className="space-y-5 font-['Barlow']">
-                      <div className="p-6 rounded-2xl glass border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div className="p-6 rounded-2xl glass border border-amber-400/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div>
-                          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold uppercase mb-2">
-                            Hospitality & E-Commerce
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-xs font-semibold uppercase mb-2">
+                            Hospitality & F&B Prototype
                           </div>
                           <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                            <Utensils className="w-5 h-5 text-amber-400" />
-                            <span>Blaze Cafe — Modern Dining & Digital Menu</span>
+                            <Utensils className="w-6 h-6 text-amber-400" aria-hidden="true" />
+                            <span>Blaze Cafe — Modern Coffee & Dining Portal</span>
                           </h3>
-                          <p className="text-xs text-[#B7B09E] mt-1">
-                            Interactive cafe menu, table reservations, and direct WhatsApp customer ordering.
+                          <p className="text-xs text-slate-300 mt-1">
+                            Interactive food ordering showcase with category filters, dynamic pricing, and instant table reservations.
                           </p>
                         </div>
                         <a
-                          href="https://blaze-byte-rcwb.vercel.app"
+                          href="https://blaze-cafe.vercel.app"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="pill primary px-4 py-2 text-xs flex items-center gap-1.5 shrink-0"
                         >
-                          <span>Open Live Cafe App</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
+                          <span>Open Cafe Website</span>
+                          <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                         </a>
                       </div>
 
-                      {/* Interactive Menu Filtering */}
+                      {/* Cafe Menu Category Filter */}
                       <div className="flex gap-2">
                         {(['all', 'coffee', 'bites', 'desserts'] as const).map((cat) => (
                           <button
                             key={cat}
                             onClick={() => setCafeCategory(cat)}
-                            className={`px-3 py-1 rounded-lg text-xs font-semibold capitalize transition-all ${
+                            className={`px-3 py-1 rounded-lg text-xs font-semibold uppercase transition-all cursor-pointer ${
                               cafeCategory === cat
-                                ? 'bg-amber-500 text-black font-bold'
-                                : 'text-[#B7B09E] bg-white/5 hover:text-white'
+                                ? 'bg-amber-500 text-slate-900 font-bold'
+                                : 'bg-white/5 text-slate-300 hover:text-white'
                             }`}
                           >
                             {cat}
@@ -587,20 +616,25 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         {[
-                          { name: 'Signature Cold Brew', cat: 'coffee', price: '₹220', rating: '4.9 ★' },
-                          { name: 'Artisan Sourdough Toast', cat: 'bites', price: '₹280', rating: '4.8 ★' },
-                          { name: 'Belgian Truffle Waffle', cat: 'desserts', price: '₹320', rating: '5.0 ★' },
+                          { name: 'Signature Cold Brew', cat: 'coffee', price: '₹180', tag: 'Bestseller' },
+                          { name: 'Artisan Avocado Toast', cat: 'bites', price: '₹240', tag: 'Chef Choice' },
+                          { name: 'Belgian Truffle Waffle', cat: 'desserts', price: '₹220', tag: 'Fresh' },
                         ]
-                          .filter((item) => cafeCategory === 'all' || item.cat === cafeCategory)
-                          .map((dish, i) => (
-                            <div key={i} className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-xs">
-                              <div className="flex justify-between items-center mb-1">
-                                <span className="font-bold text-white">{dish.name}</span>
-                                <span className="text-amber-400 font-semibold">{dish.rating}</span>
+                          .filter((i) => cafeCategory === 'all' || i.cat === cafeCategory)
+                          .map((item, idx) => (
+                            <div key={idx} className="p-4 rounded-xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
+                              <div>
+                                <span className="text-[10px] px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 font-semibold uppercase">
+                                  {item.tag}
+                                </span>
+                                <h4 className="text-base font-bold text-white mt-2">{item.name}</h4>
+                                <div className="text-xs text-slate-300 mt-1">Single-origin preparation with specialty roasting</div>
                               </div>
-                              <div className="text-[#65ffe3] font-bold text-sm mt-2">{dish.price}</div>
-                              <div className="mt-3 pt-2 border-t border-white/5 text-[11px] text-[#B7B09E]">
-                                WhatsApp Instant Order Available
+                              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                                <span className="text-base font-extrabold text-amber-300">{item.price}</span>
+                                <button className="px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs cursor-pointer">
+                                  Order Demo
+                                </button>
                               </div>
                             </div>
                           ))}
@@ -608,43 +642,44 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                     </div>
                   )}
 
-                  {/* REPO 4: BLAZE-BYTE_1 AGENCY PORTFOLIO */}
+                  {/* REPO 4: BLAZE-BYTE_1 DIGITAL AGENCY SUITE */}
                   {selectedRepoId === 'Blaze-Byte_1' && (
                     <div className="space-y-5 font-['Barlow']">
-                      <div className="p-6 rounded-2xl glass border border-[rgba(99,203,255,0.3)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div className="p-6 rounded-2xl glass border border-purple-400/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div>
-                          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#2391FF]/20 text-[#63cbff] text-xs font-semibold uppercase mb-2">
-                            Creative Agency Showcase
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-400 text-xs font-semibold uppercase mb-2">
+                            Creative Digital Agency
                           </div>
-                          <h3 className="text-2xl font-bold text-white">
-                            BlazeByte Studio 07 — Agency Design & Portfolio
+                          <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+                            <Globe className="w-6 h-6 text-purple-400" aria-hidden="true" />
+                            <span>Blaze-Byte_1 — Marketing & Product Showcase</span>
                           </h3>
-                          <p className="text-xs text-[#B7B09E] mt-1">
-                            High-impact conversion landing page designed for corporate client acquisition.
+                          <p className="text-xs text-slate-300 mt-1">
+                            Agency portfolio showcasing creative direction, digital branding, interactive case studies, and conversion-focused web layouts.
                           </p>
                         </div>
                         <a
-                          href="https://blazebyte07.vercel.app"
+                          href="https://blaze-byte-1.vercel.app"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="pill primary px-4 py-2 text-xs flex items-center gap-1.5 shrink-0"
                         >
-                          <span>Open Live Vercel App</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
+                          <span>Explore Agency Live</span>
+                          <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                         </a>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 space-y-2">
-                          <div className="font-bold text-white text-sm">Conversion-Optimized Hero</div>
-                          <p className="text-[#B7B09E]">
-                            Clean, high-contrast layouts guiding prospective clients towards immediate WhatsApp consultations.
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 space-y-2">
+                          <h4 className="text-sm font-bold text-white">Full-Funnel Agency Services</h4>
+                          <p className="text-xs text-slate-300">
+                            Custom brand design systems, high-converting promotional landing pages, and search optimization built for high ROI.
                           </p>
                         </div>
-                        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 space-y-2">
-                          <div className="font-bold text-white text-sm">Responsive Mobile-First Codebase</div>
-                          <p className="text-[#B7B09E]">
-                            Fluid grid structures built to render consistently across iOS, Android, and widescreen monitors.
+                        <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 space-y-2">
+                          <h4 className="text-sm font-bold text-white">Interactive Client Showcases</h4>
+                          <p className="text-xs text-slate-300">
+                            Seamless video and 3D embeds, frictionless enquiry triggers, and multi-platform responsive rendering.
                           </p>
                         </div>
                       </div>
@@ -656,129 +691,13 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
           </div>
         </div>
 
-        {/* Official GitHub Repositories Showcase Grid */}
-        <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="text-[#65ffe3] text-sm uppercase tracking-[0.18em] font-semibold mb-2 font-['Barlow']">
-              Official Open-Source & Production Repositories
-            </p>
-            <h3 className="text-2xl sm:text-4xl font-bold text-white font-['Barlow']">
-              Live Work from @bharathraj0519-source
-            </h3>
-            <p className="mt-2 text-sm text-[#cbd0dc] font-['Lateef'] text-lg">
-              Explore the live architectures, source code repositories, and production Vercel builds powering BlazeByte Studio.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {GITHUB_DEMO_REPOS.map((repo) => {
-              const isSelected = selectedRepoId === repo.id;
-              return (
-                <div
-                  key={repo.id}
-                  className={`glass rounded-2xl p-7 flex flex-col justify-between transition-all duration-300 relative overflow-hidden ${
-                    isSelected
-                      ? 'border-[#65ffe3] shadow-[0_0_35px_rgba(101,255,227,0.25)] -translate-y-1'
-                      : 'hover:border-[rgba(99,203,255,0.4)] hover:-translate-y-1'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4 font-['Barlow']">
-                      <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#65ffe3]">
-                        {repo.category}
-                      </span>
-                      <div className="flex items-center gap-3 text-xs text-[#B7B09E]">
-                        <span className="font-mono text-[#63cbff]">{repo.language}</span>
-                        {repo.stars > 0 && (
-                          <span className="flex items-center text-amber-300">
-                            <Star className="w-3.5 h-3.5 fill-amber-300 mr-1" />
-                            {repo.stars}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <h4 className="text-xl font-bold text-white mb-1 font-['Barlow'] flex items-center gap-2">
-                      <GitBranch className="w-4 h-4 text-[#65ffe3]" />
-                      <span>{repo.title}</span>
-                    </h4>
-
-                    <div className="text-xs font-mono text-[#63cbff] mb-3">
-                      github.com/bharathraj0519-source/{repo.name}
-                    </div>
-
-                    <p className="text-sm text-[#cbd0dc] leading-relaxed mb-5 font-['Lateef'] text-lg">
-                      {repo.description}
-                    </p>
-
-                    <div className="space-y-1.5 mb-6 font-['Barlow']">
-                      {repo.highlights.map((h, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-[#e1e4eb]">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#65ffe3] shrink-0" />
-                          <span>{h}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {repo.techStack.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="px-2.5 py-0.5 rounded-md bg-white/[0.04] border border-white/10 text-[11px] text-[#B7B09E] font-['Barlow']"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Actions Bar */}
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3 font-['Barlow']">
-                    <button
-                      onClick={() => {
-                        setSelectedRepoId(repo.id);
-                        window.scrollTo({ top: 400, behavior: 'smooth' });
-                      }}
-                      className="pill primary px-4 py-2 text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <Monitor className="w-3.5 h-3.5" />
-                      <span>Test in Device Frame</span>
-                    </button>
-
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={repo.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-[#c8ccda] hover:text-white"
-                        title="View Source on GitHub"
-                      >
-                        <Code2 className="w-4 h-4" />
-                      </a>
-                      <a
-                        href={repo.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-[#65ffe3] hover:text-white"
-                        title="Open Live Website"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
         {/* 10 Web Development Capabilities */}
         <div className="mb-20">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h3 className="text-2xl sm:text-3xl font-bold text-white font-['Barlow']">
+            <h3 className="text-2xl sm:text-3xl font-bold text-[var(--text-heading)] font-['Barlow']">
               Complete Web Development Capabilities
             </h3>
-            <p className="mt-2 text-sm text-[#cbd0dc] font-['Lateef'] text-lg">
+            <p className="mt-2 text-sm text-[var(--muted)] font-['Lateef'] text-lg">
               From single high-impact landing pages to complex enterprise web platforms with customer dashboards and custom APIs.
             </p>
           </div>
@@ -789,22 +708,22 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
               return (
                 <div
                   key={idx}
-                  className="glass p-5 rounded-2xl flex flex-col justify-between group hover:border-[#65ffe3]"
+                  className="glass p-5 rounded-2xl flex flex-col justify-between group hover:border-sky-500 dark:hover:border-[#65ffe3]"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-[rgba(99,203,255,0.15)] border border-[rgba(99,203,255,0.3)] flex items-center justify-center text-[#65ffe3] mb-3 group-hover:scale-110 transition-transform">
+                    <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-sky-600 dark:text-[#65ffe3] mb-3 group-hover:scale-110 transition-transform" aria-hidden="true">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h4 className="text-base font-bold text-white mb-1.5 font-['Barlow']">
+                    <h4 className="text-base font-bold text-[var(--text-heading)] mb-1.5 font-['Barlow']">
                       {cap.title}
                     </h4>
-                    <p className="text-xs text-[#cbd0dc] leading-relaxed font-['Lateef'] text-base">
+                    <p className="text-xs text-[var(--muted)] leading-relaxed font-['Lateef'] text-base">
                       {cap.desc}
                     </p>
                   </div>
-                  <div className="pt-3 mt-3 border-t border-white/5 flex items-center gap-1 text-[11px] text-[#65ffe3] font-medium font-['Barlow']">
+                  <div className="pt-3 mt-3 border-t border-slate-200 dark:border-white/5 flex items-center gap-1 text-[11px] text-sky-600 dark:text-[#65ffe3] font-medium font-['Barlow']">
                     <span>Explore scope</span>
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                   </div>
                 </div>
               );
@@ -812,29 +731,29 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
           </div>
         </div>
 
-        {/* Website Project Enquiry Form */}
-        <div className="glass rounded-[28px] p-8 sm:p-10 border border-[rgba(99,203,255,0.35)] shadow-2xl max-w-4xl mx-auto">
+        {/* Website Project Enquiry Form with Accessible Controls */}
+        <div className="glass rounded-[28px] p-8 sm:p-10 border border-sky-400/30 shadow-2xl max-w-4xl mx-auto">
           <div className="text-center max-w-xl mx-auto mb-8 font-['Barlow']">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#65ffe3]/10 text-[#65ffe3] text-xs font-semibold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-sky-700 dark:text-[#65ffe3] text-xs font-semibold uppercase tracking-wider mb-2">
               Start Your Project
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white">
+            <h3 className="text-2xl sm:text-3xl font-bold text-[var(--text-heading)]">
               Website Project Enquiry
             </h3>
-            <p className="text-xs sm:text-sm text-[#cbd0dc] mt-1 font-['Lateef'] text-lg">
+            <p className="text-xs sm:text-sm text-[var(--muted)] mt-1 font-['Lateef'] text-lg">
               Submit your project specifications for a structured timeline, architectural assessment, and pricing breakdown.
             </p>
           </div>
 
           {formSubmitted ? (
             <div className="text-center p-8 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl space-y-4 animate-in zoom-in-95 font-['Barlow']">
-              <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center">
-                <CheckCircle2 className="w-8 h-8" />
+              <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center">
+                <CheckCircle2 className="w-8 h-8" aria-hidden="true" />
               </div>
-              <h4 className="text-xl font-bold text-white">
+              <h4 className="text-xl font-bold text-[var(--text-heading)]">
                 Enquiry Successfully Logged!
               </h4>
-              <p className="text-xs sm:text-sm text-[#cbd0dc] max-w-md mx-auto font-['Lateef'] text-lg">
+              <p className="text-xs sm:text-sm text-[var(--muted)] max-w-md mx-auto font-['Lateef'] text-lg">
                 Thank you, {customerName}. Your web project requirements referencing repo <strong>{currentRepo.name}</strong> have been recorded in the BlazeByte Studio portal. Our engineering leads will review the scope and reach out within 24 hours.
               </p>
               <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
@@ -846,13 +765,13 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                   rel="noopener noreferrer"
                   className="pill primary px-5 py-2.5 text-xs flex items-center gap-2"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#65ffe3]" />
+                  <Phone className="w-3.5 h-3.5 text-emerald-300" aria-hidden="true" />
                   <span>Fast-Track on WhatsApp</span>
                 </a>
                 <button
                   type="button"
                   onClick={() => setFormSubmitted(false)}
-                  className="pill px-4 py-2.5 text-xs text-[#B7B09E] hover:text-white"
+                  className="pill px-4 py-2.5 text-xs text-[var(--text)] hover:text-sky-600 cursor-pointer"
                 >
                   Submit Another Requirement
                 </button>
@@ -861,77 +780,85 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
           ) : (
             <form onSubmit={handleEnquirySubmit} className="space-y-6 font-['Barlow']">
               {errorMsg && (
-                <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-400">
+                <div role="alert" className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-600 dark:text-red-400">
                   {errorMsg}
                 </div>
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="text-xs font-semibold text-white block mb-1.5">
+                  <label htmlFor="enquiry-customer-name" className="text-xs font-semibold text-[var(--text-heading)] block mb-1.5">
                     Your Full Name *
                   </label>
                   <input
+                    id="enquiry-customer-name"
                     type="text"
                     required
+                    aria-required="true"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                     placeholder="e.g. Bharath Raj"
-                    className="w-full bg-[#0d0824] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#65ffe3]"
+                    className="w-full bg-white dark:bg-[#0d0824] border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm text-[var(--text)] focus:outline-none focus:border-sky-500"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-white block mb-1.5">
+                  <label htmlFor="enquiry-business-name" className="text-xs font-semibold text-[var(--text-heading)] block mb-1.5">
                     Business / Company Name
                   </label>
                   <input
+                    id="enquiry-business-name"
                     type="text"
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
                     placeholder="e.g. BlazeByte Technologies"
-                    className="w-full bg-[#0d0824] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#65ffe3]"
+                    className="w-full bg-white dark:bg-[#0d0824] border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm text-[var(--text)] focus:outline-none focus:border-sky-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="text-xs font-semibold text-white block mb-1.5">
+                  <label htmlFor="enquiry-email" className="text-xs font-semibold text-[var(--text-heading)] block mb-1.5">
                     Work Email Address *
                   </label>
                   <input
+                    id="enquiry-email"
                     type="email"
                     required
+                    aria-required="true"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="contact@yourcompany.com"
-                    className="w-full bg-[#0d0824] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#65ffe3]"
+                    className="w-full bg-white dark:bg-[#0d0824] border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm text-[var(--text)] focus:outline-none focus:border-sky-500"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-white block mb-1.5">
+                  <label htmlFor="enquiry-phone" className="text-xs font-semibold text-[var(--text-heading)] block mb-1.5">
                     WhatsApp / Phone Number *
                   </label>
                   <input
+                    id="enquiry-phone"
                     type="tel"
                     required
+                    aria-required="true"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+91 77087 95342"
-                    className="w-full bg-[#0d0824] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#65ffe3]"
+                    className="w-full bg-white dark:bg-[#0d0824] border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm text-[var(--text)] focus:outline-none focus:border-sky-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 <div>
-                  <label className="text-xs font-semibold text-white block mb-1.5">
+                  <label htmlFor="enquiry-type" className="text-xs font-semibold text-[var(--text-heading)] block mb-1.5">
                     Website Type
                   </label>
                   <select
+                    id="enquiry-type"
                     value={websiteType}
                     onChange={(e) => setWebsiteType(e.target.value)}
-                    className="w-full bg-[#0d0824] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#65ffe3]"
+                    className="w-full bg-white dark:bg-[#0d0824] border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm text-[var(--text)] focus:outline-none focus:border-sky-500"
                   >
                     <option>Custom SaaS Web Application (like blaze-app)</option>
                     <option>Digital Product Studio (like Blaze-Byte)</option>
@@ -942,13 +869,14 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-white block mb-1.5">
+                  <label htmlFor="enquiry-budget" className="text-xs font-semibold text-[var(--text-heading)] block mb-1.5">
                     Budget Preference
                   </label>
                   <select
+                    id="enquiry-budget"
                     value={budgetRange}
                     onChange={(e) => setBudgetRange(e.target.value)}
-                    className="w-full bg-[#0d0824] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#65ffe3]"
+                    className="w-full bg-white dark:bg-[#0d0824] border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm text-[var(--text)] focus:outline-none focus:border-sky-500"
                   >
                     <option>₹15,000 - ₹35,000 (Starter)</option>
                     <option>₹35,000 - ₹75,000 (Professional)</option>
@@ -957,13 +885,14 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-white block mb-1.5">
+                  <label htmlFor="enquiry-timeline" className="text-xs font-semibold text-[var(--text-heading)] block mb-1.5">
                     Preferred Timeline
                   </label>
                   <select
+                    id="enquiry-timeline"
                     value={timeline}
                     onChange={(e) => setTimeline(e.target.value)}
-                    className="w-full bg-[#0d0824] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#65ffe3]"
+                    className="w-full bg-white dark:bg-[#0d0824] border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm text-[var(--text)] focus:outline-none focus:border-sky-500"
                   >
                     <option>1-2 Weeks (Urgent Sprint)</option>
                     <option>2-3 Weeks (Standard)</option>
@@ -974,26 +903,29 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-white block mb-2">
+                <label className="text-xs font-semibold text-[var(--text-heading)] block mb-2">
                   Select Required Features
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2" role="group" aria-label="Feature requirements checkboxes">
                   {featureOptions.map((feat) => {
                     const isChecked = selectedFeatures.includes(feat);
                     return (
                       <button
                         type="button"
                         key={feat}
+                        role="checkbox"
+                        aria-checked={isChecked}
                         onClick={() => toggleFeature(feat)}
-                        className={`text-left text-xs p-2.5 rounded-xl border transition-all ${
+                        className={`text-left text-xs p-2.5 rounded-xl border transition-all cursor-pointer ${
                           isChecked
-                            ? 'bg-[#2391FF]/20 border-[#65ffe3] text-white font-medium'
-                            : 'bg-white/[0.02] border-white/10 text-[#B7B09E] hover:border-white/20'
+                            ? 'bg-sky-500/15 border-sky-500 text-sky-800 dark:text-sky-300 font-medium'
+                            : 'bg-black/[0.02] dark:bg-white/[0.02] border-slate-300 dark:border-white/10 text-[var(--muted)] hover:border-slate-400'
                         }`}
                       >
                         <div className="flex items-center gap-1.5">
                           <CheckCircle2
-                            className={`w-3.5 h-3.5 ${isChecked ? 'text-[#65ffe3]' : 'text-white/20'}`}
+                            className={`w-3.5 h-3.5 ${isChecked ? 'text-sky-600 dark:text-sky-400' : 'text-slate-400 dark:text-white/20'}`}
+                            aria-hidden="true"
                           />
                           <span>{feat}</span>
                         </div>
@@ -1004,26 +936,28 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-white block mb-1.5">
+                <label htmlFor="enquiry-description" className="text-xs font-semibold text-[var(--text-heading)] block mb-1.5">
                   Project Description & Requirements *
                 </label>
                 <textarea
+                  id="enquiry-description"
                   required
+                  aria-required="true"
                   rows={4}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Tell us about your brand, what pages you need, any reference repositories (e.g. blaze-app or blaze-cafe-), and key business goals..."
-                  className="w-full bg-[#0d0824] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-[#B7B09E]/50 focus:outline-none focus:border-[#65ffe3]"
+                  className="w-full bg-white dark:bg-[#0d0824] border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-[var(--text)] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-sky-500"
                 ></textarea>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200 dark:border-white/10">
                 <button
                   type="button"
                   onClick={onOpenCustomPlan}
-                  className="text-xs text-[#65ffe3] hover:underline flex items-center gap-1 cursor-pointer"
+                  className="text-xs text-sky-700 dark:text-[#65ffe3] hover:underline flex items-center gap-1 cursor-pointer"
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>Prefer to pick features step-by-step? Try Custom Plan Builder</span>
                 </button>
 
@@ -1032,7 +966,7 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
                   disabled={isSubmitting}
                   className="pill primary w-full sm:w-auto px-8 py-3.5 text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Send className="w-3.5 h-3.5" />
+                  <Send className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>{isSubmitting ? 'Logging Enquiry...' : 'Submit Project Enquiry'}</span>
                 </button>
               </div>
@@ -1040,6 +974,6 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };

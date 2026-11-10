@@ -35,6 +35,7 @@ export const FlipText: React.FC<FlipTextProps> = ({
         return (
           <span
             key={index}
+            aria-hidden="true"
             className={`inline-block transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform-gpu origin-bottom ${
               mounted
                 ? 'opacity-100 rotate-x-0 translate-y-0 scale-100'
