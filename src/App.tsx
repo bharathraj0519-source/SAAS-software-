@@ -4,6 +4,8 @@ import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { ServiceShowcaseGrid } from './components/ServiceShowcaseGrid';
 import { WhyChooseUs } from './components/WhyChooseUs';
+import { Pricing } from './components/Pricing';
+import { FaqAccordionDemo } from './components/ui/faq-accordion';
 import { ChatbotModule } from './components/ChatbotModule';
 import { WebDevModule } from './components/WebDevModule';
 import { SeoModule } from './components/SeoModule';
@@ -39,13 +41,13 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen text-[var(--text)] flex flex-col font-['Lateef'] text-xl selection:bg-[#2391FF] selection:text-white relative isolation-isolate">
+    <div className="min-h-screen text-[var(--text)] flex flex-col font-['Lateef'] text-xl selection:bg-[#cf5c36] selection:text-white relative isolation-isolate">
       {/* WCAG 2.4.1 Skip to Content Link */}
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
 
-      {/* Animated Mountain Picture & Video Background from index.html */}
+      {/* Animated Mountain Picture Backdrop from index.html (subtle ambient opacity in light theme) */}
       <video
         className="page-video"
         autoPlay
@@ -85,8 +87,8 @@ function AppContent() {
       {/* Live Region Toast Notification */}
       <div aria-live="polite" aria-atomic="true">
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl glass border border-emerald-500/40 text-[var(--text)] shadow-2xl flex items-center gap-3 animate-in slide-in-from-bottom-5 font-['Barlow']">
-            <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
+          <div className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl bg-white border border-emerald-400 text-[#000000] shadow-xl flex items-center gap-3 animate-in slide-in-from-bottom-5 font-['Barlow']">
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" aria-hidden="true" />
             <div className="text-sm font-semibold">{toastMessage}</div>
           </div>
         )}
@@ -112,40 +114,43 @@ function AppContent() {
               onBuildCustomPlan={() => handleNavigate('custom-plan')}
             />
 
-            {/* 4 Interactive Service Modules Overview with correct SVGs & Glass style */}
+            {/* 4 Interactive Service Modules Overview with Cover Images & Glass Cards */}
             <ServiceShowcaseGrid onSelectService={(id) => handleNavigate(id)} />
 
-            {/* Why Choose Us & Bento Grid */}
+            {/* Why Choose Us & Scrolling Step-by-Step Cards (01-05) + Interactive Transformation */}
             <WhyChooseUs />
 
-            {/* Final Conversion Section from index.html */}
-            <section className="py-24 relative overflow-hidden text-center" id="contact">
-              <div className="glow a left-1/4 top-10" aria-hidden="true"></div>
-              <div className="glow b right-1/4 bottom-10" aria-hidden="true"></div>
+            {/* Simple, Predictable Pricing Tiers with @phosphor-icons/react */}
+            <Pricing />
 
+            {/* Frequently Asked Questions Accordion */}
+            <FaqAccordionDemo />
+
+            {/* Final Conversion Section from index.html */}
+            <section className="py-20 relative overflow-hidden text-center" id="contact">
               <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="glass p-10 sm:p-14 rounded-[32px] border border-[var(--card-border)] relative overflow-hidden">
-                  <p className="text-[var(--cyan)] text-sm uppercase tracking-[0.18em] font-semibold mb-4 font-['Barlow']">
+                <div className="bg-white p-10 sm:p-14 rounded-[32px] border border-[rgba(124,124,124,0.22)] shadow-sm relative overflow-hidden">
+                  <p className="text-[#cf5c36] text-xs uppercase tracking-[0.18em] font-bold mb-3 font-['Barlow']">
                     Our Vision
                   </p>
 
-                  <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-heading)] tracking-tight leading-tight max-w-2xl mx-auto font-['Barlow'] header-text-glow">
+                  <h2 className="text-3xl sm:text-5xl font-extrabold text-[#000000] tracking-tight leading-tight max-w-2xl mx-auto font-['Barlow']">
                     Every idea deserves the opportunity to become{' '}
-                    <span className="font-script-italic text-transparent bg-clip-text bg-gradient-to-r from-[var(--cyan)] via-[#8effd2] to-[var(--pink)]">
+                    <span className="font-script-italic text-[#cf5c36]">
                       something meaningful.
                     </span>
                   </h2>
 
-                  <p className="mt-5 text-xl sm:text-2xl text-[var(--muted)] max-w-xl mx-auto font-['Lateef'] leading-relaxed">
+                  <p className="mt-4 text-xl sm:text-2xl text-[#7c7c7c] max-w-xl mx-auto font-['Lateef'] leading-relaxed">
                     We combine creativity, technology, AI, and automation to help businesses build stronger digital experiences, work smarter, and grow with confidence.
                   </p>
 
                   <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                     <button
                       onClick={() => handleNavigate('custom-plan')}
-                      className="pill primary px-8 py-3.5 text-base flex items-center justify-center gap-2 cursor-pointer font-['Barlow'] font-semibold"
+                      className="px-8 py-3.5 rounded-full text-base font-semibold text-white bg-[#cf5c36] hover:bg-[#a66c59] flex items-center justify-center gap-2 cursor-pointer font-['Barlow'] transition-colors shadow-sm"
                     >
-                      <Sparkles className="w-4 h-4 text-[#65ffe3]" aria-hidden="true" />
+                      <Sparkles className="w-4 h-4 text-[#efc88b]" aria-hidden="true" />
                       <span>Build Your Custom Plan</span>
                     </button>
 
@@ -153,9 +158,9 @@ function AppContent() {
                       href="https://wa.me/917708795342?text=Hi%20BlazeByte%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20project%20for%20my%20business."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="pill px-7 py-3.5 text-base text-[var(--text)] hover:border-[var(--cyan)] flex items-center justify-center gap-2 font-['Barlow'] font-semibold"
+                      className="px-7 py-3.5 rounded-full text-base font-semibold text-[#000000] bg-[#eee5e9] hover:bg-stone-200 border border-[rgba(124,124,124,0.25)] flex items-center justify-center gap-2 font-['Barlow'] transition-colors"
                     >
-                      <Phone className="w-4 h-4 text-[var(--cyan)]" aria-hidden="true" />
+                      <Phone className="w-4 h-4 text-[#cf5c36]" aria-hidden="true" />
                       <span>Chat on WhatsApp Directly</span>
                     </a>
                   </div>

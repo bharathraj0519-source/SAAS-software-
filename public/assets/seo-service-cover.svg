@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eee5e9"/>
+      <stop offset="100%" stop-color="#e6dcde"/>
+    </linearGradient>
+    <linearGradient id="chartFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#cf5c36" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#cf5c36" stop-opacity="0.0"/>
+    </linearGradient>
+    <filter id="softShadow2" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGrad2)"/>
+
+  <!-- Analytics Dashboard Mockup -->
+  <g transform="translate(100, 40)" filter="url(#softShadow2)">
+    <rect width="600" height="370" rx="24" fill="#ffffff" stroke="#a66c59" stroke-opacity="0.2" stroke-width="1.5"/>
+
+    <!-- Header -->
+    <text x="35" y="42" font-family="'Barlow', sans-serif" font-weight="700" font-size="16" fill="#000000">Organic Growth & Telemetry Console</text>
+    <text x="35" y="60" font-family="'Barlow', sans-serif" font-weight="500" font-size="11" fill="#7c7c7c">Target: https://www.blazebyte.shop • IndexNow Active</text>
+
+    <!-- Top Metric Pill Cards -->
+    <g transform="translate(35, 75)">
+      <!-- Metric 1 -->
+      <rect width="160" height="60" rx="14" fill="#eee5e9" fill-opacity="0.7"/>
+      <text x="16" y="24" font-family="'Barlow', sans-serif" font-size="11" fill="#7c7c7c">Site Health Score</text>
+      <text x="16" y="48" font-family="'Barlow', sans-serif" font-weight="800" font-size="20" fill="#000000">94 / 100</text>
+      <circle cx="138" cy="30" r="10" fill="#cf5c36" fill-opacity="0.15"/>
+      <path d="M135 30l2 2 4-4" stroke="#cf5c36" stroke-width="2" fill="none"/>
+
+      <!-- Metric 2 -->
+      <rect x="180" width="160" height="60" rx="14" fill="#eee5e9" fill-opacity="0.7"/>
+      <text x="196" y="24" font-family="'Barlow', sans-serif" font-size="11" fill="#7c7c7c">GSC Verified Pages</text>
+      <text x="196" y="48" font-family="'Barlow', sans-serif" font-weight="800" font-size="20" fill="#000000">27 Pages</text>
+
+      <!-- Metric 3 -->
+      <rect x="360" width="160" height="60" rx="14" fill="#eee5e9" fill-opacity="0.7"/>
+      <text x="376" y="24" font-family="'Barlow', sans-serif" font-size="11" fill="#7c7c7c">Local 3-Pack Maps</text>
+      <text x="376" y="48" font-family="'Barlow', sans-serif" font-weight="800" font-size="20" fill="#cf5c36">Rank Cleared</text>
+    </g>
+
+    <!-- Chart Area -->
+    <g transform="translate(35, 155)">
+      <rect width="530" height="185" rx="16" fill="#fcfafb" stroke="#eee5e9" stroke-width="1.5"/>
+
+      <!-- Y Grid Lines -->
+      <line x1="45" y1="35" x2="505" y2="35" stroke="#eee5e9" stroke-dasharray="4 4"/>
+      <line x1="45" y1="80" x2="505" y2="80" stroke="#eee5e9" stroke-dasharray="4 4"/>
+      <line x1="45" y1="125" x2="505" y2="125" stroke="#eee5e9" stroke-dasharray="4 4"/>
+
+      <!-- Axis Labels -->
+      <text x="25" y="38" font-family="'Barlow', sans-serif" font-size="10" fill="#7c7c7c">3k</text>
+      <text x="25" y="83" font-family="'Barlow', sans-serif" font-size="10" fill="#7c7c7c">2k</text>
+      <text x="25" y="128" font-family="'Barlow', sans-serif" font-size="10" fill="#7c7c7c">1k</text>
+
+      <!-- Area Path -->
+      <path d="M 45 140 Q 110 120 180 85 T 310 65 T 410 40 T 505 25 L 505 160 L 45 160 Z" fill="url(#chartFill)"/>
+      <path d="M 45 140 Q 110 120 180 85 T 310 65 T 410 40 T 505 25" fill="none" stroke="#cf5c36" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- Points -->
+      <circle cx="180" cy="85" r="4" fill="#ffffff" stroke="#cf5c36" stroke-width="2"/>
+      <circle cx="310" cy="65" r="4" fill="#ffffff" stroke="#cf5c36" stroke-width="2"/>
+      <circle cx="410" cy="40" r="4" fill="#ffffff" stroke="#cf5c36" stroke-width="2"/>
+      <circle cx="505" cy="25" r="5" fill="#cf5c36" stroke="#ffffff" stroke-width="2"/>
+
+      <!-- Floating Tooltip -->
+      <rect x="420" y="5" width="85" height="28" rx="8" fill="#000000"/>
+      <text x="462" y="23" text-anchor="middle" font-family="'Barlow', sans-serif" font-weight="700" font-size="11" fill="#efc88b">+185% Impressions</text>
+    </g>
+  </g>
+</svg>

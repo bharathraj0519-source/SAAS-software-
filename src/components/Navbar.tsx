@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, User, Shield, Sparkles, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { Menu, X, User, Shield, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: string;
@@ -11,7 +10,6 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPortal }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,8 +37,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[var(--panel-bg)] backdrop-blur-xl border-b border-[var(--card-border)] py-2.5 shadow-lg'
-          : 'bg-[var(--nav-bg-top)] backdrop-blur-md py-3.5'
+          ? 'bg-[#eee5e9]/95 backdrop-blur-xl border-b border-[#7c7c7c]/20 py-2.5 shadow-sm'
+          : 'bg-[#eee5e9]/90 backdrop-blur-md py-3.5'
       }`}
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,28 +49,28 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
           {/* Brand Logo & Name */}
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3.5 group text-left cursor-pointer transition-transform hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] rounded-xl p-1"
+            className="flex items-center gap-3.5 group text-left cursor-pointer transition-transform hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[#cf5c36] rounded-xl p-1"
             aria-label="BlazeByte Studio - Back to Homepage"
           >
-            <div className="w-[68px] h-[46px] flex items-center justify-center p-1 rounded-xl bg-white/[0.05] border border-[var(--card-border)] shadow-sm">
+            <div className="w-[64px] h-[44px] flex items-center justify-center p-1 rounded-xl bg-white border border-[#7c7c7c]/25 shadow-sm">
               <img
                 src="/assets/blazebyte-logo.png"
                 alt="BlazeByte Studio logo"
-                className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(99,203,255,0.4)]"
+                className="w-full h-full object-contain"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tight text-[var(--text)] flex items-center gap-1.5 font-['Barlow']">
-                BlazeByte <span className="text-[var(--cyan)]">Studio</span>
+              <span className="text-xl font-bold tracking-tight text-[#000000] flex items-center gap-1.5 font-['Barlow']">
+                BlazeByte <span className="text-[#cf5c36]">Studio</span>
               </span>
-              <span className="text-[11px] font-semibold tracking-wider text-[var(--muted)] uppercase font-['Barlow']">
-                SaaS & Systems
+              <span className="text-[11px] font-semibold tracking-wider text-[#7c7c7c] uppercase font-['Barlow']">
+                Enterprise SaaS & Systems
               </span>
             </div>
           </button>
 
           {/* Desktop Navigation Links with Hover Line & Accessible Focus */}
-          <div className="hidden md:flex items-center gap-7 lg:gap-10 font-['Barlow'] text-[17px] font-medium">
+          <div className="hidden md:flex items-center gap-7 lg:gap-9 font-['Barlow'] text-[16px] font-semibold">
             {navLinks.map((link) => {
               const isActive = activeTab === link.id;
               return (
@@ -80,10 +78,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`transition-colors py-1 cursor-pointer nav-hover-line rounded-md px-1 focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] ${
+                  className={`transition-colors py-1 cursor-pointer nav-hover-line rounded-md px-1 focus-visible:ring-2 focus-visible:ring-[#cf5c36] ${
                     isActive
-                      ? 'text-[var(--cyan)] active font-bold'
-                      : 'text-[var(--muted)] hover:text-[var(--text)]'
+                      ? 'text-[#cf5c36] active font-bold'
+                      : 'text-[#7c7c7c] hover:text-[#000000]'
                   }`}
                 >
                   {link.label}
@@ -92,68 +90,42 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
             })}
           </div>
 
-          {/* Right Action Buttons: Theme Toggle, Portal, Admin, CTA */}
+          {/* Right Action Buttons: Portal, Admin, CTA */}
           <div className="hidden lg:flex items-center gap-3 font-['Barlow']">
-            {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-2.5 rounded-full text-[var(--muted)] hover:text-[var(--text)] bg-white/5 hover:bg-white/10 border border-[var(--card-border)] transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-300" aria-hidden="true" />
-              ) : (
-                <Moon className="w-4 h-4 text-indigo-600" aria-hidden="true" />
-              )}
-            </button>
-
             <button
               onClick={() => onOpenPortal('user')}
-              className="px-3.5 py-2 rounded-full text-xs font-semibold text-[var(--muted)] hover:text-[var(--text)] bg-white/5 hover:bg-white/10 border border-[var(--card-border)] transition-all flex items-center gap-1.5 cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
+              className="px-4 py-2 rounded-full text-xs font-semibold text-[#000000] hover:text-[#cf5c36] bg-white hover:bg-white/80 border border-[#7c7c7c]/25 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm focus-visible:ring-2 focus-visible:ring-[#cf5c36]"
               aria-label="Open customer portal"
             >
-              <User className="w-3.5 h-3.5 text-[var(--cyan)]" aria-hidden="true" />
+              <User className="w-3.5 h-3.5 text-[#cf5c36]" aria-hidden="true" />
               <span>Portal</span>
             </button>
 
             <button
               onClick={() => onOpenPortal('admin')}
-              className="p-2.5 rounded-full text-xs font-medium text-[var(--muted)] hover:text-[var(--text)] bg-white/5 hover:bg-white/10 border border-[var(--card-border)] transition-all flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
+              className="p-2.5 rounded-full text-xs font-medium text-[#7c7c7c] hover:text-[#000000] bg-white hover:bg-white/80 border border-[#7c7c7c]/25 transition-all flex items-center justify-center cursor-pointer shadow-sm focus-visible:ring-2 focus-visible:ring-[#cf5c36]"
               aria-label="Open admin management console"
               title="Admin Dashboard"
             >
-              <Shield className="w-3.5 h-3.5 text-[var(--cyan)]" aria-hidden="true" />
+              <Shield className="w-3.5 h-3.5 text-[#a66c59]" aria-hidden="true" />
             </button>
 
             {/* Pill CTA button */}
             <button
               onClick={() => handleNavClick('custom-plan')}
-              className="pill primary text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
+              className="pill primary text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-[#cf5c36]"
               aria-label="Build your custom plan"
             >
-              <Sparkles className="w-4 h-4 text-[#65ffe3]" aria-hidden="true" />
+              <Sparkles className="w-4 h-4 text-white" aria-hidden="true" />
               <span>Build Custom Plan</span>
             </button>
           </div>
 
-          {/* Mobile Right Controls: Theme Toggle & Menu Trigger */}
+          {/* Mobile Right Controls: Menu Trigger */}
           <div className="flex md:hidden items-center gap-2">
             <button
-              onClick={toggleTheme}
-              className="p-2 rounded-xl bg-white/5 border border-[var(--card-border)] text-[var(--muted)] hover:text-[var(--text)]"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5 text-amber-300" aria-hidden="true" />
-              ) : (
-                <Moon className="w-5 h-5 text-indigo-600" aria-hidden="true" />
-              )}
-            </button>
-
-            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/5 border border-[var(--card-border)] text-[var(--text)] hover:text-[var(--cyan)] transition-colors focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)]"
+              className="p-2.5 rounded-xl bg-white border border-[#7c7c7c]/25 text-[#000000] hover:text-[#cf5c36] transition-colors focus-visible:ring-2 focus-visible:ring-[#cf5c36] shadow-sm"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-drawer"
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -172,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
       {mobileMenuOpen && (
         <div
           id="mobile-nav-drawer"
-          className="md:hidden bg-[var(--panel-bg)] backdrop-blur-2xl border-b border-[var(--card-border)] px-6 pt-4 pb-7 animate-in slide-in-from-top-2 duration-200 font-['Barlow'] shadow-xl"
+          className="md:hidden bg-white border-b border-[#7c7c7c]/20 px-6 pt-4 pb-7 animate-in slide-in-from-top-2 duration-200 font-['Barlow'] shadow-xl"
         >
           <div className="flex flex-col gap-2.5">
             {navLinks.map((link) => {
@@ -184,28 +156,28 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
                   aria-current={isActive ? 'page' : undefined}
                   className={`flex items-center justify-between px-4 py-3 rounded-xl text-left text-base font-semibold transition-colors ${
                     isActive
-                      ? 'bg-[var(--cyan)]/15 text-[var(--cyan)] border border-[var(--cyan)]/30'
-                      : 'text-[var(--text)] hover:bg-white/5'
+                      ? 'bg-[#cf5c36]/10 text-[#cf5c36] border border-[#cf5c36]/30'
+                      : 'text-[#000000] hover:bg-[#eee5e9]'
                   }`}
                 >
                   <span>{link.label}</span>
                   {isActive && (
-                    <span className="w-2 h-2 rounded-full bg-[var(--cyan)] shadow-[0_0_8px_var(--cyan)]"></span>
+                    <span className="w-2 h-2 rounded-full bg-[#cf5c36]"></span>
                   )}
                 </button>
               );
             })}
 
-            <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-[var(--card-border)]">
+            <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-[#eee5e9]">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenPortal('user');
                 }}
-                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-white/5 border border-[var(--card-border)] text-[var(--text)]"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-[#eee5e9] border border-[#7c7c7c]/20 text-[#000000]"
                 aria-label="Open customer portal"
               >
-                <User className="w-3.5 h-3.5 text-[var(--cyan)]" aria-hidden="true" />
+                <User className="w-3.5 h-3.5 text-[#cf5c36]" aria-hidden="true" />
                 Customer Portal
               </button>
               <button
@@ -213,10 +185,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
                   setMobileMenuOpen(false);
                   onOpenPortal('admin');
                 }}
-                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-white/5 border border-[var(--card-border)] text-[var(--text)]"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-[#eee5e9] border border-[#7c7c7c]/20 text-[#000000]"
                 aria-label="Open admin management panel"
               >
-                <Shield className="w-3.5 h-3.5 text-[var(--cyan)]" aria-hidden="true" />
+                <Shield className="w-3.5 h-3.5 text-[#a66c59]" aria-hidden="true" />
                 Admin Panel
               </button>
             </div>
@@ -225,7 +197,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
               onClick={() => handleNavClick('custom-plan')}
               className="pill primary w-full mt-3 py-3 rounded-full text-sm font-bold flex items-center justify-center gap-2"
             >
-              <Sparkles className="w-4 h-4 text-[#65ffe3]" aria-hidden="true" />
+              <Sparkles className="w-4 h-4 text-white" aria-hidden="true" />
               Build Your Custom Plan
             </button>
           </div>

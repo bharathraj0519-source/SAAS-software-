@@ -39,14 +39,14 @@ export const SpotlightNavbar: React.FC<SpotlightNavbarProps> = ({ items, classNa
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative inline-flex items-center gap-1.5 p-1.5 rounded-full border border-sky-400/30 bg-white/90 dark:bg-[rgba(14,8,40,0.75)] backdrop-blur-2xl shadow-lg overflow-hidden transition-all duration-300 hover:border-sky-500/50 ${className}`}
+      className={`relative inline-flex items-center gap-1.5 p-1.5 rounded-full border border-[rgba(124,124,124,0.25)] bg-white/95 backdrop-blur-xl shadow-sm overflow-hidden transition-all duration-300 hover:border-[#cf5c36]/50 ${className}`}
     >
-      {/* Interactive mouse-following spotlight glow */}
+      {/* Interactive mouse-following warm subtle spotlight */}
       <div
         className="pointer-events-none absolute -inset-px transition-opacity duration-300"
         style={{
           opacity: position.opacity,
-          background: `radial-gradient(130px circle at ${position.x}px ${position.y}px, rgba(101, 255, 227, 0.22), rgba(35, 145, 255, 0.12), transparent 75%)`,
+          background: `radial-gradient(130px circle at ${position.x}px ${position.y}px, rgba(207, 92, 54, 0.14), rgba(239, 200, 139, 0.18), transparent 75%)`,
         }}
         aria-hidden="true"
       />
@@ -63,8 +63,8 @@ export const SpotlightNavbar: React.FC<SpotlightNavbarProps> = ({ items, classNa
           }}
           className={`relative z-10 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide font-['Barlow'] transition-all duration-200 cursor-pointer ${
             item.active
-              ? 'bg-sky-600 dark:bg-[#2391FF] text-white shadow-[0_0_16px_rgba(35,145,255,0.4)]'
-              : 'text-[var(--muted)] hover:text-[var(--text-heading)] hover:bg-black/5 dark:hover:bg-white/[0.08]'
+              ? 'bg-[#cf5c36] text-white shadow-sm'
+              : 'text-[#7c7c7c] hover:text-[#000000] hover:bg-black/5'
           }`}
         >
           {item.label}
