@@ -48,6 +48,21 @@ function AppContent() {
         Skip to main content
       </a>
 
+      {/* Re-added Atmospheric Mountain Video Backdrop from previous setup */}
+      <video
+        className="page-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/assets/mountain-bg.jpg"
+        aria-hidden="true"
+      >
+        <source src="/assets/purple-desert-optimized.mp4" type="video/mp4" />
+      </video>
+      <div className="page-video-shade" aria-hidden="true"></div>
+
       {/* Live Region Toast Notification */}
       <div aria-live="polite" aria-atomic="true">
         {toastMessage && (

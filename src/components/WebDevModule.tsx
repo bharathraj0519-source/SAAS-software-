@@ -183,7 +183,7 @@ export const WebDevModule: React.FC<WebDevModuleProps> = ({ onSuccessEnquiry, on
           <h2 id="webdev-heading" className="text-3xl sm:text-5xl font-extrabold text-[#000000] tracking-tight font-['Barlow']">
             Web Design & Full-Stack Development
           </h2>
-          <p className="mt-4 text-[#7c7c7c] text-lg sm:text-xl font-['Lateef']">
+          <p className="mt-4 text-[#000000]/80 text-2xl sm:text-3xl font-['Lateef'] font-medium leading-relaxed">
             Explore live production web architectures engineered by <strong className="text-[#000000]">BlazeByte Studio</strong>. Test multi-device responsive viewports, interact with real business demos, and configure your custom enterprise web project.
           </p>
         </div>

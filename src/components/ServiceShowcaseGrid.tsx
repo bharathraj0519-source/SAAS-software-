@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import React from 'react';
+import {
+  ArrowRight,
+  CheckCircle2,
+  Bot,
+  Globe,
+  TrendingUp,
+  SlidersHorizontal,
+  Sparkles,
+  Zap,
+  Gauge,
+  Phone,
+  Layers,
+} from 'lucide-react';
 
 interface ServiceShowcaseGridProps {
   onSelectService: (serviceId: string) => void;
 }
 
 export const ServiceShowcaseGrid: React.FC<ServiceShowcaseGridProps> = ({ onSelectService }) => {
-  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
-
-  const handleImageError = (id: string) => {
-    setFailedImages((prev) => ({ ...prev, [id]: true }));
-  };
-
   const services = [
     {
       id: 'chatbot',
@@ -20,10 +26,16 @@ export const ServiceShowcaseGrid: React.FC<ServiceShowcaseGridProps> = ({ onSele
       tagline: 'AUTONOMOUS LEAD CAPTURE & 24/7 INTELLIGENT SUPPORT',
       description:
         'Deploy conversational AI agents equipped with custom business knowledge ingestion, multi-step qualification workflows, and instant WhatsApp enquiry routing.',
-      highlights: ['Free, Plus & Pro Tiers', 'Live Conversation Simulator', 'WhatsApp Lead Routing', 'CRM & Webhook Sync'],
-      iconSrc: '/assets/automation.svg',
-      coverImage: '/assets/ai-chatbot-cover.svg',
+      highlights: [
+        'Free, Plus & Pro Tiers',
+        'Live Conversation Simulator',
+        'WhatsApp Lead Routing (+91 77087 95342)',
+        'CRM & Webhook Sync',
+      ],
       cta: 'Launch Chatbot Demo',
+      icon: <Bot className="w-8 h-8 text-[#cf5c36]" aria-hidden="true" />,
+      iconBorder: 'border-[#cf5c36]/40',
+      iconBg: 'bg-gradient-to-br from-[#cf5c36]/15 to-[#efc88b]/20',
     },
     {
       id: 'webdev',
@@ -32,10 +44,16 @@ export const ServiceShowcaseGrid: React.FC<ServiceShowcaseGridProps> = ({ onSele
       tagline: 'HIGH-CONVERTING WEB APPLICATIONS & DIGITAL PORTALS',
       description:
         'Modern corporate websites, landing pages, and bespoke cloud portals built with React, Next.js, and modern styling engineered for sub-second speeds.',
-      highlights: ['Desktop / Tablet / Mobile Previews', '10 Comprehensive Capabilities', 'Custom Client Dashboards', 'Sub-second LCP Guarantee'],
-      iconSrc: '/assets/branding.svg',
-      coverImage: '/assets/web-design-home.jpg',
+      highlights: [
+        'Desktop / Tablet / Mobile Previews',
+        '10 Comprehensive Capabilities',
+        'Custom Client Dashboards',
+        'Sub-second LCP Guarantee (0.82s)',
+      ],
       cta: 'Explore Device Demos',
+      icon: <Globe className="w-8 h-8 text-[#a66c59]" aria-hidden="true" />,
+      iconBorder: 'border-[#a66c59]/40',
+      iconBg: 'bg-gradient-to-br from-[#a66c59]/15 to-[#eee5e9]',
     },
     {
       id: 'seo',
@@ -44,10 +62,16 @@ export const ServiceShowcaseGrid: React.FC<ServiceShowcaseGridProps> = ({ onSele
       tagline: 'ORGANIC VISIBILITY, INDEXING & LOCAL MAPS DOMINANCE',
       description:
         'Data-driven search engine optimization powered by historical audit telemetry, IndexNow protocol sync, content gap resolution, and Google Business Profile scaling.',
-      highlights: ['Historical Project Telemetry', 'GSC & IndexNow Validation', 'Local Maps 3-Pack Strategy', 'Strictly Plus & Pro Tiers'],
-      iconSrc: '/assets/growth.svg',
-      coverImage: '/assets/seo-service-cover.svg',
+      highlights: [
+        'Historical Project Telemetry',
+        'GSC & IndexNow Validation',
+        'Local Maps 3-Pack Strategy (#1 Rank)',
+        'Strictly Plus & Pro Tiers',
+      ],
       cta: 'View SEO Analytics',
+      icon: <TrendingUp className="w-8 h-8 text-emerald-600" aria-hidden="true" />,
+      iconBorder: 'border-emerald-500/40',
+      iconBg: 'bg-gradient-to-br from-emerald-500/15 to-[#cf5c36]/15',
     },
     {
       id: 'custom-plan',
@@ -56,127 +80,159 @@ export const ServiceShowcaseGrid: React.FC<ServiceShowcaseGridProps> = ({ onSele
       tagline: 'CONFIGURE EXACT FEATURES FOR YOUR GROWTH ARCHITECTURE',
       description:
         'Select the exact combination of AI chatbot features, web infrastructure, SEO modules, and marketing automations to receive a transparent project proposal.',
-      highlights: ['Multi-Step Visual Configurator', 'Real-Time Price & Scope Tally', 'No Rigid Lock-In', 'Instant Structured Proposal'],
-      iconSrc: '/assets/brain-glow.png',
-      coverImage: '/assets/custom-plan-cover.svg',
+      highlights: [
+        'Multi-Step Visual Configurator',
+        'Real-Time Price & Scope Tally',
+        'No Rigid Lock-In (Cancel Anytime)',
+        'Instant Structured Proposal',
+      ],
       cta: 'Configure Custom Plan',
+      icon: <SlidersHorizontal className="w-8 h-8 text-[#cf5c36]" aria-hidden="true" />,
+      iconBorder: 'border-[#efc88b]',
+      iconBg: 'bg-gradient-to-br from-[#efc88b]/30 to-[#cf5c36]/20',
     },
   ];
 
-  // Robust inline vector renderers for bulletproof visual display
-  const renderFallbackIllustration = (id: string) => {
+  // High-fidelity interactive preview UI components replacing faint SVGs
+  const renderCardPreview = (id: string) => {
     switch (id) {
       case 'chatbot':
         return (
-          <div className="w-full h-full bg-gradient-to-br from-[#faf8f9] to-[#eee5e9] p-5 flex flex-col justify-between font-['Barlow']">
-            <div className="flex items-center justify-between border-b border-[rgba(124,124,124,0.18)] pb-2.5">
-              <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-full bg-[#cf5c36] text-white flex items-center justify-center font-bold text-xs">
-                  BB
+          <div className="w-full h-full bg-gradient-to-br from-white via-[#faf8f9] to-[#eee5e9] p-5 sm:p-6 flex flex-col justify-between font-['Barlow'] relative overflow-hidden border border-[rgba(124,124,124,0.18)] rounded-2xl shadow-inner">
+            <div className="flex items-center justify-between border-b border-[rgba(124,124,124,0.18)] pb-3">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#cf5c36] to-[#a66c59] text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                  <Bot className="w-5 h-5 text-white" aria-hidden="true" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#000000]">BlazeByte AI Assistant</div>
-                  <div className="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Active Lead Capture
+                  <div className="text-sm font-extrabold text-[#000000]">BlazeByte AI Assistant</div>
+                  <div className="text-xs text-emerald-700 font-semibold flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Autonomous Lead Capture Active
                   </div>
                 </div>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#efc88b]/40 text-[#a66c59] border border-[#a66c59]/20">
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#efc88b]/40 text-[#a66c59] border border-[#a66c59]/20 shadow-2xs">
                 WhatsApp Linked
               </span>
             </div>
-            <div className="space-y-2 text-xs py-2">
-              <div className="p-2 rounded-xl bg-white border border-[rgba(124,124,124,0.15)] text-[#000000] max-w-[85%] shadow-2xs">
-                "Hello! How can I assist your business growth today?"
+
+            <div className="space-y-2.5 py-3 text-xs sm:text-sm">
+              <div className="p-3 rounded-2xl bg-white border border-[rgba(124,124,124,0.18)] text-[#000000] max-w-[88%] shadow-xs font-medium">
+                "Hello! How can BlazeByte Studio accelerate your digital growth today?"
               </div>
-              <div className="p-2 rounded-xl bg-[#cf5c36] text-white ml-auto max-w-[78%] text-right font-medium shadow-2xs">
-                "We need a custom web application with AI chat."
+              <div className="p-3 rounded-2xl bg-gradient-to-r from-[#cf5c36] to-[#a66c59] text-white ml-auto max-w-[82%] text-right font-semibold shadow-xs">
+                "We need a custom dining web app with AI chatbot &amp; SEO."
               </div>
             </div>
-            <div className="p-2 rounded-xl bg-white/80 border border-[rgba(124,124,124,0.18)] text-[11px] text-[#7c7c7c] flex items-center justify-between">
-              <span>Routing to WhatsApp architect (+91 77087 95342)...</span>
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+
+            <div className="p-2.5 px-3.5 rounded-xl bg-white border border-[#cf5c36]/30 text-xs text-[#000000] flex items-center justify-between shadow-xs">
+              <span className="font-semibold text-[#cf5c36]">
+                Routing verified brief to WhatsApp (+91 77087 95342)...
+              </span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
             </div>
           </div>
         );
 
       case 'webdev':
         return (
-          <div className="w-full h-full bg-[#181210] p-4 flex flex-col justify-between text-white font-['Barlow']">
-            <div className="flex items-center justify-between border-b border-white/10 pb-2">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#efc88b]">
-                <span>☕ Blaze Cafe Prototype</span>
+          <div className="w-full h-full bg-[#181210] p-5 flex flex-col justify-between text-white font-['Barlow'] rounded-2xl relative overflow-hidden shadow-inner">
+            <div className="flex items-center justify-between border-b border-white/15 pb-2.5">
+              <div className="flex items-center gap-2 text-sm font-extrabold text-[#efc88b]">
+                <Globe className="w-4 h-4 text-[#efc88b]" aria-hidden="true" />
+                <span>Blaze Cafe Prototype Live Preview</span>
               </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">
-                0.82s LCP
+              <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/25 text-emerald-300 font-bold border border-emerald-400/30">
+                0.82s Sub-Second LCP
               </span>
             </div>
-            <div className="py-2 text-center">
-              <h4 className="text-base font-extrabold tracking-tight">Brown Sugar Oat Latte</h4>
-              <p className="text-xs text-stone-300">Oat milk, double espresso, brown sugar syrup</p>
-              <div className="text-sm font-bold text-[#efc88b] mt-1">₹460 • Fast Checkout</div>
+
+            <div className="py-3 text-center">
+              <h4 className="text-lg sm:text-xl font-black tracking-tight text-white">
+                Brown Sugar Oat Latte
+              </h4>
+              <p className="text-xs sm:text-sm text-stone-300 mt-0.5">
+                Oat milk, double espresso, brown sugar syrup, cinnamon dust
+              </p>
+              <div className="text-base font-extrabold text-[#efc88b] mt-2">
+                ₹460 • Multi-Device Responsive Experience
+              </div>
             </div>
-            <div className="flex items-center justify-between text-[11px] text-stone-400 border-t border-white/10 pt-2">
-              <span>Responsive Web Portal</span>
-              <span className="text-[#cf5c36] font-bold">Inspect Live &rarr;</span>
+
+            <div className="flex items-center justify-between text-xs sm:text-sm text-stone-400 border-t border-white/15 pt-2.5">
+              <span className="font-medium text-stone-300">Desktop • Tablet • Mobile Viewports</span>
+              <span className="text-[#cf5c36] font-bold flex items-center gap-1">
+                Inspect Interactive Demos &rarr;
+              </span>
             </div>
           </div>
         );
 
       case 'seo':
         return (
-          <div className="w-full h-full bg-gradient-to-br from-[#faf8f9] to-[#eee5e9] p-4 sm:p-5 flex flex-col justify-between font-['Barlow']">
-            <div className="flex items-center justify-between border-b border-[rgba(124,124,124,0.18)] pb-2">
+          <div className="w-full h-full bg-gradient-to-br from-white via-[#faf8f9] to-[#eee5e9] p-5 sm:p-6 flex flex-col justify-between font-['Barlow'] rounded-2xl border border-[rgba(124,124,124,0.18)] shadow-inner">
+            <div className="flex items-center justify-between border-b border-[rgba(124,124,124,0.18)] pb-2.5">
               <div>
-                <span className="text-xs font-bold text-[#000000] block">Search Health Telemetry</span>
-                <span className="text-[10px] text-[#7c7c7c]">blazebyte.shop • IndexNow Active</span>
+                <span className="text-sm font-extrabold text-[#000000] block">
+                  Search Health &amp; Telemetry
+                </span>
+                <span className="text-xs text-[#7c7c7c]">
+                  https://www.blazebyte.shop • IndexNow Active
+                </span>
               </div>
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200">
-                94 / 100
+              <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs sm:text-sm font-extrabold border border-emerald-300 shadow-2xs">
+                94 / 100 HEALTH
               </span>
             </div>
-            <div className="grid grid-cols-3 gap-2 py-1 text-center">
-              <div className="p-2 rounded-xl bg-white border border-[rgba(124,124,124,0.15)] shadow-2xs">
-                <div className="text-[10px] text-[#7c7c7c]">LCP Speed</div>
-                <div className="text-sm font-extrabold text-[#cf5c36]">0.82s</div>
+
+            <div className="grid grid-cols-3 gap-2.5 py-2 text-center">
+              <div className="p-2.5 rounded-xl bg-white border border-[rgba(124,124,124,0.18)] shadow-xs">
+                <div className="text-xs font-semibold text-[#7c7c7c]">LCP Speed</div>
+                <div className="text-base sm:text-lg font-black text-[#cf5c36]">0.82s</div>
               </div>
-              <div className="p-2 rounded-xl bg-white border border-[rgba(124,124,124,0.15)] shadow-2xs">
-                <div className="text-[10px] text-[#7c7c7c]">Organic</div>
-                <div className="text-sm font-extrabold text-emerald-600">+340%</div>
+              <div className="p-2.5 rounded-xl bg-white border border-[rgba(124,124,124,0.18)] shadow-xs">
+                <div className="text-xs font-semibold text-[#7c7c7c]">Impressions</div>
+                <div className="text-base sm:text-lg font-black text-emerald-700">+340%</div>
               </div>
-              <div className="p-2 rounded-xl bg-white border border-[rgba(124,124,124,0.15)] shadow-2xs">
-                <div className="text-[10px] text-[#7c7c7c]">Maps Rank</div>
-                <div className="text-sm font-extrabold text-[#a66c59]">#1 Local</div>
+              <div className="p-2.5 rounded-xl bg-white border border-[rgba(124,124,124,0.18)] shadow-xs">
+                <div className="text-xs font-semibold text-[#7c7c7c]">Maps Rank</div>
+                <div className="text-base sm:text-lg font-black text-[#a66c59]">#1 Local</div>
               </div>
             </div>
-            <div className="text-[11px] text-[#7c7c7c] flex items-center justify-between border-t border-[rgba(124,124,124,0.15)] pt-2">
-              <span>Coimbatore &amp; Global indexing active</span>
-              <span className="text-emerald-700 font-bold">100% Validated</span>
+
+            <div className="text-xs sm:text-sm text-[#7c7c7c] flex items-center justify-between border-t border-[rgba(124,124,124,0.18)] pt-2.5">
+              <span>Coimbatore, Tamil Nadu &amp; Global targeting</span>
+              <span className="text-emerald-700 font-bold">100% GSC Validated</span>
             </div>
           </div>
         );
 
       case 'custom-plan':
         return (
-          <div className="w-full h-full bg-gradient-to-br from-[#faf8f9] to-[#eee5e9] p-4 sm:p-5 flex flex-col justify-between font-['Barlow']">
-            <div className="flex items-center justify-between border-b border-[rgba(124,124,124,0.18)] pb-2">
-              <span className="text-xs font-bold text-[#000000]">Modular Plan Configurator</span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#efc88b]/40 text-[#a66c59] border border-[#a66c59]/20">
+          <div className="w-full h-full bg-gradient-to-br from-white via-[#faf8f9] to-[#eee5e9] p-5 sm:p-6 flex flex-col justify-between font-['Barlow'] rounded-2xl border border-[rgba(124,124,124,0.18)] shadow-inner">
+            <div className="flex items-center justify-between border-b border-[rgba(124,124,124,0.18)] pb-2.5">
+              <span className="text-sm font-extrabold text-[#000000]">
+                Interactive Custom Plan Configurator
+              </span>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#efc88b]/40 text-[#a66c59] border border-[#a66c59]/20 shadow-2xs">
                 Save 20% Annual
               </span>
             </div>
-            <div className="space-y-1.5 py-1 text-xs">
-              <div className="p-1.5 px-2.5 rounded-lg bg-white border border-[#cf5c36]/40 flex items-center justify-between shadow-2xs">
-                <span className="font-semibold text-[#000000]">AI Chatbot Plus</span>
-                <span className="text-[10px] font-bold text-[#cf5c36]">INCLUDED</span>
+
+            <div className="space-y-2 py-2 text-xs sm:text-sm">
+              <div className="p-2 px-3 rounded-xl bg-white border border-[#cf5c36]/40 flex items-center justify-between shadow-xs">
+                <span className="font-bold text-[#000000]">AI Chatbot Plus Tier</span>
+                <span className="text-xs font-extrabold text-[#cf5c36]">INCLUDED [₹2,999/mo]</span>
               </div>
-              <div className="p-1.5 px-2.5 rounded-lg bg-white border border-[#cf5c36]/40 flex items-center justify-between shadow-2xs">
-                <span className="font-semibold text-[#000000]">Custom Web App &amp; SEO</span>
-                <span className="text-[10px] font-bold text-[#cf5c36]">INCLUDED</span>
+              <div className="p-2 px-3 rounded-xl bg-white border border-[#cf5c36]/40 flex items-center justify-between shadow-xs">
+                <span className="font-bold text-[#000000]">Custom High-Speed Web Portal</span>
+                <span className="text-xs font-extrabold text-[#cf5c36]">INCLUDED [₹35k Scope]</span>
               </div>
             </div>
-            <div className="p-2 rounded-xl bg-white border border-[rgba(124,124,124,0.15)] flex items-center justify-between text-xs">
-              <span className="text-[#7c7c7c]">Scope: ₹35k - ₹75k</span>
+
+            <div className="p-2.5 px-3 rounded-xl bg-white border border-[rgba(124,124,124,0.18)] flex items-center justify-between text-xs sm:text-sm shadow-xs">
+              <span className="text-[#7c7c7c] font-medium">Configured Scope: ₹35,000 - ₹75,000</span>
               <span className="font-bold text-[#cf5c36]">No Lock-In &rarr;</span>
             </div>
           </div>
@@ -188,29 +244,32 @@ export const ServiceShowcaseGrid: React.FC<ServiceShowcaseGridProps> = ({ onSele
   };
 
   return (
-    <section id="services-overview" aria-labelledby="services-overview-title" className="py-20 relative">
+    <section id="services-overview" aria-labelledby="services-overview-title" className="py-24 relative">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="text-[#cf5c36] text-xs sm:text-sm uppercase tracking-[0.2em] font-bold mb-3 font-['Barlow']">
+        <div className="text-center max-w-4xl mx-auto mb-20 font-['Barlow']">
+          <p className="text-[#cf5c36] text-sm sm:text-base uppercase tracking-[0.25em] font-extrabold mb-3">
             Four Core Pillars
           </p>
-          <h2 id="services-overview-title" className="text-3xl sm:text-5xl font-extrabold text-[#000000] tracking-tight font-['Barlow']">
+          <h2
+            id="services-overview-title"
+            className="text-4xl sm:text-6xl lg:text-7xl font-black text-[#000000] tracking-tight leading-[1.1]"
+          >
             Business-Focused Digital Systems
           </h2>
-          <p className="mt-4 text-[#7c7c7c] text-lg sm:text-xl font-['Lateef']">
+          <p className="mt-5 text-[#000000]/75 text-2xl sm:text-3xl font-['Lateef'] font-medium leading-relaxed max-w-3xl mx-auto">
             Experience our active simulators, inspect real architectural benchmarks, and tailor a software solution designed precisely for your enterprise.
           </p>
         </div>
 
-        {/* 4 Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* 4 Service Cards Grid with Increased Font Sizes and Modern High-Contrast Icons */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {services.map((service) => (
             <div
               key={service.id}
               tabIndex={0}
               role="region"
               aria-labelledby={`card-title-${service.id}`}
-              className="bg-white rounded-[28px] p-7 sm:p-9 flex flex-col justify-between border border-[#7c7c7c]/20 hover:border-[#cf5c36] shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer group relative overflow-hidden focus:outline-none"
+              className="bg-white/95 backdrop-blur-md rounded-[32px] p-8 sm:p-11 flex flex-col justify-between border border-[#7c7c7c]/25 hover:border-[#cf5c36] shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group relative overflow-hidden focus:outline-none"
               onClick={() => onSelectService(service.id)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -220,73 +279,62 @@ export const ServiceShowcaseGrid: React.FC<ServiceShowcaseGridProps> = ({ onSele
               }}
             >
               <div>
-                {/* Header Row: Icon & Badge */}
-                <div className="flex items-center justify-between mb-5">
+                {/* Header Row: High-Contrast Modern Icon (Replaced old SVG) & Badge */}
+                <div className="flex items-center justify-between mb-6">
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center p-3 border border-[#7c7c7c]/20 bg-[#eee5e9]/50 shadow-sm group-hover:scale-105 transition-transform"
+                    className={`w-16 h-16 rounded-2xl flex items-center justify-center p-3 border ${service.iconBorder} ${service.iconBg} shadow-sm group-hover:scale-105 transition-transform`}
                     aria-hidden="true"
                   >
-                    <img
-                      src={service.iconSrc}
-                      alt=""
-                      className="w-full h-full object-contain"
-                    />
+                    {service.icon}
                   </div>
 
-                  <span className="text-[11px] font-bold px-3.5 py-1 rounded-full border border-[#a66c59]/30 text-[#a66c59] bg-[#efc88b]/15 uppercase tracking-wider font-['Barlow']">
+                  <span className="text-xs font-bold px-4 py-1.5 rounded-full border border-[#a66c59]/30 text-[#a66c59] bg-[#efc88b]/20 uppercase tracking-wider font-['Barlow'] shadow-2xs">
                     {service.badge}
                   </span>
                 </div>
 
-                {/* Service Cover Image Frame with guaranteed fallback */}
-                <div className="w-full h-48 sm:h-56 rounded-2xl overflow-hidden border border-[#7c7c7c]/15 mb-6 bg-[#eee5e9] relative">
-                  {failedImages[service.id] ? (
-                    renderFallbackIllustration(service.id)
-                  ) : (
-                    <img
-                      src={service.coverImage}
-                      alt={`${service.title} cover preview`}
-                      className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
-                      loading="lazy"
-                      onError={() => handleImageError(service.id)}
-                    />
-                  )}
+                {/* Service Cover Frame rendering Rich Live UI Preview */}
+                <div className="w-full h-56 sm:h-64 rounded-2xl overflow-hidden border border-[#7c7c7c]/20 mb-8 bg-[#eee5e9]">
+                  {renderCardPreview(service.id)}
                 </div>
 
+                {/* Card Title with increased font size */}
                 <h3
                   id={`card-title-${service.id}`}
-                  className="text-2xl sm:text-3xl font-extrabold text-[#000000] mb-1.5 font-['Barlow']"
+                  className="text-3xl sm:text-4xl font-black text-[#000000] mb-2 font-['Barlow'] tracking-tight group-hover:text-[#cf5c36] transition-colors"
                 >
                   {service.title}
                 </h3>
 
-                <div className="text-xs font-bold uppercase tracking-wider mb-3 font-['Barlow'] text-[#cf5c36]">
+                {/* Card Tagline */}
+                <div className="text-xs sm:text-sm font-extrabold uppercase tracking-wider mb-4 font-['Barlow'] text-[#cf5c36]">
                   {service.tagline}
                 </div>
 
-                <p className="text-base sm:text-lg text-[#7c7c7c] leading-relaxed mb-6 font-['Lateef']">
+                {/* Description with increased font size */}
+                <p className="text-xl sm:text-2xl text-[#000000]/80 leading-relaxed mb-8 font-['Lateef'] font-medium">
                   {service.description}
                 </p>
 
-                {/* Highlights */}
-                <div className="grid grid-cols-2 gap-2.5 mb-8 font-['Barlow']">
+                {/* Highlights with increased font size */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-9 font-['Barlow']">
                   {service.highlights.map((h, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-[#000000]">
-                      <CheckCircle2 className="w-4 h-4 shrink-0 text-[#cf5c36]" aria-hidden="true" />
+                    <div key={i} className="flex items-center gap-2.5 text-sm sm:text-base font-bold text-[#000000]">
+                      <CheckCircle2 className="w-5 h-5 shrink-0 text-[#cf5c36]" aria-hidden="true" />
                       <span>{h}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Action Button */}
+              {/* Action Button with increased font size */}
               <button
                 type="button"
-                className="w-full py-3.5 px-6 rounded-full border border-[#7c7c7c]/25 bg-white group-hover:bg-[#cf5c36] text-[#000000] group-hover:text-white group-hover:border-[#cf5c36] text-sm font-bold flex items-center justify-between transition-all cursor-pointer shadow-sm"
+                className="w-full py-4 px-7 rounded-full border border-[#7c7c7c]/25 bg-white group-hover:bg-[#cf5c36] text-[#000000] group-hover:text-white group-hover:border-[#cf5c36] text-base sm:text-lg font-bold flex items-center justify-between transition-all cursor-pointer shadow-sm group-hover:shadow-lg font-['Barlow']"
                 aria-label={`${service.cta} for ${service.title}`}
               >
                 <span>{service.cta}</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" aria-hidden="true" />
+                <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" aria-hidden="true" />
               </button>
             </div>
           ))}

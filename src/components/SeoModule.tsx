@@ -102,7 +102,7 @@ Generated: ${new Date().toLocaleString()}
           <h2 id="seo-heading" className="text-3xl sm:text-5xl font-extrabold text-[var(--text-heading)] tracking-tight font-['Barlow']">
             SEO Services & Search Intelligence
           </h2>
-          <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
+          <p className="mt-4 text-[var(--muted)] text-lg sm:text-xl font-medium leading-relaxed">
             Dominating organic search through rigorous technical hygiene, IndexNow instant dispatch, semantic content gap fixes, and Google Maps local 3-pack optimization.
           </p>
         </div>
@@ -110,7 +110,7 @@ Generated: ${new Date().toLocaleString()}
         {/* Transparent Demo Data Disclaimer Pill */}
         <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-3 max-w-4xl mx-auto mb-10">
           <Info className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
-          <div className="text-xs text-[var(--muted)] leading-relaxed">
+          <div className="text-sm text-[var(--muted)] leading-relaxed font-medium">
             <strong className="text-[var(--text-heading)]">Historical Demonstration Telemetry:</strong> The analytics, route logs, and audit records below reflect historical project data from BlazeByte Studio (https://www.blazebyte.shop), including our 27 scanned pages, verified IndexNow key, and resolved /marketing content gaps. These serve as realistic proof-of-methodology rather than fabricated live customer metrics.
           </div>
         </div>

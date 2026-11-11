@@ -46,24 +46,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLegal }) => {
               </div>
             </div>
 
-            <p className="text-[#7c7c7c] text-base leading-relaxed max-w-sm font-['Lateef'] text-xl">
+            <p className="text-[#000000]/80 text-xl sm:text-2xl leading-relaxed max-w-sm font-['Lateef'] font-medium">
               We design and engineer enterprise-grade web applications, autonomous AI chatbots, and strategic organic search visibility systems to power modern commercial growth.
             </p>
 
-            <div className="space-y-2 text-xs text-[#7c7c7c] pt-2 font-['Barlow']">
+            <div className="space-y-2.5 text-sm text-[#7c7c7c] pt-2 font-['Barlow']">
               <div className="flex items-center gap-2.5">
-                <MapPin className="w-3.5 h-3.5 text-[#cf5c36]" aria-hidden="true" />
-                <span className="text-[#000000] font-medium">Coimbatore, Tamil Nadu, India</span>
+                <MapPin className="w-4 h-4 text-[#cf5c36]" aria-hidden="true" />
+                <span className="text-[#000000] font-semibold">Coimbatore, Tamil Nadu, India</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-3.5 h-3.5 text-[#cf5c36]" aria-hidden="true" />
-                <a href="tel:+917708795342" className="text-[#000000] hover:text-[#cf5c36] font-medium transition-colors">
+                <Phone className="w-4 h-4 text-[#cf5c36]" aria-hidden="true" />
+                <a href="tel:+917708795342" className="text-[#000000] hover:text-[#cf5c36] font-semibold transition-colors">
                   +91 7708795342
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-3.5 h-3.5 text-[#cf5c36]" aria-hidden="true" />
-                <a href="mailto:contact@blazebytestudio7.com" className="text-[#000000] hover:text-[#cf5c36] font-medium transition-colors">
+                <Mail className="w-4 h-4 text-[#cf5c36]" aria-hidden="true" />
+                <a href="mailto:contact@blazebytestudio7.com" className="text-[#000000] hover:text-[#cf5c36] font-semibold transition-colors">
                   contact@blazebytestudio7.com
                 </a>
               </div>

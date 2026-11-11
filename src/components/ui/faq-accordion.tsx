@@ -81,7 +81,7 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items = FAQ_DATA, cl
             >
               <div className="flex items-center gap-3">
                 <span className={`w-2 h-2 rounded-full shrink-0 ${isOpen ? 'bg-[#cf5c36]' : 'bg-[#7c7c7c]/40'}`} aria-hidden="true" />
-                <span className="text-base sm:text-lg font-bold text-[#000000]">
+                <span className="text-lg sm:text-xl font-bold text-[#000000]">
                   {item.question}
                 </span>
               </div>
@@ -98,11 +98,11 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items = FAQ_DATA, cl
                 id={`faq-answer-${index}`}
                 role="region"
                 aria-labelledby={`faq-question-${index}`}
-                className="px-6 pb-5 pt-1 text-sm sm:text-base text-[#7c7c7c] leading-relaxed font-['Lateef'] text-xl border-t border-[#eee5e9]"
+                className="px-6 pb-6 pt-2 text-xl sm:text-2xl text-[#000000]/80 leading-relaxed font-['Lateef'] font-medium border-t border-[#eee5e9]"
               >
                 <p>{item.answer}</p>
                 {item.category && (
-                  <span className="inline-block mt-3 text-xs font-semibold uppercase tracking-wider text-[#a66c59] bg-[#efc88b]/20 px-2.5 py-0.5 rounded font-['Barlow']">
+                  <span className="inline-block mt-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#a66c59] bg-[#efc88b]/30 px-3 py-1 rounded-full font-['Barlow']">
                     {item.category}
                   </span>
                 )}

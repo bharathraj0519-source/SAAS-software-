@@ -144,7 +144,7 @@ export const CustomPlanBuilder: React.FC<CustomPlanBuilderProps> = ({ onSuccessE
           <h2 id="custom-plan-heading" className="text-3xl sm:text-5xl font-extrabold text-[var(--text-heading)] tracking-tight font-['Barlow']">
             Custom Plan Configurator
           </h2>
-          <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
+          <p className="mt-4 text-[var(--muted)] text-lg sm:text-xl font-medium leading-relaxed">
             No rigid plans. Hand-pick the exact capabilities you need across Chatbots, Web Development, SEO, and Automation to generate a custom project proposal.
           </p>
         </div>

@@ -132,44 +132,44 @@ export const PricingTiers: React.FC<PricingTiersProps> = ({
 
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-2xl font-bold text-[#000000]">{tier.name}</h3>
-                  <span className="text-xs font-semibold uppercase px-2.5 py-0.5 rounded-full bg-[#eee5e9] text-[#a66c59] border border-[#a66c59]/20">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[#000000]">{tier.name}</h3>
+                  <span className="text-xs font-bold uppercase px-3 py-1 rounded-full bg-[#eee5e9] text-[#a66c59] border border-[#a66c59]/20">
                     {billing}
                   </span>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#7c7c7c] min-h-[36px] mb-6">
+                <p className="text-sm sm:text-base text-[#000000]/75 min-h-[40px] mb-6 font-medium">
                   {tier.description}
                 </p>
 
                 {/* Price Display */}
                 <div className="mb-6 pb-6 border-b border-[#eee5e9]">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl sm:text-5xl font-extrabold text-[#000000]">
+                    <span className="text-5xl sm:text-6xl font-black text-[#000000]">
                       ${priceValue}
                     </span>
-                    <span className="text-sm font-medium text-[#7c7c7c]">/ month</span>
+                    <span className="text-base font-semibold text-[#7c7c7c]">/ month</span>
                   </div>
-                  <span className="text-xs text-[#a66c59] mt-1 block">
-                    {billing === 'yearly' ? 'Billed annually' : 'Billed monthly'}
+                  <span className="text-xs sm:text-sm font-semibold text-[#a66c59] mt-1 block">
+                    {billing === 'yearly' ? 'Billed annually (Save 20%)' : 'Billed monthly'}
                   </span>
                 </div>
 
                 {/* Features List */}
-                <div className="space-y-3 mb-8">
+                <div className="space-y-3.5 mb-8">
                   {tier.featuresLabel && (
-                    <div className="text-xs font-bold uppercase tracking-wider text-[#000000]">
+                    <div className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#000000]">
                       {tier.featuresLabel}
                     </div>
                   )}
                   {tier.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm text-[#000000]">
+                    <div key={i} className="flex items-center gap-2.5 text-sm sm:text-base text-[#000000] font-medium">
                       {feature.icon ? (
-                        <span className="text-[#cf5c36] w-4 h-4 shrink-0 flex items-center justify-center">
+                        <span className="text-[#cf5c36] w-5 h-5 shrink-0 flex items-center justify-center">
                           {feature.icon}
                         </span>
                       ) : (
-                        <Check className="w-4 h-4 text-[#cf5c36] shrink-0" />
+                        <Check className="w-5 h-5 text-[#cf5c36] shrink-0" />
                       )}
                       <span>{feature.label}</span>
                     </div>
@@ -187,7 +187,7 @@ export const PricingTiers: React.FC<PricingTiersProps> = ({
                     onSelectPlan(tier.id);
                   }
                 }}
-                className={`w-full py-3.5 px-6 rounded-full text-sm font-bold tracking-wide transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                className={`w-full py-4 px-6 rounded-full text-base font-bold tracking-wide transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm ${
                   isFeatured
                     ? 'bg-[#cf5c36] hover:bg-[#b84f2e] text-white shadow-md shadow-[#cf5c36]/20'
                     : 'bg-[#000000] hover:bg-[#222222] text-white'

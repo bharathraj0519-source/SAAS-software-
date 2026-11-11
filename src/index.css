@@ -33,9 +33,9 @@
     --input-border: rgba(124, 124, 124, 0.35);
     --input-text: #000000;
     --input-placeholder: #7c7c7c;
-    --video-opacity: 0.08;
-    --video-filter: brightness(1.1) saturate(0.5) contrast(0.95);
-    --shade-bg: linear-gradient(180deg, rgba(238, 229, 233, 0.94), rgba(238, 229, 233, 0.98));
+    --video-opacity: 0.38;
+    --video-filter: brightness(1.05) saturate(1.1) contrast(1.02);
+    --shade-bg: linear-gradient(180deg, rgba(238, 229, 233, 0.72) 0%, rgba(238, 229, 233, 0.86) 45%, rgba(238, 229, 233, 0.94) 100%);
     --focus-ring: #cf5c36;
     --nav-bg-scrolled: rgba(238, 229, 233, 0.95);
     --nav-bg-top: rgba(238, 229, 233, 0.9);
@@ -46,8 +46,8 @@
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Lateef', serif;
-    font-size: 20px;
-    line-height: 1.5;
+    font-size: 22px;
+    line-height: 1.55;
     overflow-x: hidden;
     position: relative;
     isolation: isolate;
@@ -241,6 +241,32 @@
 .nav-hover-line:hover::after,
 .nav-hover-line.active::after {
   width: 100%;
+}
+
+/* Header Attractive Text Glow Effects when Background is Implemented */
+.header-title-gradient {
+  background: linear-gradient(135deg, #000000 0%, #202734 45%, #cf5c36 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.18));
+}
+
+.header-script-glow {
+  background: linear-gradient(90deg, #cf5c36 0%, #ff7a45 35%, #efc88b 70%, #cf5c36 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerGradient 7s linear infinite;
+  filter: drop-shadow(0 0 28px rgba(207, 92, 54, 0.55)) drop-shadow(0 2px 14px rgba(239, 200, 139, 0.4));
+}
+
+@keyframes shimmerGradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 /* Header text subtle shadow */

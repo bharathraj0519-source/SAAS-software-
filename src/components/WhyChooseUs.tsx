@@ -159,30 +159,30 @@ export const WhyChooseUs: React.FC = () => {
                     {s.tag}
                   </span>
 
-                  <h3 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wide mb-2 font-['Barlow'] text-[#000000]">
+                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-wide mb-2 font-['Barlow'] text-[#000000]">
                     {s.name}
                   </h3>
 
-                  <p className="text-[#000000] text-lg font-bold leading-snug mb-2 font-['Barlow']">
+                  <p className="text-[#000000] text-xl sm:text-2xl font-extrabold leading-snug mb-3 font-['Barlow']">
                     {s.lead}
                   </p>
 
-                  <p className="text-[#7c7c7c] text-base leading-relaxed mb-4 font-['Lateef'] text-xl">
+                  <p className="text-[#000000]/80 text-xl sm:text-2xl leading-relaxed mb-5 font-['Lateef'] font-medium">
                     {s.detail}
                   </p>
 
-                  <ul className="space-y-2 text-xs sm:text-sm text-[#000000] font-['Barlow'] pt-3 border-t border-[#eee5e9]">
+                  <ul className="space-y-2.5 text-sm sm:text-base text-[#000000] font-['Barlow'] font-bold pt-4 border-t border-[#eee5e9]">
                     {s.items.map((it, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#cf5c36]" aria-hidden="true"></span>
+                      <li key={i} className="flex items-center gap-2.5">
+                        <span className="w-2 h-2 rounded-full bg-[#cf5c36]" aria-hidden="true"></span>
                         <span>{it}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="mt-4 pt-3 border-t border-[#eee5e9] text-[11px] text-[#7c7c7c] font-['Barlow'] flex items-center justify-between">
+                  <div className="mt-5 pt-3.5 border-t border-[#eee5e9] text-xs sm:text-sm text-[#7c7c7c] font-['Barlow'] font-medium flex items-center justify-between">
                     <span>{s.webReference}</span>
-                    <span className="font-mono text-[#cf5c36] font-bold">Step {s.step}</span>
+                    <span className="font-mono text-[#cf5c36] font-bold text-sm">Step {s.step}</span>
                   </div>
                 </li>
               );
@@ -190,21 +190,21 @@ export const WhyChooseUs: React.FC = () => {
           </ul>
 
           {/* Stepper Navigation Buttons */}
-          <div className="flex justify-center items-center gap-4 mt-6 font-['Barlow']">
+          <div className="flex justify-center items-center gap-5 mt-8 font-['Barlow']">
             <button
               onClick={handlePrevStep}
-              className="px-5 py-2.5 text-xs font-bold text-[#000000] bg-white hover:bg-[#eee5e9] border border-[#7c7c7c]/30 rounded-full flex items-center gap-2 cursor-pointer shadow-sm"
+              className="px-6 py-3 text-sm font-bold text-[#000000] bg-white hover:bg-[#eee5e9] border border-[#7c7c7c]/30 rounded-full flex items-center gap-2 cursor-pointer shadow-sm"
               aria-label="Previous step"
             >
               <ArrowLeft className="w-4 h-4" aria-hidden="true" />
               <span>Previous Step</span>
             </button>
-            <span className="text-xs font-semibold text-[#7c7c7c]">
+            <span className="text-sm font-bold text-[#7c7c7c]">
               Step {currentStepIdx + 1} of {steps.length}
             </span>
             <button
               onClick={handleNextStep}
-              className="px-5 py-2.5 text-xs font-bold text-white bg-[#cf5c36] hover:bg-[#b84f2e] rounded-full flex items-center gap-2 cursor-pointer shadow-sm"
+              className="px-6 py-3 text-sm font-bold text-white bg-[#cf5c36] hover:bg-[#b84f2e] rounded-full flex items-center gap-2 cursor-pointer shadow-sm"
               aria-label="Next step"
             >
               <span>Next Step</span>
