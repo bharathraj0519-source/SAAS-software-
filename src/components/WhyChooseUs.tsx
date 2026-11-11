@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles, TrendingUp, Zap, Clock, ShieldCheck, ChevronRight } from 'lucide-react';
+import { AgentBentoGridDemo } from '@/components/ui/agent-bento-grid';
 
 export const WhyChooseUs: React.FC = () => {
   const stepsTrackRef = useRef<HTMLUListElement>(null);
   const [currentStepIdx, setCurrentStepIdx] = useState(0);
-  const [activeTransformationIdx, setActiveTransformationIdx] = useState(0);
 
   const steps = [
     {
@@ -56,49 +56,6 @@ export const WhyChooseUs: React.FC = () => {
       detail: 'After domain launch, we activate IndexNow search dispatch, local Google Maps 3-pack ranking, and ongoing maintenance to drive sustained organic growth.',
       items: ['Instant search engine indexing', 'WhatsApp automated lead flows', 'Google Business Profile dominance', 'Dedicated engineer WhatsApp bridge'],
       webReference: 'Continuous support powered by BlazeByte Studio',
-    },
-  ];
-
-  const problems = [
-    {
-      id: 0,
-      from: 'Weak digital presence',
-      to: 'A strong digital experience',
-      metric: '+340% Higher Engagement',
-      beforeDetail: 'Outdated static brochure website with slow page load, low mobile usability, and zero customer interactivity.',
-      afterDetail: 'Sub-second Next.js web application with dynamic previews, accessible typography, and frictionless lead conversion.',
-    },
-    {
-      id: 1,
-      from: 'Repetitive manual work',
-      to: 'Smart AI & automation',
-      metric: '85% Faster Lead Handling',
-      beforeDetail: 'Manually answering repetitive pricing, business hours, and service questions across email and phone calls.',
-      afterDetail: 'Autonomous AI chatbot ingesting your full knowledge base with instant 1-click WhatsApp routing (+91 7708795342).',
-    },
-    {
-      id: 2,
-      from: 'Outdated design',
-      to: 'Modern UI/UX',
-      metric: '99+ PageSpeed Benchmark',
-      beforeDetail: 'Cluttered layouts with excessive neon glows, confusing navigation, and inaccessible contrast.',
-      afterDetail: 'Minimalist warm palette, crisp borders, intuitive visual hierarchy, and full WCAG AA accessibility.',
-    },
-    {
-      id: 3,
-      from: 'Low online visibility',
-      to: 'Better digital reach',
-      metric: 'Top 3 Maps Geo-Rank',
-      beforeDetail: 'Unindexed URLs, missing sitemaps, zero local presence on Google Maps, and content gap errors.',
-      afterDetail: 'Active IndexNow protocol dispatch, verified Google Business Profile, and targeted Coimbatore regional keywords.',
-    },
-    {
-      id: 4,
-      from: 'One-time project',
-      to: 'Long-term digital growth',
-      metric: '100% Retainer Transparency',
-      beforeDetail: 'Agencies that disappear after final delivery, leaving you with technical debt and broken dependencies.',
-      afterDetail: 'Dedicated engineering partnership with custom configurators, no lock-in, and milestone transparency.',
     },
   ];
 
@@ -257,97 +214,8 @@ export const WhyChooseUs: React.FC = () => {
         </div>
       </div>
 
-      {/* Why BlazeByte Interactive Transformation Section (Image 5 Reworked) */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <p className="text-[#cf5c36] text-xs sm:text-sm uppercase tracking-[0.2em] font-bold mb-2 font-['Barlow']">
-            WHY BLAZEBYTE?
-          </p>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#000000] tracking-tight font-['Barlow']">
-            We turn digital problems into <span className="text-[#cf5c36]">better possibilities.</span>
-          </h2>
-          <p className="mt-3 text-[#7c7c7c] text-lg sm:text-xl font-['Lateef']">
-            Click any pillar below to inspect the interactive before-and-after transformation methodology.
-          </p>
-        </div>
-
-        {/* 5 Transformation Cards Grid matching Image 5 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-          {problems.map((item, idx) => {
-            const isSelected = activeTransformationIdx === idx;
-            return (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setActiveTransformationIdx(idx)}
-                className={`p-6 rounded-[24px] border text-center transition-all duration-300 flex flex-col justify-between cursor-pointer font-['Barlow'] ${
-                  isSelected
-                    ? 'bg-white border-2 border-[#cf5c36] shadow-md shadow-[#cf5c36]/15 -translate-y-1'
-                    : 'bg-white border-[#7c7c7c]/20 hover:border-[#a66c59]/50 shadow-sm'
-                }`}
-                aria-pressed={isSelected}
-              >
-                <div>
-                  <span className="text-[11px] uppercase tracking-[0.16em] text-[#7c7c7c] mb-2 font-bold block">
-                    {idx + 1}. {item.from}
-                  </span>
-                  <span className="text-[#cf5c36] text-sm my-1 block" aria-hidden="true">↓</span>
-                  <b className="text-lg font-bold uppercase tracking-wider my-1 text-[#000000] block">
-                    BlazeByte
-                  </b>
-                  <span className="text-[#cf5c36] text-sm my-1 block" aria-hidden="true">↓</span>
-                  <span className="text-xs sm:text-sm font-bold text-[#cf5c36] mt-1 block">
-                    {item.to}
-                  </span>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-[#eee5e9] text-[10px] font-bold uppercase text-[#a66c59]">
-                  {item.metric}
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Interactive Transformation Deep Dive Panel */}
-        <div className="bg-white rounded-[28px] p-8 border border-[#7c7c7c]/20 shadow-sm max-w-4xl mx-auto font-['Barlow']">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-[#eee5e9]">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#a66c59]">
-                Interactive Transformation #{activeTransformationIdx + 1}
-              </span>
-              <h3 className="text-2xl font-extrabold text-[#000000] mt-1">
-                From {problems[activeTransformationIdx].from} to {problems[activeTransformationIdx].to}
-              </h3>
-            </div>
-            <div className="px-4 py-1.5 rounded-full bg-[#efc88b]/20 border border-[#a66c59]/30 text-xs font-bold text-[#cf5c36]">
-              {problems[activeTransformationIdx].metric}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
-            <div className="p-5 rounded-2xl bg-[#eee5e9]/40 border border-[#7c7c7c]/15 space-y-2">
-              <div className="text-xs font-bold uppercase text-[#7c7c7c] flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-red-400" />
-                <span>The Common Problem</span>
-              </div>
-              <p className="text-sm text-[#7c7c7c] leading-relaxed font-['Lateef'] text-xl">
-                {problems[activeTransformationIdx].beforeDetail}
-              </p>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white border border-[#cf5c36]/30 shadow-sm space-y-2">
-              <div className="text-xs font-bold uppercase text-[#cf5c36] flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#cf5c36]" />
-                <span>The BlazeByte Solution</span>
-              </div>
-              <p className="text-sm text-[#000000] leading-relaxed font-['Lateef'] text-xl font-medium">
-                {problems[activeTransformationIdx].afterDetail}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Autonomous Agent Bento Grid Capabilities Section (Reworked 4th image) */}
+      <AgentBentoGridDemo />
     </section>
   );
 };

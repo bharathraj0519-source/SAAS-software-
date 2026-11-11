@@ -13,6 +13,7 @@ import { CustomPlanBuilder } from './components/CustomPlanBuilder';
 import { PlanOrderModal } from './components/PlanOrderModal';
 import { CustomerPortalModal } from './components/CustomerPortalModal';
 import { LegalModal } from './components/LegalModal';
+import { CookieConsent } from './components/CookieConsent';
 import { Sparkles, Phone, CheckCircle2 } from 'lucide-react';
 import { ThemeProvider } from './context/ThemeContext';
 import type { SubscriptionPlan } from './types';
@@ -21,7 +22,7 @@ function AppContent() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [selectedPlanForOrder, setSelectedPlanForOrder] = useState<SubscriptionPlan | null>(null);
   const [portalMode, setPortalMode] = useState<'user' | 'admin' | null>(null);
-  const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | null>(null);
+  const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | 'cookies' | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
@@ -47,43 +48,6 @@ function AppContent() {
         Skip to main content
       </a>
 
-      {/* Animated Mountain Picture Backdrop from index.html (subtle ambient opacity in light theme) */}
-      <video
-        className="page-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/assets/mountain-bg.jpg"
-        aria-hidden="true"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          objectFit: 'cover',
-          pointerEvents: 'none',
-          zIndex: -10,
-        }}
-      >
-        <source src="/assets/purple-desert-optimized.mp4" type="video/mp4" />
-      </video>
-      <div
-        className="page-video-shade"
-        aria-hidden="true"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          pointerEvents: 'none',
-          zIndex: -9,
-        }}
-      ></div>
-
       {/* Live Region Toast Notification */}
       <div aria-live="polite" aria-atomic="true">
         {toastMessage && (
@@ -105,7 +69,7 @@ function AppContent() {
       <main id="main-content" tabIndex={-1} className="flex-1 relative z-10 focus:outline-none">
         {activeTab === 'home' && (
           <>
-            {/* Hero Section with FlipText, Three.js Scene & Mountain Backdrop */}
+            {/* Hero Section with FlipText and Crisp Light Styling (No Background Effects) */}
             <Hero
               onExploreServices={() => {
                 const el = document.getElementById('services-overview');
@@ -114,10 +78,10 @@ function AppContent() {
               onBuildCustomPlan={() => handleNavigate('custom-plan')}
             />
 
-            {/* 4 Interactive Service Modules Overview with Cover Images & Glass Cards */}
+            {/* 4 Interactive Service Modules Overview with Cover Images & Guaranteed Fallbacks */}
             <ServiceShowcaseGrid onSelectService={(id) => handleNavigate(id)} />
 
-            {/* Why Choose Us & Scrolling Step-by-Step Cards (01-05) + Interactive Transformation */}
+            {/* Why Choose Us & Agent Bento Grid Section */}
             <WhyChooseUs />
 
             {/* Simple, Predictable Pricing Tiers with @phosphor-icons/react */}
@@ -126,7 +90,7 @@ function AppContent() {
             {/* Frequently Asked Questions Accordion */}
             <FaqAccordionDemo />
 
-            {/* Final Conversion Section from index.html */}
+            {/* Final Conversion Section */}
             <section className="py-20 relative overflow-hidden text-center" id="contact">
               <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="bg-white p-10 sm:p-14 rounded-[32px] border border-[rgba(124,124,124,0.22)] shadow-sm relative overflow-hidden">
@@ -172,7 +136,7 @@ function AppContent() {
 
         {/* Tab: AI Chatbot SaaS */}
         {activeTab === 'chatbot' && (
-          <div className="pt-20">
+          <div className="pt-28 sm:pt-32">
             <ChatbotModule
               onSelectPlan={handleSelectPlan}
               onOpenCustomPlan={() => handleNavigate('custom-plan')}
@@ -180,9 +144,9 @@ function AppContent() {
           </div>
         )}
 
-        {/* Tab: Web Design & Development */}
+        {/* Tab: Web Design & Development (Demo Webs DO NOT show cookies or terms & conditions) */}
         {activeTab === 'webdev' && (
-          <div className="pt-20">
+          <div className="pt-28 sm:pt-32">
             <WebDevModule
               onSuccessEnquiry={(id) => showToast(`Web project enquiry ${id} recorded successfully!`)}
               onOpenCustomPlan={() => handleNavigate('custom-plan')}
@@ -192,7 +156,7 @@ function AppContent() {
 
         {/* Tab: SEO Services SaaS */}
         {activeTab === 'seo' && (
-          <div className="pt-20">
+          <div className="pt-28 sm:pt-32">
             <SeoModule
               onSelectPlan={handleSelectPlan}
               onOpenCustomPlan={() => handleNavigate('custom-plan')}
@@ -202,7 +166,7 @@ function AppContent() {
 
         {/* Tab: Custom Plan Builder */}
         {activeTab === 'custom-plan' && (
-          <div className="pt-20">
+          <div className="pt-28 sm:pt-32">
             <CustomPlanBuilder
               onSuccessEnquiry={(id) => showToast(`Custom proposal request ${id} recorded!`)}
             />
@@ -210,7 +174,7 @@ function AppContent() {
         )}
       </main>
 
-      {/* Footer */}
+      {/* Footer with Legal & Cookie Policy Navigation */}
       <Footer
         onNavigate={handleNavigate}
         onOpenLegal={(type) => setLegalModalType(type)}
@@ -237,10 +201,16 @@ function AppContent() {
         />
       )}
 
-      {/* Legal & SLA Modal */}
+      {/* Legal & SLA Modal for Privacy, Terms & Cookies */}
       <LegalModal
         type={legalModalType}
         onClose={() => setLegalModalType(null)}
+      />
+
+      {/* Main Site Cookie Consent Banner (Does not appear inside demo webs) */}
+      <CookieConsent
+        onOpenCookiesPolicy={() => setLegalModalType('cookies')}
+        onOpenPrivacyPolicy={() => setLegalModalType('privacy')}
       />
     </div>
   );

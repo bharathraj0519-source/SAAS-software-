@@ -37,10 +37,41 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate, onOpenPor
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#eee5e9]/95 backdrop-blur-xl border-b border-[#7c7c7c]/20 py-2.5 shadow-sm'
-          : 'bg-[#eee5e9]/90 backdrop-blur-md py-3.5'
+          ? 'bg-[#eee5e9]/95 backdrop-blur-xl border-b border-[#7c7c7c]/20 shadow-sm'
+          : 'bg-[#eee5e9]/90 backdrop-blur-md'
       }`}
     >
+      {/* Top Demo Environment Notice Banner */}
+      <aside
+        role="region"
+        aria-label="Interactive demonstration notice"
+        className="w-full bg-[#000000] text-white py-1.5 px-4 text-xs font-['Barlow'] tracking-wide border-b border-[#cf5c36]/40 flex items-center justify-between shadow-xs"
+      >
+        <div className="max-w-[1440px] mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+          <div className="flex items-center gap-2.5">
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#cf5c36] text-white tracking-widest uppercase">
+              DEMO MODE
+            </span>
+            <span className="font-semibold text-[#eee5e9]">
+              BlazeByte Studio Commercial SaaS &amp; Systems Platform Showcase
+            </span>
+            <span className="hidden md:inline text-[#7c7c7c]">•</span>
+            <span className="hidden md:inline text-stone-300">
+              Interactive simulation of AI Chatbots, Multi-Device Web Demos, SEO Audits &amp; Custom Pricing
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3 text-[11px]">
+            <span className="text-[#efc88b] font-medium hidden lg:inline">
+              Official Reference: <a href="https://www.blazebyte.shop" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">blazebyte.shop</a>
+            </span>
+            <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-stone-200 border border-white/20 font-bold">
+              Live Prototype
+            </span>
+          </div>
+        </div>
+      </aside>
+
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <nav
           aria-label="Main Navigation"

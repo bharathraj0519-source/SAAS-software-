@@ -4,7 +4,7 @@ import { SpotlightNavbar } from '@/components/ui/spotlight-navbar';
 
 interface FooterProps {
   onNavigate: (tab: string) => void;
-  onOpenLegal: (type: 'privacy' | 'terms') => void;
+  onOpenLegal: (type: 'privacy' | 'terms' | 'cookies') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLegal }) => {
@@ -150,6 +150,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLegal }) => {
                   className="hover:text-[#cf5c36] transition-colors cursor-pointer"
                 >
                   Terms & Service SLA
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onOpenLegal('cookies')}
+                  className="hover:text-[#cf5c36] transition-colors cursor-pointer"
+                >
+                  Cookie Policy & Preferences
                 </button>
               </li>
               <li className="pt-1 flex flex-col gap-2">

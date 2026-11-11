@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { FlipText } from '@/components/ui/flip-text';
-import { HeroScene } from '@/components/HeroScene';
 
 interface HeroProps {
   onExploreServices: () => void;
@@ -12,11 +11,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onBuildCustomPlan
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center pt-24 pb-16 sm:pt-32 sm:pb-20 overflow-hidden isolation-auto"
+      className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center pt-28 pb-16 sm:pt-36 sm:pb-24 overflow-hidden bg-transparent"
     >
-      {/* Interactive Particle Header Scene */}
-      <HeroScene />
-
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Eyebrow badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#7c7c7c]/25 shadow-sm mb-7">

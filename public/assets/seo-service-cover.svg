@@ -1,76 +1,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
   <defs>
-    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#eee5e9"/>
-      <stop offset="100%" stop-color="#e6dcde"/>
+    <linearGradient id="seoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faf7f8"/>
+      <stop offset="100%" stop-color="#eee5e9"/>
     </linearGradient>
-    <linearGradient id="chartFill" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#cf5c36" stop-opacity="0.35"/>
+    <linearGradient id="seoChartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#cf5c36" stop-opacity="0.25"/>
       <stop offset="100%" stop-color="#cf5c36" stop-opacity="0.0"/>
     </linearGradient>
-    <filter id="softShadow2" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.08"/>
+    <filter id="seoShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.06"/>
     </filter>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="450" fill="url(#bgGrad2)"/>
+  <rect width="800" height="450" fill="url(#seoBg)"/>
 
-  <!-- Analytics Dashboard Mockup -->
-  <g transform="translate(100, 40)" filter="url(#softShadow2)">
-    <rect width="600" height="370" rx="24" fill="#ffffff" stroke="#a66c59" stroke-opacity="0.2" stroke-width="1.5"/>
+  <!-- Analytics Container -->
+  <g transform="translate(90, 35)" filter="url(#seoShadow)">
+    <rect width="620" height="380" rx="20" fill="#ffffff" stroke="#7c7c7c" stroke-opacity="0.2" stroke-width="1.5"/>
 
-    <!-- Header -->
-    <text x="35" y="42" font-family="'Barlow', sans-serif" font-weight="700" font-size="16" fill="#000000">Organic Growth & Telemetry Console</text>
-    <text x="35" y="60" font-family="'Barlow', sans-serif" font-weight="500" font-size="11" fill="#7c7c7c">Target: https://www.blazebyte.shop • IndexNow Active</text>
+    <!-- Dashboard Top Bar -->
+    <text x="30" y="38" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="700" font-size="15" fill="#000000">Organic Growth &amp; Core Web Vitals Telemetry</text>
+    <text x="30" y="56" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="500" font-size="11" fill="#7c7c7c">Target: https://www.blazebyte.shop | IndexNow Protocol Active</text>
 
-    <!-- Top Metric Pill Cards -->
-    <g transform="translate(35, 75)">
-      <!-- Metric 1 -->
-      <rect width="160" height="60" rx="14" fill="#eee5e9" fill-opacity="0.7"/>
-      <text x="16" y="24" font-family="'Barlow', sans-serif" font-size="11" fill="#7c7c7c">Site Health Score</text>
-      <text x="16" y="48" font-family="'Barlow', sans-serif" font-weight="800" font-size="20" fill="#000000">94 / 100</text>
-      <circle cx="138" cy="30" r="10" fill="#cf5c36" fill-opacity="0.15"/>
-      <path d="M135 30l2 2 4-4" stroke="#cf5c36" stroke-width="2" fill="none"/>
+    <rect x="475" y="22" width="115" height="26" rx="13" fill="#10b981" fill-opacity="0.12" stroke="#10b981" stroke-opacity="0.3"/>
+    <circle cx="488" cy="35" r="3.5" fill="#10b981"/>
+    <text x="498" y="39" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="700" font-size="10" fill="#065f46">HEALTH: 94/100</text>
 
-      <!-- Metric 2 -->
-      <rect x="180" width="160" height="60" rx="14" fill="#eee5e9" fill-opacity="0.7"/>
-      <text x="196" y="24" font-family="'Barlow', sans-serif" font-size="11" fill="#7c7c7c">GSC Verified Pages</text>
-      <text x="196" y="48" font-family="'Barlow', sans-serif" font-weight="800" font-size="20" fill="#000000">27 Pages</text>
+    <!-- 3 Metric Cards Row -->
+    <g transform="translate(30, 75)">
+      <!-- Metric 1: Health -->
+      <rect width="170" height="72" rx="12" fill="#faf8f9" stroke="#eee5e9"/>
+      <text x="14" y="24" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="600" font-size="10" fill="#7c7c7c">SEARCH HEALTH</text>
+      <text x="14" y="52" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="800" font-size="22" fill="#000000">94 / 100</text>
+      <text x="110" y="50" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="700" font-size="11" fill="#10b981">+18.4%</text>
 
-      <!-- Metric 3 -->
-      <rect x="360" width="160" height="60" rx="14" fill="#eee5e9" fill-opacity="0.7"/>
-      <text x="376" y="24" font-family="'Barlow', sans-serif" font-size="11" fill="#7c7c7c">Local 3-Pack Maps</text>
-      <text x="376" y="48" font-family="'Barlow', sans-serif" font-weight="800" font-size="20" fill="#cf5c36">Rank Cleared</text>
+      <!-- Metric 2: LCP -->
+      <g transform="translate(185, 0)">
+        <rect width="180" height="72" rx="12" fill="#faf8f9" stroke="#eee5e9"/>
+        <text x="14" y="24" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="600" font-size="10" fill="#7c7c7c">LARGEST CONTENTFUL PAINT</text>
+        <text x="14" y="52" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="800" font-size="22" fill="#cf5c36">0.82s</text>
+        <text x="95" y="50" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="600" font-size="10" fill="#10b981">Good (&lt;2.5s)</text>
+      </g>
+
+      <!-- Metric 3: Maps Ranking -->
+      <g transform="translate(380, 0)">
+        <rect width="180" height="72" rx="12" fill="#faf8f9" stroke="#eee5e9"/>
+        <text x="14" y="24" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="600" font-size="10" fill="#7c7c7c">LOCAL 3-PACK RANK</text>
+        <text x="14" y="52" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="800" font-size="22" fill="#a66c59">#1 Position</text>
+      </g>
     </g>
 
-    <!-- Chart Area -->
-    <g transform="translate(35, 155)">
-      <rect width="530" height="185" rx="16" fill="#fcfafb" stroke="#eee5e9" stroke-width="1.5"/>
+    <!-- Chart Visualization Section -->
+    <g transform="translate(30, 165)">
+      <rect width="560" height="190" rx="14" fill="#faf8f9" stroke="#eee5e9"/>
+      
+      <!-- Chart grid lines -->
+      <line x1="20" y1="40" x2="540" y2="40" stroke="#eee5e9" stroke-width="1"/>
+      <line x1="20" y1="85" x2="540" y2="85" stroke="#eee5e9" stroke-width="1"/>
+      <line x1="20" y1="130" x2="540" y2="130" stroke="#eee5e9" stroke-width="1"/>
 
-      <!-- Y Grid Lines -->
-      <line x1="45" y1="35" x2="505" y2="35" stroke="#eee5e9" stroke-dasharray="4 4"/>
-      <line x1="45" y1="80" x2="505" y2="80" stroke="#eee5e9" stroke-dasharray="4 4"/>
-      <line x1="45" y1="125" x2="505" y2="125" stroke="#eee5e9" stroke-dasharray="4 4"/>
+      <!-- Area Chart Path -->
+      <path d="M 30 140 Q 90 120 150 110 T 270 80 T 390 55 T 510 35 L 510 160 L 30 160 Z" fill="url(#seoChartGrad)"/>
+      <path d="M 30 140 Q 90 120 150 110 T 270 80 T 390 55 T 510 35" fill="none" stroke="#cf5c36" stroke-width="3" stroke-linecap="round"/>
 
-      <!-- Axis Labels -->
-      <text x="25" y="38" font-family="'Barlow', sans-serif" font-size="10" fill="#7c7c7c">3k</text>
-      <text x="25" y="83" font-family="'Barlow', sans-serif" font-size="10" fill="#7c7c7c">2k</text>
-      <text x="25" y="128" font-family="'Barlow', sans-serif" font-size="10" fill="#7c7c7c">1k</text>
+      <!-- Data Point Highlight -->
+      <circle cx="510" cy="35" r="5" fill="#cf5c36"/>
+      <circle cx="510" cy="35" r="9" fill="#cf5c36" fill-opacity="0.25"/>
 
-      <!-- Area Path -->
-      <path d="M 45 140 Q 110 120 180 85 T 310 65 T 410 40 T 505 25 L 505 160 L 45 160 Z" fill="url(#chartFill)"/>
-      <path d="M 45 140 Q 110 120 180 85 T 310 65 T 410 40 T 505 25" fill="none" stroke="#cf5c36" stroke-width="3" stroke-linecap="round"/>
+      <!-- Organic Traffic Label -->
+      <rect x="420" y="65" width="115" height="26" rx="6" fill="#000000"/>
+      <text x="477" y="82" text-anchor="middle" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="700" font-size="11" fill="#ffffff">+340% Impressions</text>
 
-      <!-- Points -->
-      <circle cx="180" cy="85" r="4" fill="#ffffff" stroke="#cf5c36" stroke-width="2"/>
-      <circle cx="310" cy="65" r="4" fill="#ffffff" stroke="#cf5c36" stroke-width="2"/>
-      <circle cx="410" cy="40" r="4" fill="#ffffff" stroke="#cf5c36" stroke-width="2"/>
-      <circle cx="505" cy="25" r="5" fill="#cf5c36" stroke="#ffffff" stroke-width="2"/>
-
-      <!-- Floating Tooltip -->
-      <rect x="420" y="5" width="85" height="28" rx="8" fill="#000000"/>
-      <text x="462" y="23" text-anchor="middle" font-family="'Barlow', sans-serif" font-weight="700" font-size="11" fill="#efc88b">+185% Impressions</text>
+      <text x="30" y="24" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="600" font-size="11" fill="#000000">Organic Traffic Growth Trajectory (Last 90 Days)</text>
     </g>
   </g>
 </svg>
