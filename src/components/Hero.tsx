@@ -26,18 +26,24 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onBuildCustomPlan
           </span>
         </div>
 
-        {/* Main Headline with Attractive Text Gradient & Glow Effect when background is active */}
-        <div className="font-['Barlow']">
+        {/* Main Headline with Reworked Typography, Word-Safe Wrap & Controlled Text Glow */}
+        <div className="font-['Barlow'] relative">
+          {/* Subtle Ambient Radial Light behind header */}
+          <div
+            className="absolute inset-0 max-w-3xl mx-auto bg-gradient-to-r from-transparent via-white/50 to-transparent blur-2xl pointer-events-none -z-10"
+            aria-hidden="true"
+          />
+
           <h1
             id="hero-heading"
-            className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight max-w-5xl mx-auto leading-[1.05] mb-2 select-none"
+            className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight max-w-4xl mx-auto leading-[1.1] mb-2 select-none"
           >
-            <FlipText className="text-5xl sm:text-7xl lg:text-8xl font-black header-title-gradient">
+            <FlipText className="text-4xl sm:text-6xl lg:text-7xl font-black header-title-gradient">
               Build Smarter. Grow Faster.
             </FlipText>
           </h1>
 
-          <div className="mt-3 text-5xl sm:text-7xl lg:text-8xl font-script-italic py-2 relative">
+          <div className="mt-2 text-4xl sm:text-6xl lg:text-7xl font-script-italic py-1 select-none">
             <span className="header-script-glow">
               Automate Everything.
             </span>

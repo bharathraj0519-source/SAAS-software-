@@ -134,10 +134,10 @@
 
 /* Script Bold Italic style */
 .font-script-italic {
-  font-family: 'Playfair Display', 'Dancing Script', Georgia, serif;
+  font-family: 'Playfair Display', 'Cormorant Garamond', 'Dancing Script', Georgia, serif;
   font-style: italic;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 /* Refined crisp borders and light card surfaces */
@@ -243,30 +243,19 @@
   width: 100%;
 }
 
-/* Header Attractive Text Glow Effects when Background is Implemented */
+/* Header Attractive Text Glow Effects */
 .header-title-gradient {
-  background: linear-gradient(135deg, #000000 0%, #202734 45%, #cf5c36 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.18));
+  color: #000000;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .header-script-glow {
-  background: linear-gradient(90deg, #cf5c36 0%, #ff7a45 35%, #efc88b 70%, #cf5c36 100%);
-  background-size: 200% auto;
+  background: linear-gradient(135deg, #cf5c36 0%, #e0683e 45%, #efc88b 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmerGradient 7s linear infinite;
-  filter: drop-shadow(0 0 28px rgba(207, 92, 54, 0.55)) drop-shadow(0 2px 14px rgba(239, 200, 139, 0.4));
-}
-
-@keyframes shimmerGradient {
-  0% {
-    background-position: 0% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+  display: inline-block;
+  text-shadow: 0 0 22px rgba(207, 92, 54, 0.3), 0 0 45px rgba(239, 200, 139, 0.2);
+  filter: drop-shadow(0 2px 8px rgba(207, 92, 54, 0.22));
 }
 
 /* Header text subtle shadow */
